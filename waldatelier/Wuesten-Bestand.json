@@ -1,0 +1,988 @@
+{
+  "nodes": [
+    {
+      "id": "AH",
+      "x": 6,
+      "y": 0,
+      "t": "dead",
+      "start": true,
+      "place": "ausgang"
+    },
+    {
+      "id": "JL2",
+      "x": 9,
+      "y": 0,
+      "lm": "felsbogen",
+      "c": 2
+    },
+    {
+      "id": "SC",
+      "x": 11,
+      "y": 0,
+      "lm": "oscher",
+      "c": 1
+    },
+    {
+      "id": "WJ",
+      "x": 11,
+      "y": 1,
+      "lm": "jericho",
+      "c": 0
+    },
+    {
+      "id": "WADI",
+      "x": 12.5,
+      "y": 1,
+      "t": "dead",
+      "place": "wadi"
+    },
+    {
+      "id": "SB",
+      "x": 11,
+      "y": 2,
+      "lm": "felsbrocken",
+      "c": 0
+    },
+    {
+      "id": "SA",
+      "x": 9,
+      "y": 2,
+      "lm": "koloquinten",
+      "c": 3
+    },
+    {
+      "id": "JL4",
+      "x": 9,
+      "y": 1.5,
+      "lm": "gras",
+      "c": 1
+    },
+    {
+      "id": "JL3",
+      "x": 5,
+      "y": 1.5,
+      "lm": "blueten",
+      "c": 2
+    },
+    {
+      "id": "JL1",
+      "x": 3,
+      "y": 1.5,
+      "lm": "kamelskelett",
+      "c": 1
+    },
+    {
+      "id": "GA",
+      "x": 3,
+      "y": 0,
+      "lm": "felsplatte",
+      "c": 1
+    },
+    {
+      "id": "GB",
+      "x": 0,
+      "y": 0,
+      "lm": "knochen",
+      "c": 2
+    },
+    {
+      "id": "GH",
+      "x": 0,
+      "y": 1,
+      "t": "dead",
+      "place": "geheim"
+    },
+    {
+      "id": "JC0",
+      "x": 0,
+      "y": 3,
+      "lm": "totholz",
+      "c": 3
+    },
+    {
+      "id": "JC1",
+      "x": 3,
+      "y": 3,
+      "lm": "schaedel",
+      "c": 2
+    },
+    {
+      "id": "JC2",
+      "x": 5,
+      "y": 3,
+      "lm": "dornbusch",
+      "c": 1
+    },
+    {
+      "id": "JC3",
+      "x": 7,
+      "y": 3,
+      "lm": "tamariske",
+      "c": 2
+    },
+    {
+      "id": "JC4",
+      "x": 9,
+      "y": 3,
+      "lm": "kaktus",
+      "c": 2
+    },
+    {
+      "id": "KTR",
+      "x": 9,
+      "y": 4,
+      "t": "dead",
+      "place": "kfelsen"
+    },
+    {
+      "id": "KF",
+      "x": 11,
+      "y": 3,
+      "t": "dead",
+      "place": "kakteen"
+    },
+    {
+      "id": "ZH",
+      "x": 3,
+      "y": 3.67,
+      "t": "dead",
+      "place": "zelthuette",
+      "hidden": true
+    },
+    {
+      "id": "JB0",
+      "x": 0,
+      "y": 4.5,
+      "lm": "brunnen",
+      "c": 1
+    },
+    {
+      "id": "FM",
+      "x": 3,
+      "y": 4.5,
+      "lm": "flimmern",
+      "c": 2
+    },
+    {
+      "id": "JB2",
+      "x": 5,
+      "y": 4.5,
+      "lm": "steinhaufen",
+      "c": 2
+    },
+    {
+      "id": "JB3",
+      "x": 7,
+      "y": 4.5,
+      "lm": "zwillingsfelsen",
+      "c": 1
+    },
+    {
+      "id": "STADT",
+      "x": 9.5,
+      "y": 4.5,
+      "t": "dead",
+      "place": "stadt"
+    },
+    {
+      "id": "OASE",
+      "x": 0,
+      "y": 6,
+      "t": "dead",
+      "place": "oase"
+    },
+    {
+      "id": "T1",
+      "x": 3,
+      "y": 6,
+      "lm": "akazie",
+      "c": 1
+    },
+    {
+      "id": "T2",
+      "x": 5,
+      "y": 6,
+      "lm": "felsnadel",
+      "c": 2
+    },
+    {
+      "id": "T3",
+      "x": 7,
+      "y": 6,
+      "lm": "palme",
+      "c": 2
+    }
+  ],
+  "edges": [
+    [
+      "AH",
+      "JL2"
+    ],
+    [
+      "JL2",
+      "SC"
+    ],
+    [
+      "SC",
+      "WJ"
+    ],
+    [
+      "WJ",
+      "WADI"
+    ],
+    [
+      "WJ",
+      "SB"
+    ],
+    [
+      "SA",
+      "SB"
+    ],
+    [
+      "JC4",
+      "SA"
+    ],
+    [
+      "JL4",
+      "JL2"
+    ],
+    [
+      "JL3",
+      "JL4"
+    ],
+    [
+      "JL1",
+      "JL3"
+    ],
+    [
+      "GA",
+      "JL1"
+    ],
+    [
+      "GB",
+      "GA"
+    ],
+    [
+      "GB",
+      "GH"
+    ],
+    [
+      "JL1",
+      "JC1"
+    ],
+    [
+      "JL3",
+      "JC2"
+    ],
+    [
+      "JC0",
+      "JC1"
+    ],
+    [
+      "JC1",
+      "JC2"
+    ],
+    [
+      "JC2",
+      "JC3"
+    ],
+    [
+      "JC3",
+      "JC4"
+    ],
+    [
+      "JC4",
+      "KTR"
+    ],
+    [
+      "JC4",
+      "KF"
+    ],
+    [
+      "JC1",
+      "ZH",
+      {
+        "closed": true
+      }
+    ],
+    [
+      "JC0",
+      "JB0"
+    ],
+    [
+      "JC3",
+      "JB3"
+    ],
+    [
+      "JB0",
+      "FM"
+    ],
+    [
+      "FM",
+      "JB2"
+    ],
+    [
+      "JB2",
+      "JB3"
+    ],
+    [
+      "JB3",
+      "STADT"
+    ],
+    [
+      "JB0",
+      "OASE"
+    ],
+    [
+      "OASE",
+      "T1"
+    ],
+    [
+      "T1",
+      "T2"
+    ],
+    [
+      "T2",
+      "T3"
+    ],
+    [
+      "T1",
+      "FM"
+    ],
+    [
+      "T2",
+      "JB2"
+    ],
+    [
+      "T3",
+      "JB3"
+    ]
+  ],
+  "markerDefinitions": {
+    "felsbogen": [
+      "an einem Felsbogen",
+      "am Felsbogen",
+      "zum Felsbogen"
+    ],
+    "oscher": [
+      "an einem Strauch mit großen grünen Früchten",
+      "am Strauch mit den grünen Früchten",
+      "zum Strauch mit den grünen Früchten"
+    ],
+    "blueten": [
+      "an einem Fleck mit kleinen lila Blüten",
+      "an den lila Blüten",
+      "zu den lila Blüten"
+    ],
+    "tamariske": [
+      "an einer Tamariske auf einem Sandhügel",
+      "an der Tamariske",
+      "zur Tamariske"
+    ],
+    "akazie": [
+      "an einer Schirmakazie",
+      "an der Schirmakazie",
+      "zur Schirmakazie"
+    ],
+    "felsnadel": [
+      "an einer Felsnadel",
+      "an der Felsnadel",
+      "zur Felsnadel"
+    ],
+    "palme": [
+      "an einer einzelnen Palme",
+      "an der einzelnen Palme",
+      "zur einzelnen Palme"
+    ],
+    "brunnen": [
+      "an einem alten, trockenen Brunnen",
+      "am trockenen Brunnen",
+      "zum trockenen Brunnen"
+    ],
+    "flimmern": [
+      "an einer Stelle, wo die Luft flimmert",
+      "an der Stelle, wo die Luft flimmert",
+      "zu der Stelle, wo die Luft flimmert"
+    ],
+    "steinhaufen": [
+      "an einem Steinhaufen",
+      "am Steinhaufen",
+      "zum Steinhaufen"
+    ],
+    "zwillingsfelsen": [
+      "an zwei gleichen Felsen",
+      "an den zwei Felsen",
+      "zu den zwei Felsen"
+    ],
+    "totholz": [
+      "an einem ausgebleichten Ast",
+      "am ausgebleichten Ast",
+      "zum ausgebleichten Ast"
+    ],
+    "schaedel": [
+      "an einem Antilopenschädel",
+      "am Antilopenschädel",
+      "zum Antilopenschädel"
+    ],
+    "dornbusch": [
+      "an einem Dornbusch",
+      "am Dornbusch",
+      "zum Dornbusch"
+    ],
+    "sattel": [
+      "an einem alten Kamelsattel",
+      "am alten Kamelsattel",
+      "zum alten Kamelsattel"
+    ],
+    "kaktus": [
+      "an einem großen Kaktus",
+      "am großen Kaktus",
+      "zum großen Kaktus"
+    ],
+    "koloquinten": [
+      "an gelben Kugelfrüchten",
+      "an den gelben Kugelfrüchten",
+      "zu den gelben Kugelfrüchten"
+    ],
+    "felsbrocken": [
+      "an einem runden Felsbrocken",
+      "am runden Felsbrocken",
+      "zum runden Felsbrocken"
+    ],
+    "jericho": [
+      "an kleinen, trockenen Pflanzenkugeln",
+      "an den Pflanzenkugeln",
+      "zu den Pflanzenkugeln"
+    ],
+    "rad": [
+      "an einem zerbrochenen Wagenrad",
+      "am zerbrochenen Wagenrad",
+      "zum zerbrochenen Wagenrad"
+    ],
+    "pfahl": [
+      "an einem Pfahl mit Stofffetzen",
+      "am Pfahl mit Stofffetzen",
+      "zum Pfahl mit Stofffetzen"
+    ],
+    "gras": [
+      "an harten Grasbüscheln",
+      "an den Grasbüscheln",
+      "zu den Grasbüscheln"
+    ],
+    "scherben": [
+      "an einem zerbrochenen Tonkrug",
+      "am zerbrochenen Tonkrug",
+      "zum zerbrochenen Tonkrug"
+    ],
+    "kamelskelett": [
+      "an einem Kamelskelett",
+      "am Kamelskelett",
+      "zum Kamelskelett"
+    ],
+    "felsplatte": [
+      "an einer flachen Felsplatte",
+      "an der Felsplatte",
+      "zur Felsplatte"
+    ],
+    "knochen": [
+      "an verstreuten Knochen",
+      "an den Knochen",
+      "zu den Knochen"
+    ]
+  },
+  "objectTypes": [
+    "akazie",
+    "felsnadel",
+    "palme",
+    "brunnen",
+    "flimmern",
+    "steinhaufen",
+    "zwillingsfelsen",
+    "totholz",
+    "schaedel",
+    "dornbusch",
+    "sattel",
+    "kaktus",
+    "koloquinten",
+    "felsbrocken",
+    "jericho",
+    "rad",
+    "pfahl",
+    "gras",
+    "scherben",
+    "kamelskelett",
+    "felsplatte",
+    "knochen",
+    "stein",
+    "steine",
+    "grasbusch",
+    "kleinknochen",
+    "tamariske",
+    "oscher",
+    "felsbogen",
+    "blueten",
+    "busch",
+    "akazieK",
+    "koloqK",
+    "oscherK",
+    "kakt"
+  ],
+  "backgroundObjects": [
+    "stein",
+    "steine",
+    "grasbusch",
+    "kleinknochen",
+    "steine",
+    "grasbusch"
+  ],
+  "flora": [
+    [
+      "grasbusch",
+      4
+    ],
+    [
+      "busch",
+      3
+    ],
+    [
+      "akazieK",
+      2
+    ],
+    [
+      "koloqK",
+      1
+    ],
+    [
+      "oscherK",
+      1
+    ],
+    [
+      "kakt",
+      1
+    ],
+    [
+      "steine",
+      1
+    ]
+  ],
+  "vegetation": {
+    "OASE": 2,
+    "T1": 1,
+    "JB0": 1,
+    "T3": 1,
+    "WJ": 2,
+    "WADI": 2,
+    "SB": 1,
+    "SC": 1,
+    "JC4": 1,
+    "KF": 2,
+    "KTR": 1,
+    "SA": 1,
+    "JC3": 1,
+    "JL3": 1
+  },
+  "animals": {
+    "fennek": {
+      "sp": "Fennek",
+      "size": "s",
+      "w": 2,
+      "desert": true,
+      "text": "Ein Fennek! Seine riesigen Ohren drehen sich zu dir."
+    },
+    "dromedar": {
+      "sp": "Dromedar",
+      "size": "l",
+      "w": 2,
+      "desert": true,
+      "text": "Ein Dromedar steht am Weg und kaut gemütlich."
+    },
+    "sandkatze": {
+      "sp": "Sandkatze",
+      "size": "s",
+      "w": 1.5,
+      "desert": true,
+      "shy": 0.6,
+      "text": "Eine Sandkatze duckt sich in den Sand."
+    },
+    "springmaus": {
+      "sp": "Wüstenspringmaus",
+      "size": "s",
+      "w": 1.5,
+      "desert": true,
+      "shy": 0.55,
+      "stay": 5,
+      "text": "Eine Wüstenspringmaus! Gleich hüpft sie davon."
+    },
+    "mendes": {
+      "sp": "Mendesantilope",
+      "size": "l",
+      "w": 1,
+      "desert": true,
+      "text": "Eine Mendesantilope mit langen, gedrehten Hörnern!"
+    },
+    "flughuhn": {
+      "sp": "Flughuhn",
+      "size": "s",
+      "w": 1.2,
+      "desert": true,
+      "text": "Flughühner trinken am Wasser."
+    },
+    "dornteufel": {
+      "sp": "Dornteufel",
+      "size": "s",
+      "w": 1.2,
+      "desert": true,
+      "tame": false,
+      "obst": true,
+      "danger": false,
+      "text": "Vor dir auf dem Weg sitzt etwas Kleines, Stacheliges.",
+      "note": "Der Dornteufel ist harmlos. Man lässt ihn in Ruhe."
+    },
+    "skorpion": {
+      "sp": "Dickschwanzskorpion",
+      "size": "s",
+      "w": 1,
+      "desert": true,
+      "tame": false,
+      "obst": true,
+      "danger": true,
+      "text": "Vor dir auf dem Weg bewegt sich etwas.",
+      "note": "Sehr giftig. Abstand halten!"
+    },
+    "hornviper": {
+      "sp": "Hornviper",
+      "size": "s",
+      "w": 1,
+      "desert": true,
+      "tame": false,
+      "obst": true,
+      "danger": true,
+      "text": "Vor dir im Sand liegt etwas.",
+      "note": "Giftschlange. Abstand halten!"
+    }
+  },
+  "species": [
+    {
+      "n": "Fennek",
+      "l": "Vulpes zerda",
+      "f": "Die riesigen Ohren geben Wärme ab und hören Beutetiere, die sich im Sand bewegen."
+    },
+    {
+      "n": "Dromedar",
+      "l": "Camelus dromedarius",
+      "f": "Im Höcker speichert es Fett, kein Wasser. Davon zehrt es, wenn Futter knapp ist."
+    },
+    {
+      "n": "Sandkatze",
+      "l": "Felis margarita",
+      "f": "Dichtes Fell unter den Pfoten schützt vor heißem Sand und hinterlässt kaum sichtbare Spuren."
+    },
+    {
+      "n": "Wüstenspringmaus",
+      "l": "Jaculus jaculus",
+      "f": "Bewegt sich in weiten Sprüngen auf den Hinterbeinen und bekommt ihr Wasser fast nur aus der Nahrung."
+    },
+    {
+      "n": "Dornteufel",
+      "l": "Moloch horridus",
+      "f": "Feine Rillen in seiner Haut leiten Wasser von Tau und feuchtem Sand bis zu seinem Maul."
+    },
+    {
+      "n": "Mendesantilope",
+      "l": "Addax nasomaculatus",
+      "f": "Gehört zu den seltensten Antilopen der Welt und kann lange ohne Trinken auskommen."
+    },
+    {
+      "n": "Flughuhn",
+      "l": "Pteroclidae",
+      "f": "Die Männchen tränken an Wasserstellen ihr Bauchgefieder. Die Jungen saugen das Wasser am Nest heraus."
+    },
+    {
+      "n": "Dickschwanzskorpion",
+      "l": "Androctonus australis",
+      "f": "Gehört zu den gefährlichsten Skorpionen der Welt. Unter UV-Licht leuchten Skorpione blaugrün."
+    },
+    {
+      "n": "Hornviper",
+      "l": "Cerastes cerastes",
+      "f": "Hat große Hörner über den Augen. Tagsüber gräbt sie sich in den Sand ein, nachts geht sie auf die Jagd."
+    }
+  ],
+  "city": {
+    "stations": [
+      {
+        "id": "tor",
+        "x": 34
+      },
+      {
+        "id": "haendler",
+        "x": 170
+      },
+      {
+        "id": "schiff",
+        "x": 302
+      },
+      {
+        "id": "mann",
+        "x": 416
+      },
+      {
+        "id": "herberge",
+        "x": 532
+      }
+    ],
+    "prices": {
+      "kopfschutz": 8,
+      "wasser": 1,
+      "oel": 3,
+      "schatzkarte": 8,
+      "beutel": 12,
+      "ticket": 20,
+      "flaschenschiff": 15,
+      "teekanne": 5,
+      "tonschale": 3,
+      "teppich": 6,
+      "messinglaterne": 4
+    },
+    "sales": {
+      "feuerstein": 1,
+      "schnecke": 1,
+      "feder": 1,
+      "eichel": 1,
+      "zapfen": 1,
+      "sandrose": 1,
+      "haizahn": 1,
+      "ammonit": 2,
+      "trilobit": 3,
+      "fulgurit": 3,
+      "wuestenglas": 4,
+      "meteorit": 5
+    },
+    "departures": [
+      480,
+      720,
+      1080
+    ],
+    "boardingLead": 30,
+    "inn": 10,
+    "ticket": 20
+  },
+  "puzzle": {
+    "rows": 4,
+    "cols": 6,
+    "tiles": 24,
+    "letters": 23,
+    "roses": 7
+  },
+  "tent": {
+    "materials": {
+      "palmwedel": 10,
+      "akazienzweig": 6,
+      "stoff": 4
+    },
+    "places": [
+      "oase",
+      "kakteen"
+    ],
+    "from": 1080
+  },
+  "times": {
+    "heat": [
+      720,
+      900
+    ],
+    "mirage": [
+      600,
+      1020
+    ],
+    "warningSeconds": 12,
+    "qteHits": 5
+  },
+  "funds": {
+    "wald": [
+      [
+        "feuerstein",
+        "Feuerstein",
+        "Feuerstein besteht aus Chalcedon, einer Form von Siliciumdioxid. In der Steinzeit machte man daraus scharfe Werkzeuge. Funken gibt er nur zusammen mit Pyrit oder Stahl."
+      ],
+      [
+        "schnecke",
+        "Schneckenhaus",
+        "Das Gehäuse der Weinbergschnecke besteht aus Kalk. Es ist spiralförmig gewunden, meist rechtsherum."
+      ],
+      [
+        "feder",
+        "Feder",
+        "Eine fertige Vogelfeder besteht aus toten, verhornten Zellen der Haut."
+      ],
+      [
+        "eichel",
+        "Eichel",
+        "Der Eichelhäher vergräbt im Herbst Eicheln, bis zu 5.000 Stück. Viele findet er nicht wieder. Aus ihnen wachsen neue Eichen."
+      ],
+      [
+        "zapfen",
+        "Zapfen",
+        "Zapfen am Waldboden sind meist Fichtenzapfen. Sie hängen am Baum und fallen später ganz herunter. Tannenzapfen stehen aufrecht und zerfallen schon am Zweig."
+      ]
+    ],
+    "hoehle": [
+      [
+        "amethyst",
+        "Amethyst-Druse",
+        "Amethyst ist violetter Quarz. Die Farbe kommt von Spuren von Eisen im Kristall. Er wächst oft in Hohlräumen im Gestein, den Drusen. In Deutschland wurde Amethyst bei Idar-Oberstein abgebaut."
+      ],
+      [
+        "opal",
+        "Opal",
+        "Opal besteht aus winzigen Kügelchen aus Kieselsäure mit Wasser dazwischen. Sie zerlegen das Licht in Regenbogenfarben. Fast alle Edelopale der Welt kommen aus Australien."
+      ],
+      [
+        "diamant",
+        "Diamant",
+        "Diamanten entstehen in etwa 150 Kilometern Tiefe im Erdmantel, bei 1.200 bis 1.400 °C. Vulkanschlote aus Kimberlit haben sie in wenigen Stunden nach oben gebracht. Dort baut man sie in Minen ab."
+      ]
+    ],
+    "wueste": [
+      [
+        "sandrose",
+        "Sandrose",
+        "Rosettenförmiges Gebilde aus Sandkörnern und Gips oder Baryt. Es entsteht, wenn in der Wüste Grundwasser verdunstet und die gelösten Salze auskristallisieren."
+      ],
+      [
+        "haizahn",
+        "Fossiler Haifischzahn",
+        "Der versteinerte Zahn eines Hais. In Marokko findet man solche Zähne zum Beispiel bei Khouribga. Sie stammen aus der Kreidezeit und dem Tertiär. Haie leben im Meer, hier war also einmal Meer."
+      ],
+      [
+        "ammonit",
+        "Ammonit",
+        "Das versteinerte, spiralige Gehäuse eines Tieres, das mit den Tintenfischen verwandt war. Im Anti-Atlas in Marokko findet man Ammoniten aus dem Devon, einer sehr alten Erdzeit."
+      ],
+      [
+        "trilobit",
+        "Trilobit",
+        "Ein versteinerter Gliederfüßer aus dem Urmeer. Sein Panzer ist der Länge nach in drei Teile gegliedert, daher der Name. In Südost-Marokko findet man Trilobiten aus dem Devon."
+      ],
+      [
+        "fulgurit",
+        "Fulgurit",
+        "Ein „versteinerter Blitz“. Schlägt ein Blitz in Sand, schmelzen die Quarzkörner entlang des Blitzes zu einer Röhre aus Glas. Dafür reichen etwa 1.800 bis 2.950 °C."
+      ],
+      [
+        "wuestenglas",
+        "Libysches Wüstenglas",
+        "Honiggelbes Glas, etwa 28 bis 30 Millionen Jahre alt. Es entstand vermutlich durch einen Meteoriteneinschlag. Der Skarabäus auf einer Brustplatte von Tutanchamun ist aus diesem Glas geschliffen."
+      ],
+      [
+        "meteorit",
+        "Meteorit",
+        "Ein Stein aus dem All. Die meisten Meteoriten sind dunkel. Auf hellem Wüstenboden sieht man sie deshalb schon mit bloßem Auge."
+      ]
+    ],
+    "stadt": [
+      [
+        "flaschenschiff",
+        "Schiff in der Flasche",
+        "Masten und Takelage des kleinen Schiffs lassen sich umklappen. Nur so passt das Modell durch den Flaschenhals. In der Flasche werden die Masten von außen mit Werkzeug aufgerichtet."
+      ],
+      [
+        "teekanne",
+        "Teekanne",
+        "In Marokko trinkt man grünen Tee mit frischer Minze und viel Zucker. Man gießt ihn in hohem Bogen ins Glas und wieder zurück in die Kanne, bis sich Schaum bildet."
+      ],
+      [
+        "tonschale",
+        "Tonschale",
+        "Bemalte Keramik. Die Hafenstadt Safi in Marokko ist für ihre Keramik bekannt."
+      ],
+      [
+        "teppich",
+        "Kleiner Teppich",
+        "Berberteppiche knüpfen Frauen aus Schafwolle. Rauten und Zickzack gelten als Schutzzeichen. Was die Muster bedeuten, ist von Region zu Region verschieden."
+      ],
+      [
+        "messinglaterne",
+        "Messinglaterne",
+        "Eine Laterne aus Messing. Durch die ausgestanzten Löcher fällt das Licht und malt Muster an die Wand."
+      ]
+    ]
+  },
+  "album": [
+    [
+      "foto_duene",
+      "Höhle unter der Düne"
+    ],
+    [
+      "foto_hafen",
+      "Hafen"
+    ]
+  ],
+  "audit_source": "Wald-Spiel-v10.html, built from immutable 4.7 with rendering modules",
+  "checks": {
+    "heat": {
+      "uncovered": 2,
+      "hat": 1.5,
+      "shaded": 1,
+      "restTime": 900
+    },
+    "storm": {
+      "cleared": true,
+      "revealed": true,
+      "trails": false
+    },
+    "stormTimeout": {
+      "ended": true,
+      "node": "JL4",
+      "inGraph": true
+    },
+    "exhaustion": {
+      "need": "durstig",
+      "block": "erschoepft",
+      "after": 0
+    },
+    "mirage": {
+      "early": false,
+      "noon": true,
+      "late": false,
+      "water": false
+    },
+    "actions": [
+      "Wadi: Q/W/G",
+      "Kakteenmauer: U and 8 G/H, chest G",
+      "storm: E branch and 5 accurate survival hits; timeout relocation",
+      "7 roses and legal sliding-puzzle move, Backspace",
+      "tent built and reused via Z",
+      "city treasure map and opened hidden path",
+      "ticket purchase, boarding, return ticket"
+    ],
+    "errors": []
+  },
+  "reward_audit": {
+    "normal_coins": {
+      "mine_lore": 10,
+      "mine_secret_chest": 5,
+      "desert_cactus_chest": 7
+    },
+    "old_coins": {
+      "desert_dune_secret_chest": 8,
+      "mine_secret_chest": 5,
+      "desert_cactus_chest": 3
+    },
+    "rare_mine_finds": {
+      "amethyst": "crystal niche with pickaxe",
+      "opal": "mine lore rubble",
+      "diamant": "mine secret chest"
+    },
+    "desert_finds": {
+      "sandrose": "paths and 7-rose door",
+      "haizahn": "rocky-node search or friendly fennec",
+      "ammonit": "rocky-node search or friendly fennec",
+      "trilobit": "rocky-node search or friendly fennec",
+      "fulgurit": "post-storm paths or friendly fennec",
+      "wuestenglas": "post-storm paths or friendly fennec",
+      "meteorit": "post-storm paths or friendly fennec"
+    },
+    "note": "Explicit user correction implemented in v11: mine secret chest 5 gold + 5 ancient; cactus wall chest 7 gold + 3 ancient; dune chamber remains 8 ancient. Lore rubble remains 10 gold."
+  }
+}

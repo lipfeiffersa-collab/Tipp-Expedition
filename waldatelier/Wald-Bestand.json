@@ -1,0 +1,1232 @@
+{
+  "animals": [
+    {
+      "key": "fuchs",
+      "sp": "Rotfuchs",
+      "size": "m",
+      "w": 3,
+      "text": "Ein Rotfuchs! Er steht still und schaut dich an.",
+      "photo": [
+        164,
+        104
+      ]
+    },
+    {
+      "key": "reh",
+      "sp": "Reh",
+      "size": "l",
+      "w": 3,
+      "text": "Ein Reh hebt den Kopf und lauscht.",
+      "photo": [
+        164,
+        96
+      ]
+    },
+    {
+      "key": "kauz",
+      "sp": "Waldkauz",
+      "size": "s",
+      "w": 2,
+      "text": "Oben im Baum sitzt ein Waldkauz. Er rührt sich nicht.",
+      "sound": "owl",
+      "photo": [
+        186,
+        58
+      ]
+    },
+    {
+      "key": "hoernchen",
+      "sp": "Eichhörnchen",
+      "size": "s",
+      "w": 3,
+      "text": "Ein Eichhörnchen sitzt auf einem Baumstumpf.",
+      "photo": [
+        162,
+        90
+      ]
+    },
+    {
+      "key": "salamander",
+      "sp": "Feuersalamander",
+      "size": "s",
+      "w": 2,
+      "text": "Ein Feuersalamander kriecht über das feuchte Laub.",
+      "photo": [
+        160,
+        116
+      ]
+    },
+    {
+      "key": "specht",
+      "sp": "Buntspecht",
+      "size": "s",
+      "w": 3,
+      "text": "Ein Buntspecht hämmert gegen einen Stamm.",
+      "sound": "knock",
+      "photo": [
+        178,
+        70
+      ]
+    },
+    {
+      "key": "dachs",
+      "sp": "Dachs",
+      "size": "m",
+      "w": 2,
+      "text": "Ein Dachs schaut aus seinem Bau.",
+      "photo": [
+        164,
+        106
+      ]
+    },
+    {
+      "key": "schwein",
+      "sp": "Wildschwein",
+      "size": "l",
+      "w": 2,
+      "text": "Ein Wildschwein wühlt im Boden.",
+      "photo": [
+        160,
+        114
+      ]
+    },
+    {
+      "key": "blindschleiche",
+      "sp": "Blindschleiche",
+      "size": "s",
+      "w": 1.2,
+      "shy": 0.45,
+      "text": "Eine Blindschleiche gleitet durchs Laub. Sie ist schwer zu fotografieren.",
+      "photo": [
+        164,
+        124
+      ]
+    },
+    {
+      "key": "wolf",
+      "sp": "Wolf",
+      "size": "l",
+      "w": 0.7,
+      "shy": 0.6,
+      "stay": 4,
+      "text": "Ein Wolf! Er beobachtet dich. Gleich ist er wieder weg.",
+      "photo": [
+        156,
+        100
+      ]
+    },
+    {
+      "key": "baer",
+      "sp": "Braunbär",
+      "size": "l",
+      "w": 0.15,
+      "shy": 0.7,
+      "stay": 4,
+      "bear": true,
+      "text": "Ein Bär! Er will an dein Essen. Schnell umdrehen mit der Rücktaste!",
+      "photo": [
+        146,
+        98
+      ]
+    },
+    {
+      "key": "hase",
+      "sp": "Feldhase",
+      "size": "m",
+      "w": 0.6,
+      "shy": 0.6,
+      "stay": 6,
+      "text": "Ein Feldhase sitzt ganz still. Gleich hoppelt er weg.",
+      "photo": [
+        162,
+        110
+      ]
+    },
+    {
+      "key": "maus",
+      "sp": "Waldmaus",
+      "size": "s",
+      "w": 1.2,
+      "shy": 0.6,
+      "stay": 4,
+      "text": "Eine Waldmaus! Sie ist gleich wieder weg.",
+      "photo": [
+        160,
+        124
+      ]
+    }
+  ],
+  "nodes": {
+    "start": {
+      "x": 3,
+      "y": 0,
+      "t": "dead",
+      "block": "dickicht",
+      "start": true,
+      "say": "Hier bist du aufgewacht. Das Moos ist noch platt gedrückt."
+    },
+    "A": {
+      "x": 3,
+      "y": 1,
+      "lm": "steine",
+      "c": 0
+    },
+    "B": {
+      "x": 2,
+      "y": 1,
+      "lm": "birke",
+      "c": 3
+    },
+    "R1": {
+      "x": 1,
+      "y": 1,
+      "t": "dead",
+      "block": "geroell",
+      "say": "Der Weg ist verschüttet. Felsen versperren alles."
+    },
+    "L1": {
+      "x": 2,
+      "y": 1.5,
+      "t": "log",
+      "gate": 0
+    },
+    "X": {
+      "x": 2,
+      "y": 2,
+      "lm": "zaun",
+      "c": 3,
+      "hidden": true
+    },
+    "FH": {
+      "x": 1,
+      "y": 2,
+      "t": "dead",
+      "secret": "friedhof",
+      "revealed": true,
+      "hidden": true
+    },
+    "L2": {
+      "x": 2,
+      "y": 2.5,
+      "t": "log",
+      "gate": 2
+    },
+    "C": {
+      "x": 5,
+      "y": 1,
+      "lm": "pilze",
+      "c": 0
+    },
+    "D": {
+      "x": 7,
+      "y": 1,
+      "lm": "tannen",
+      "c": 3
+    },
+    "E": {
+      "x": 3,
+      "y": 2,
+      "lm": "weide",
+      "c": 0
+    },
+    "HUT": {
+      "x": 5,
+      "y": 2,
+      "t": "hut",
+      "lm": "huette",
+      "c": 0
+    },
+    "F": {
+      "x": 3,
+      "y": 3,
+      "lm": "stumpf",
+      "c": 0
+    },
+    "G2": {
+      "x": 2,
+      "y": 3,
+      "lm": "spalt",
+      "c": 3
+    },
+    "H1": {
+      "x": 1,
+      "y": 3,
+      "lm": "eiche",
+      "c": 0
+    },
+    "RU": {
+      "x": 0,
+      "y": 3,
+      "t": "dead",
+      "secret": "ruine",
+      "block": "dickicht"
+    },
+    "I": {
+      "x": 5,
+      "y": 3,
+      "lm": "ameisen",
+      "c": 3
+    },
+    "J": {
+      "x": 7,
+      "y": 3,
+      "lm": "hochsitz",
+      "c": 0
+    },
+    "BS": {
+      "x": 7,
+      "y": 3.6,
+      "t": "bach"
+    },
+    "BN": {
+      "x": 7,
+      "y": 4.4,
+      "t": "bach",
+      "hidden": true
+    },
+    "K1": {
+      "x": 1,
+      "y": 4,
+      "lm": "kiefer",
+      "c": 1
+    },
+    "K2": {
+      "x": 2,
+      "y": 4,
+      "lm": "steinmann",
+      "c": 0
+    },
+    "K3": {
+      "x": 3,
+      "y": 4,
+      "lm": "holz",
+      "c": 3
+    },
+    "K4": {
+      "x": 4,
+      "y": 4,
+      "lm": "nistkasten",
+      "c": 1
+    },
+    "K5": {
+      "x": 5,
+      "y": 4,
+      "lm": "totholz",
+      "c": 0
+    },
+    "K6": {
+      "x": 6,
+      "y": 4,
+      "lm": "wurzel",
+      "c": 1
+    },
+    "M6": {
+      "x": 6,
+      "y": 5,
+      "lm": "futterkrippe",
+      "c": 2
+    },
+    "M7": {
+      "x": 7,
+      "y": 5,
+      "lm": "birken2",
+      "c": 3
+    },
+    "FE": {
+      "x": 8,
+      "y": 5,
+      "t": "ort",
+      "ort": "felsen"
+    },
+    "N1": {
+      "x": 1,
+      "y": 6,
+      "lm": "steinpilze",
+      "c": 1
+    },
+    "HB": {
+      "x": 0,
+      "y": 6,
+      "t": "ort",
+      "ort": "hohlbaum"
+    },
+    "N2": {
+      "x": 2,
+      "y": 6,
+      "lm": "farn",
+      "c": 0
+    },
+    "N3": {
+      "x": 3,
+      "y": 6,
+      "lm": "buche",
+      "c": 2
+    },
+    "N4": {
+      "x": 4,
+      "y": 6,
+      "lm": "findling",
+      "c": 0
+    },
+    "N6": {
+      "x": 6,
+      "y": 6,
+      "lm": "efeu",
+      "c": 1
+    },
+    "HE": {
+      "x": 7,
+      "y": 6,
+      "t": "ort",
+      "ort": "hecke"
+    },
+    "P2": {
+      "x": 2,
+      "y": 7,
+      "lm": "totbaum",
+      "c": 3
+    },
+    "P3": {
+      "x": 3,
+      "y": 7,
+      "lm": "karren",
+      "c": 0
+    },
+    "Q4": {
+      "x": 4,
+      "y": 8,
+      "lm": "fuchsbau",
+      "c": 3
+    },
+    "Q6": {
+      "x": 6,
+      "y": 8,
+      "lm": "insektenhotel",
+      "c": 3
+    },
+    "SEE": {
+      "x": 6,
+      "y": 9,
+      "t": "dead",
+      "secret": "see",
+      "block": "dickicht"
+    },
+    "T2": {
+      "x": 2,
+      "y": 9,
+      "lm": "spinnennetz",
+      "c": 1
+    },
+    "T3": {
+      "x": 3,
+      "y": 9,
+      "lm": "bank",
+      "c": 3
+    },
+    "GOAL": {
+      "x": 3,
+      "y": 10,
+      "t": "goal"
+    }
+  },
+  "edges": [
+    [
+      "start",
+      "A"
+    ],
+    [
+      "A",
+      "B"
+    ],
+    [
+      "B",
+      "R1"
+    ],
+    [
+      "B",
+      "L1"
+    ],
+    [
+      "L1",
+      "X"
+    ],
+    [
+      "X",
+      "FH"
+    ],
+    [
+      "X",
+      "L2"
+    ],
+    [
+      "L2",
+      "G2"
+    ],
+    [
+      "A",
+      "C"
+    ],
+    [
+      "C",
+      "D"
+    ],
+    [
+      "C",
+      "HUT"
+    ],
+    [
+      "A",
+      "E"
+    ],
+    [
+      "E",
+      "HUT"
+    ],
+    [
+      "E",
+      "F"
+    ],
+    [
+      "D",
+      "J"
+    ],
+    [
+      "F",
+      "G2"
+    ],
+    [
+      "G2",
+      "H1"
+    ],
+    [
+      "H1",
+      "RU"
+    ],
+    [
+      "F",
+      "I"
+    ],
+    [
+      "I",
+      "J"
+    ],
+    [
+      "J",
+      "BS"
+    ],
+    [
+      "BN",
+      "M7",
+      {
+        "closed": true
+      }
+    ],
+    [
+      "M7",
+      "FE"
+    ],
+    [
+      "M7",
+      "M6"
+    ],
+    [
+      "K6",
+      "M6"
+    ],
+    [
+      "M6",
+      "N6"
+    ],
+    [
+      "F",
+      "K3"
+    ],
+    [
+      "G2",
+      "K2"
+    ],
+    [
+      "H1",
+      "K1"
+    ],
+    [
+      "K1",
+      "K2"
+    ],
+    [
+      "K2",
+      "K3"
+    ],
+    [
+      "K3",
+      "K4"
+    ],
+    [
+      "K4",
+      "K5"
+    ],
+    [
+      "K5",
+      "K6"
+    ],
+    [
+      "I",
+      "K5"
+    ],
+    [
+      "K1",
+      "N1"
+    ],
+    [
+      "N1",
+      "HB"
+    ],
+    [
+      "N1",
+      "N2"
+    ],
+    [
+      "N2",
+      "N3"
+    ],
+    [
+      "N3",
+      "N4"
+    ],
+    [
+      "N4",
+      "N6"
+    ],
+    [
+      "N6",
+      "HE"
+    ],
+    [
+      "N6",
+      "Q6"
+    ],
+    [
+      "N4",
+      "Q4"
+    ],
+    [
+      "K4",
+      "N4"
+    ],
+    [
+      "K3",
+      "N3"
+    ],
+    [
+      "Q4",
+      "Q6"
+    ],
+    [
+      "Q6",
+      "SEE"
+    ],
+    [
+      "N2",
+      "P2"
+    ],
+    [
+      "P2",
+      "P3"
+    ],
+    [
+      "N3",
+      "P3"
+    ],
+    [
+      "P2",
+      "T2"
+    ],
+    [
+      "P3",
+      "T3"
+    ],
+    [
+      "T2",
+      "T3"
+    ],
+    [
+      "T3",
+      "GOAL"
+    ]
+  ],
+  "markers": {
+    "steine": [
+      "an großen Steinen",
+      "an den großen Steinen",
+      "zu den großen Steinen"
+    ],
+    "birke": [
+      "an einer Birke",
+      "an der Birke",
+      "zur Birke"
+    ],
+    "pilze": [
+      "bei roten Pilzen",
+      "bei den roten Pilzen",
+      "zu den roten Pilzen"
+    ],
+    "tannen": [
+      "bei kleinen Tannen",
+      "bei den kleinen Tannen",
+      "zu den kleinen Tannen"
+    ],
+    "weide": [
+      "an einer Trauerweide",
+      "an der Trauerweide",
+      "zur Trauerweide"
+    ],
+    "stumpf": [
+      "an einem Baumstumpf",
+      "am Baumstumpf",
+      "zum Baumstumpf"
+    ],
+    "spalt": [
+      "an einem gespaltenen Baum",
+      "am gespaltenen Baum",
+      "zum gespaltenen Baum"
+    ],
+    "eiche": [
+      "an einer dicken Eiche",
+      "an der dicken Eiche",
+      "zur dicken Eiche"
+    ],
+    "ameisen": [
+      "an einem Ameisenhaufen",
+      "am Ameisenhaufen",
+      "zum Ameisenhaufen"
+    ],
+    "hochsitz": [
+      "an einem Hochsitz",
+      "am Hochsitz",
+      "zum Hochsitz"
+    ],
+    "kiefer": [
+      "an einer krummen Kiefer",
+      "an der krummen Kiefer",
+      "zur krummen Kiefer"
+    ],
+    "steinmann": [
+      "an einem Steinturm",
+      "am Steinturm",
+      "zum Steinturm"
+    ],
+    "holz": [
+      "an einem Holzstapel",
+      "am Holzstapel",
+      "zum Holzstapel"
+    ],
+    "nistkasten": [
+      "an einem Vogelhaus",
+      "am Vogelhaus",
+      "zum Vogelhaus"
+    ],
+    "totholz": [
+      "an einem Haufen Totholz",
+      "am Haufen Totholz",
+      "zum Haufen Totholz"
+    ],
+    "wurzel": [
+      "an einer großen Wurzel",
+      "an der großen Wurzel",
+      "zur großen Wurzel"
+    ],
+    "futterkrippe": [
+      "an einer Futterkrippe",
+      "an der Futterkrippe",
+      "zur Futterkrippe"
+    ],
+    "birken2": [
+      "an zwei Birken",
+      "an den zwei Birken",
+      "zu den zwei Birken"
+    ],
+    "steinpilze": [
+      "bei braunen Pilzen",
+      "bei den braunen Pilzen",
+      "zu den braunen Pilzen"
+    ],
+    "farn": [
+      "an großen Farnen",
+      "an den großen Farnen",
+      "zu den großen Farnen"
+    ],
+    "buche": [
+      "an einer Buche mit Herz",
+      "an der Buche mit Herz",
+      "zur Buche mit Herz"
+    ],
+    "findling": [
+      "an einem Felsbrocken",
+      "am Felsbrocken",
+      "zum Felsbrocken"
+    ],
+    "efeu": [
+      "an einem Baum mit Efeu",
+      "am Baum mit Efeu",
+      "zum Baum mit Efeu"
+    ],
+    "totbaum": [
+      "an einem toten Baum",
+      "am toten Baum",
+      "zum toten Baum"
+    ],
+    "karren": [
+      "an einem alten Karren",
+      "am alten Karren",
+      "zum alten Karren"
+    ],
+    "fuchsbau": [
+      "an einem Fuchsbau",
+      "am Fuchsbau",
+      "zum Fuchsbau"
+    ],
+    "insektenhotel": [
+      "an einem Insektenhotel",
+      "am Insektenhotel",
+      "zum Insektenhotel"
+    ],
+    "spinnennetz": [
+      "an einem großen Spinnennetz",
+      "am großen Spinnennetz",
+      "zum großen Spinnennetz"
+    ],
+    "bank": [
+      "an einer alten Bank",
+      "an der alten Bank",
+      "zur alten Bank"
+    ],
+    "zaun": [
+      "an einem rostigen Zaun",
+      "am rostigen Zaun",
+      "zum rostigen Zaun"
+    ],
+    "huette": [
+      "an einer Hütte",
+      "an der Hütte",
+      "zur Hütte"
+    ]
+  },
+  "objects": [
+    "steine",
+    "pilze",
+    "steinpilze",
+    "weide",
+    "stumpf",
+    "birke",
+    "birken2",
+    "schild",
+    "eiche",
+    "ameisen",
+    "hochsitz",
+    "holz",
+    "wurzel",
+    "farn",
+    "tannen",
+    "nistkasten",
+    "totholz",
+    "steinmann",
+    "futterkrippe",
+    "buche",
+    "findling",
+    "efeu",
+    "zaun",
+    "karren",
+    "fuchsbau",
+    "insektenhotel",
+    "spinnennetz",
+    "bank",
+    "kiefer",
+    "totbaum",
+    "spalt",
+    "huette",
+    "busch",
+    "stein1",
+    "farnk",
+    "baum",
+    "dickicht",
+    "baeume"
+  ],
+  "sides": [
+    "huette",
+    "hochsitz",
+    "holz",
+    "felsen",
+    "stamm",
+    "buesche",
+    "farn"
+  ],
+  "blocks": [
+    "dickicht",
+    "baumstamm",
+    "geroell",
+    "felsen"
+  ],
+  "obstacles": [
+    "baum",
+    "fels"
+  ],
+  "places": [
+    "felsen",
+    "hohlbaum",
+    "hecke"
+  ],
+  "items": {
+    "rucksack": {
+      "name": "Rucksack",
+      "nom": "ein Rucksack",
+      "text": "Ein alter Rucksack. Darin steckt ein Feldtagebuch in deiner Schrift!"
+    },
+    "kamera": {
+      "name": "Kamera",
+      "nom": "eine Kamera",
+      "text": "Eine Kamera. Sie funktioniert noch."
+    },
+    "karte": {
+      "name": "Karte",
+      "nom": "eine Karte",
+      "text": "Eine Karte! Sie ist noch fast leer. Ab jetzt zeichnest du ein, wo du warst."
+    },
+    "wasserbeutel": {
+      "name": "Wasserbeutel",
+      "nom": "ein Wasserbeutel",
+      "text": ""
+    },
+    "tropfen": {
+      "name": "Wasser",
+      "nom": "Wasser",
+      "text": ""
+    },
+    "muenzen": {
+      "name": "Münzen",
+      "nom": "Münzen",
+      "text": ""
+    },
+    "tierfutter": {
+      "name": "Tierfutter",
+      "nom": "Tierfutter",
+      "text": ""
+    },
+    "seite": {
+      "name": "Seitenstück",
+      "nom": "ein Stück Papier",
+      "text": ""
+    },
+    "holz": {
+      "name": "Holz",
+      "nom": "ein Stück Holz",
+      "text": "Trockenes Holz. Gut fürs Feuer."
+    },
+    "feder": {
+      "name": "Feder",
+      "nom": "eine Feder",
+      "text": "Eine Feder."
+    },
+    "zapfen": {
+      "name": "Tannenzapfen",
+      "nom": "ein Tannenzapfen",
+      "text": "Ein trockener Tannenzapfen."
+    },
+    "feuerstein": {
+      "name": "Feuerstein",
+      "nom": "ein Feuerstein",
+      "text": "Ein Feuerstein."
+    },
+    "beeren": {
+      "name": "Beeren",
+      "nom": "ein paar Beeren",
+      "text": "Reife Beeren. Die machen satt."
+    },
+    "honig": {
+      "name": "Honig",
+      "nom": "eine Honigwabe",
+      "text": "Eine Honigwabe. Süß und nahrhaft."
+    },
+    "eichel": {
+      "name": "Eichel",
+      "nom": "eine Eichel",
+      "text": "Eine Eichel."
+    },
+    "schnecke": {
+      "name": "Schneckenhaus",
+      "nom": "ein Schneckenhaus",
+      "text": "Ein leeres Schneckenhaus."
+    },
+    "kiesel": {
+      "name": "Kiesel",
+      "nom": "ein Kiesel",
+      "text": "Ein glatter Kiesel."
+    },
+    "laterne": {
+      "name": "Laterne",
+      "nom": "eine Laterne",
+      "text": "Die Laterne! Sie brennt noch und macht die Gänge hell."
+    },
+    "spitzhacke": {
+      "name": "Spitzhacke",
+      "nom": "eine Spitzhacke",
+      "text": "Eine alte Spitzhacke. Der Stiel ist noch fest."
+    },
+    "schluessel": {
+      "name": "Schlüssel",
+      "nom": "ein Schlüssel",
+      "text": "Ein alter Eisenschlüssel."
+    },
+    "oel": {
+      "name": "Ölfläschchen",
+      "nom": "ein kleines Ölfläschchen",
+      "text": "Ein Ölfläschchen! Du füllst das Öl in die Laterne."
+    },
+    "datteln": {
+      "name": "Datteln",
+      "nom": "ein paar Datteln",
+      "text": "Süße Datteln. Die machen satt."
+    },
+    "kaktusfeigen": {
+      "name": "Kaktusfeigen",
+      "nom": "ein paar Kaktusfeigen",
+      "text": "Rote Kaktusfeigen. Die machen satt."
+    },
+    "palmwedel": {
+      "name": "Palmwedel",
+      "nom": "ein Palmwedel",
+      "text": "Ein trockener Palmwedel."
+    },
+    "akazienzweig": {
+      "name": "Akazienzweig",
+      "nom": "ein Akazienzweig",
+      "text": "Ein Akazienzweig. Vorsicht, Dornen!"
+    },
+    "stoff": {
+      "name": "Stoff",
+      "nom": "ein Stück Stoff",
+      "text": "Ein Stück fester Stoff."
+    },
+    "zelt": {
+      "name": "Zelt",
+      "nom": "ein Zelt",
+      "text": ""
+    },
+    "sandrose": {
+      "name": "Sandrose",
+      "nom": "eine Sandrose",
+      "text": "Eine Sandrose! Sie besteht aus Sand und Gips. Sie wächst, wenn Grundwasser verdunstet."
+    },
+    "altmuenzen": {
+      "name": "Alte Münzen",
+      "nom": "alte Münzen",
+      "text": ""
+    },
+    "amethyst": {
+      "name": "Amethyst-Druse",
+      "nom": "eine Amethyst-Druse",
+      "text": ""
+    },
+    "opal": {
+      "name": "Opal",
+      "nom": "ein Opal",
+      "text": ""
+    },
+    "diamant": {
+      "name": "Diamant",
+      "nom": "ein Diamant",
+      "text": ""
+    },
+    "haizahn": {
+      "name": "Fossiler Haifischzahn",
+      "nom": "ein versteinerter Haifischzahn",
+      "text": "Ein versteinerter Haifischzahn! Hier war einmal Meer."
+    },
+    "ammonit": {
+      "name": "Ammonit",
+      "nom": "ein Ammonit",
+      "text": "Ein Ammonit! Ein spiraliges Gehäuse aus Stein."
+    },
+    "trilobit": {
+      "name": "Trilobit",
+      "nom": "ein Trilobit",
+      "text": "Ein Trilobit! Ein Tier aus dem Urmeer, zu Stein geworden."
+    },
+    "fulgurit": {
+      "name": "Fulgurit",
+      "nom": "ein Fulgurit",
+      "text": "Ein Fulgurit! Eine Röhre aus Glas, die ein Blitz in den Sand geschmolzen hat."
+    },
+    "wuestenglas": {
+      "name": "Libysches Wüstenglas",
+      "nom": "ein Stück Wüstenglas",
+      "text": "Ein Stück honiggelbes Wüstenglas! Es glänzt in der Sonne."
+    },
+    "meteorit": {
+      "name": "Meteorit",
+      "nom": "ein dunkler Stein",
+      "text": "Ein schwerer, dunkler Stein. Ein Meteorit aus dem All!"
+    },
+    "schatzkarte": {
+      "name": "Schatzkarte",
+      "nom": "eine Schatzkarte",
+      "text": ""
+    },
+    "kopfschutz": {
+      "name": "Kopfschutz",
+      "nom": "ein Kopfschutz",
+      "text": ""
+    },
+    "ticket": {
+      "name": "Schiffsticket",
+      "nom": "ein Schiffsticket",
+      "text": ""
+    },
+    "flaschenschiff": {
+      "name": "Schiff in der Flasche",
+      "nom": "ein Schiff in der Flasche",
+      "text": ""
+    },
+    "teekanne": {
+      "name": "Teekanne",
+      "nom": "eine Teekanne",
+      "text": ""
+    },
+    "tonschale": {
+      "name": "Tonschale",
+      "nom": "eine Tonschale",
+      "text": ""
+    },
+    "teppich": {
+      "name": "Kleiner Teppich",
+      "nom": "ein kleiner Teppich",
+      "text": ""
+    },
+    "messinglaterne": {
+      "name": "Messinglaterne",
+      "nom": "eine Messinglaterne",
+      "text": ""
+    },
+    "leine": {
+      "name": "Leine",
+      "nom": "eine Leine",
+      "text": ""
+    },
+    "foto_huette": {
+      "name": "Altes Foto",
+      "nom": "ein zerknicktes Foto",
+      "text": ""
+    },
+    "foto_reh": {
+      "name": "Altes Foto",
+      "nom": "ein zerknicktes Foto",
+      "text": ""
+    },
+    "foto_stollen": {
+      "name": "Altes Foto",
+      "nom": "ein zerknicktes Foto",
+      "text": ""
+    },
+    "foto_fleder": {
+      "name": "Altes Foto",
+      "nom": "ein zerknicktes Foto",
+      "text": ""
+    },
+    "foto_duene": {
+      "name": "Altes Foto",
+      "nom": "ein zerknicktes Foto",
+      "text": ""
+    },
+    "foto_hafen": {
+      "name": "Altes Foto",
+      "nom": "ein zerknicktes Foto",
+      "text": ""
+    }
+  },
+  "collectibles": [
+    [
+      "feuerstein",
+      "Feuerstein",
+      "Feuerstein besteht aus Chalcedon, einer Form von Siliciumdioxid. In der Steinzeit machte man daraus scharfe Werkzeuge. Funken gibt er nur zusammen mit Pyrit oder Stahl."
+    ],
+    [
+      "schnecke",
+      "Schneckenhaus",
+      "Das Gehäuse der Weinbergschnecke besteht aus Kalk. Es ist spiralförmig gewunden, meist rechtsherum."
+    ],
+    [
+      "feder",
+      "Feder",
+      "Eine fertige Vogelfeder besteht aus toten, verhornten Zellen der Haut."
+    ],
+    [
+      "eichel",
+      "Eichel",
+      "Der Eichelhäher vergräbt im Herbst Eicheln, bis zu 5.000 Stück. Viele findet er nicht wieder. Aus ihnen wachsen neue Eichen."
+    ],
+    [
+      "zapfen",
+      "Zapfen",
+      "Zapfen am Waldboden sind meist Fichtenzapfen. Sie hängen am Baum und fallen später ganz herunter. Tannenzapfen stehen aufrecht und zerfallen schon am Zweig."
+    ]
+  ],
+  "allItemDraw": [
+    "rucksack",
+    "holz",
+    "kamera",
+    "karte",
+    "wasserbeutel",
+    "tropfen",
+    "muenzen",
+    "tierfutter",
+    "seite",
+    "feder",
+    "zapfen",
+    "feuerstein",
+    "beeren",
+    "honig",
+    "eichel",
+    "schnecke",
+    "kiesel",
+    "laterne",
+    "spitzhacke",
+    "schluessel",
+    "oel",
+    "datteln",
+    "kaktusfeigen",
+    "palmwedel",
+    "akazienzweig",
+    "stoff",
+    "zelt",
+    "sandrose",
+    "altmuenzen",
+    "amethyst",
+    "opal",
+    "diamant",
+    "haizahn",
+    "ammonit",
+    "trilobit",
+    "fulgurit",
+    "wuestenglas",
+    "meteorit",
+    "schatzkarte",
+    "kopfschutz",
+    "ticket",
+    "flaschenschiff",
+    "teekanne",
+    "tonschale",
+    "teppich",
+    "messinglaterne",
+    "foto_huette",
+    "foto_reh",
+    "foto_stollen",
+    "foto_fleder",
+    "foto_duene",
+    "foto_hafen",
+    "leine"
+  ],
+  "puzzles": [
+    "hut",
+    "ruine",
+    "seite"
+  ]
+}

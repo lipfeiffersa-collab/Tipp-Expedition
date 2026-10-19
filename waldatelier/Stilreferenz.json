@@ -1,0 +1,51 @@
+{
+  "approved_reference": "Stilreferenz-T-Abzweigung.png",
+  "scope": "Waldgestaltung auf der 4.7-Spielwelt mit angehängtem Ruinenpfad; zurückhaltende handgezeichnete 2D-Illustration, mittlere Detaildichte, zusammenhängende Äste, bewachsener Boden und klar erkennbare Wege",
+  "topology": "Linke und rechte Wege verlaufen quer zur Blickrichtung. Kreuzungen erhalten zusätzlich den tatsächlichen geraden Ausgang. Keine fest eingebauten oder zufällig gewechselten Wege in Landschaftsbildern.",
+  "generated_sources": {
+    "grundwald": "exec-f74b120c-d228-4d74-a855-af41b9044c0a.png",
+    "orte5a": "exec-57648a03-5297-48f9-9a90-4bb5f9db2ea6.png",
+    "orte5b": "exec-2a5f1b70-c79a-4c5d-9292-fd6644e2c155.png",
+    "zustaende5": "exec-f8827084-ea2f-4eb0-a7ef-39541eb75f4d.png",
+    "waldflora": "exec-6006e5d4-2cde-4a03-9486-937cd2914ff8.png",
+    "wegmarker": "exec-2ec7d884-1c31-4b51-b132-e96a26acee5f.png",
+    "requisiten": "exec-99c6d0dc-aae2-4b6b-a6b1-1618e1bbb33e.png",
+    "wegmaterial": "exec-0d6c7a21-f48c-4d1a-a809-f4082b2777ff.png",
+    "nachtwald": "exec-2cd5f62e-86eb-40c1-81d9-5c6a06825e1a.png",
+    "nachtmaterial": "exec-bba4ffe4-d707-4929-aec0-de3dfdb5222c.png",
+    "hoehlenobjekte": "exec-50d6b820-4eee-42bc-b2b7-423a51b3a765.png",
+    "hoehlenbewohner": "exec-5dbe9ec2-a07f-40ff-adce-0caa5db9a547.png",
+    "hoehlenmaterial": "exec-928d0309-719b-4ef6-adbc-0e4ba41f7481.png",
+    "begegnungen": "exec-adc94ee0-6093-4652-bc7b-a9ac86b532f8.png",
+    "spechtflug": "exec-50b22113-2a5d-406f-920a-6bd54289b63b.png",
+    "felspassagen": "exec-8660d7d5-cf73-4546-9a0a-a1b94923b790.png",
+    "tierportraets": "exec-99c4a951-51c5-4abd-ad22-fdf32683f16b.png"
+  },
+  "source_directory": "/workspace/generated_images",
+  "unchanged_art": [
+    "waldtiere",
+    "gegenstaende",
+    "baeume",
+    "nachtpfad"
+  ],
+  "persistent_map_schema": 3,
+  "save_store": "tipp-expedition-rpg-v1",
+  "desert_direction": {
+    "user_requirement": "Orientalische Wüste, keine amerikanische Wüstenlandschaft; vorhandene Flora und Fauna als Grundlage erhalten.",
+    "regional_evidence": [
+      "Oscher ausdrücklich Calotropis procera",
+      "Koloquinten",
+      "Jericho-Pflanzenkugeln",
+      "Tamariske",
+      "Schirmakazie",
+      "Dattelpalmen und Oase",
+      "Wadi",
+      "Marokko/Safi/Berber-Kunst in den Fundtexten",
+      "Sahara-Felsbilder"
+    ],
+    "cactus": "Feigenkakteen/Opuntien mit flachen Gliedern und Kaktusfeigen sind ausdrücklich definiert; keine Saguaro-Silhouetten daraus machen.",
+    "unspecified_plants": "Lila Blüten, Dornbüsche und Grasbüschel ohne botanische Artfestlegung im Code.",
+    "fauna_check": "Dornteufel/Moloch horridus ist im bestehenden Code vorhanden, stammt aber aus Australien. Inhaltliche Korrektur offen, kein stillschweigender Austausch."
+  },
+  "revision_12": "Ruinenpfad ist eine angehängte Spielerweiterung; bestehende UIDs, Landschaften und Wege bleiben erhalten."
+}

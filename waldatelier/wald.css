@@ -1,0 +1,22 @@
+/* The forest illustration and specimen images share a readable, subdued frame. */
+:root{--bg:#101b18;--panel:#1b2923;--panel2:#26352a;--line:#445445;--fg:#e8eadf;--muted:#b2bdac;--accent:#d5b978;--font:'Segoe UI',Verdana,sans-serif}
+body{background:radial-gradient(ellipse at 35% 0,#293c30 0,#15221d 48%,#0c1412 100%);min-height:100vh}
+.app{max-width:1560px;padding:20px 26px;gap:22px}h1,h2,.hud strong{font-family:Georgia,'Times New Roman',serif;font-weight:500}.hud strong{font-size:1.85rem}.eyebrow{letter-spacing:.2em}
+.hero{background:linear-gradient(135deg,#30422e,#18261f);border:1px solid #60715266;border-radius:14px}
+.playrow{gap:18px;align-items:stretch}.maincol{flex:1;min-width:0;max-width:1120px}.stage{border:1px solid #75816266;border-radius:17px;background:#142018;box-shadow:0 16px 40px #0004;overflow:hidden}
+#view{image-rendering:auto!important}.sidebox{width:164px;border:1px solid #68745b66;border-radius:15px;background:linear-gradient(150deg,#26372b88,#192720);padding:13px 9px}.invbox{overflow-y:auto;overflow-x:hidden}.inv{gap:6px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.inv li{min-width:0;padding:8px 2px;overflow-wrap:anywhere;background:#a3b08a0c;font-size:.76rem;border:1px solid #aabb8812;border-radius:8px}.inv img{width:100%;height:52px;object-fit:contain;image-rendering:auto!important}.inv .sep{border:0;letter-spacing:.12em}
+.dialog{border:1px solid #68745b66;border-radius:14px;background:#1d2c25;padding:20px;line-height:1.65}.dialog p{font-size:1.04rem}.choice,.btn,.nav-btn{border-width:1px;border-radius:9px}.choices{gap:10px}.keycap{border-radius:6px}.jphoto img,.jicon img,.sp .photo,.snap img,.pagecard img,.quest img{image-rendering:auto!important}.jphoto img{width:240px}.jicon img{width:110px}.book{--paper:#e8dfc6;--inkJ:#303e30;--rule:#4b694019}.jpage{background-color:#e8dfc6}.jtabs .jtab{background:#9f9d75;color:#253525}.jtabs .jtab.on{background:#e8dfc6}.jtitle .hand{color:#445337}.jphoto{filter:drop-shadow(0 3px 3px #352e2522)}.cell.img,.sc.img{image-rendering:auto!important}#lock{background:#13231bef;border:1px solid #8a957666}.lk-title,.moss-title{font-family:Georgia,serif}
+@media(max-width:1050px){.app{padding:14px}.sidebox{width:133px}.inv img{height:43px}.playrow{gap:10px}.hud strong{font-size:1.45rem}}
+@media(max-width:700px){.app{padding:9px}.sidebox{width:100px;padding:8px 4px}.inv img{height:36px}.inv li{font-size:.65rem;padding:6px 1px}.playrow{gap:6px}.dialog{padding:14px}.stage{border-radius:10px}.jphoto img{width:100%}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+/* Waldatelier 3: quieter framing, no additional scenery panels. */
+body{background:#18251f}.stage{box-shadow:none}.dialog,.sidebox{background:#1f2c25}.hero{background:#28382d}
+#lock{background:#202d27f7;border:1px solid #89927b}
+#lock:before{content:attr(data-title);position:absolute;top:3cqh;left:0;right:0;text-align:center;font:500 3cqh Georgia,serif;letter-spacing:.18em;color:#d9d6ba}
+#lock:after{content:'Teile wählen · F / J verschieben · D drehen · Leertaste einsetzen';position:absolute;top:8cqh;left:0;right:0;text-align:center;font:2.2cqh Segoe UI,sans-serif;color:#b8c0a8;pointer-events:none}
+.well .cell.wall{background:#52604d;box-shadow:inset 0 0 0 .1cqh #89927955}.well .cell.mold{background:#303e32;box-shadow:inset 0 0 0 .1cqh #aeb69a55}.well .cell.mold.img{opacity:.48;filter:saturate(.35) brightness(1.5)}
+.stone .sc.img{box-shadow:inset 0 0 0 .15cqh #e2d8aa88,0 0 0 .2cqh var(--c)}.stone .lt{border-width:.2cqh;font-size:3.9cqh;border-radius:.5cqh;background:#26352a}.lockinfo{color:#d1d4bd}
+/* Illustrated puzzle surfaces follow the approved forest reference. */
+#lock{background-image:linear-gradient(#273326e8,#19291fe8),var(--wald-wood);background-size:cover}
+.moss{background:#17261ee8}.grave{background-image:linear-gradient(#c5c1a32a,#6c74562a),var(--wald-stone);background-size:cover;border-color:#777b61;color:#343c2c;box-shadow:inset 0 0 0 1px #c1bea344,0 6px 18px #0004}
+.patch{background-image:linear-gradient(#67732f22,#344b2f22),var(--wald-moss)!important;background-size:cover!important;color:#f0ecd3;text-shadow:0 1px 3px #16271f,0 0 4px #16271f}
