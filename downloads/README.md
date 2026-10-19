@@ -1,23 +1,23 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 13
+## Aktuelle Version 14
 
-**[Tipp-Expedition-v13.zip herunterladen](Tipp-Expedition-v13.zip)** · etwa 19 MB
+**[Tipp-Expedition-v14.zip herunterladen](Tipp-Expedition-v14.zip)** · etwa 20 MB
 
-Auf GitHub die ZIP-Datei öffnen und „Download raw file“ anklicken. Anschließend vollständig entpacken und **Wald-Spiel.html** öffnen. Alle Bilder sind eingebettet, das Spiel benötigt keine Bilddownloads.
+ZIP vollständig entpacken und **Wald-Spiel.html** öffnen. Alle Bilder sind eingebettet. Auf der GitHub-Dateiseite heißt die Downloadfunktion „Download raw file“.
 
-Für vorhandene Spielstände denselben Browser, Dateinamen und Speicherort verwenden. Die bisherige Datei vorher sichern.
+Neu: hohe Dünen mit scharfen Kämmen und einem Tal dazwischen, weich begrenzte, leicht geschwungene Sandwege und deutlich sichtbare Schattenplätze. Der Höhleneingang wird am Fuß derselben großen Düne freigelegt; Sandrosen und Rätsel bleiben erhalten. An den tatsächlich geschützten Orten zeigt das Spiel während der Mittagshitze „Im Schatten · Ü: rasten“. Mit Ü rastest du bis 15 Uhr. Die Schattenfläche stimmt mit dem wirklichen Hitzeschutz überein.
 
-Neu: illustrierte nordafrikanische Wüste und Hafenstadt mit eigenen Pflanzen, neun Tierarten, Standortmarkern und Fundstücken. Überarbeitet sind Oase, Wadi, Kakteenfeld, Lehmmauer-Truhe, Sandrosentor, Felsbildrätsel, Zelthütte, Zeltaufbau, Wetter und fünf Hafenstationen. Wege folgen weiterhin dem tatsächlichen Wegenetz. Sandstürme verwehen Fußspuren, erhalten aber die erkundete Karte.
+Beim Umdrehen an der Oase funktionieren jetzt auch die Beschreibungen ihrer anschließenden Wege. Wald, Mine, Wüstentiere, Fundstücke, Zeltaufbau und Hafenstadt aus der vorherigen Version bleiben enthalten.
 
-Die Dornschwanzagame ersetzt den australischen Dornteufel. Frühere Fotos bleiben im Tagebuch ausdrücklich als Archivfotos erhalten. Truhenbelohnungen: Mine 5 alte + 5 Goldmünzen; Kakteenmauer 3 alte + 7 Goldmünzen; Geheimhöhle 8 alte Münzen.
+Für vorhandene Spielstände dieselbe HTML-Datei unter demselben Namen am selben Speicherort im selben Browser ersetzen. Die bisherige Datei vorher sichern. Browserdaten nicht löschen.
 
-Die Schiffsreise nach der Hafenstadt ist weiterhin in Arbeit. Der Wald mit Ruinenpfad und Rehgruppe aus Version 12 bleibt enthalten.
+Der bearbeitbare Quellstand und die Prüfungen liegen in `../waldatelier/`; die vollständige HTML-Datei zusätzlich in `../Tipp-Expedition-4.7-Waldatelier.html`.
 
-Der bearbeitbare Quellstand und die Prüfscripte liegen in `../waldatelier/`. Das vollständige Spiel liegt zusätzlich als `../Tipp-Expedition-4.7-Waldatelier.html` vor.
+SHA-256 der Version-14-ZIP: `73096c3a93fcacc66ba6c41a59fd7d47c0a6117bcbb86f3bcc6bdfdce93d95ed`
 
-SHA-256 der Version-13-ZIP: `adf729299db103dfbfb49517dd07e9d248a9f5608e8c9be8b8c65e566a8ea741`
+[Dünen, Schattenplatz und Höhle als Vorschaubilder](../waldatelier/vorschau-v14/)
 
 ## Vorherige Versionen
 
-[Version 12](Tipp-Expedition-v12.zip) und [Version 11](Tipp-Expedition-v11.zip) bleiben als Rückfallversionen erhalten.
+[Version 13](Tipp-Expedition-v13.zip), [Version 12](Tipp-Expedition-v12.zip) und [Version 11](Tipp-Expedition-v11.zip) bleiben erhalten.

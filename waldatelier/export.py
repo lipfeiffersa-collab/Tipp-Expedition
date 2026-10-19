@@ -13,12 +13,12 @@ if args.previous and args.previous.exists():
  for key in ['waldtiere','gegenstaende','baeume','nachtpfad']:
   if key in previous:data[key]=previous[key]
 
-assert len(data)==30 and {'grundwald','orte5a','orte5b','zustaende5','wegmaterial'}<=data.keys()
+assert len(data)==31 and {'grundwald','orte5a','orte5b','zustaende5','wegmaterial'}<=data.keys()
 html=source[:a]+json.dumps(data,separators=(',',':'))+source[z:]
-args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v13.html').write_text(html)
-with zipfile.ZipFile(args.output/'Wald-Spiel-v13.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
+args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v14.html').write_text(html)
+with zipfile.ZipFile(args.output/'Wald-Spiel-v14.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
  arc.writestr('Wald-Spiel.html',html)
- arc.writestr('Start.txt','Tipp-Expedition 4.7 – Waldatelier 13\n\nZIP vollständig entpacken, dann Wald-Spiel.html im Browser öffnen. Alle Bilder sind eingebettet; es werden keine Bilder aus dem Internet geladen.\n\nWald und Wüste verwenden eingebettete Illustrationen. Die Wüste enthält Wasserstellen, Sandrosenrätsel, Sandsturm und Hafenstadt. Die Spielregeln und Preise bleiben erhalten. Die Waldgestaltung folgt der bestätigten T-Abzweigung. Standortmarker, besondere Orte, Hindernisse und Rätsel behalten ihre Bedeutung und Spielpositionen. Schilder werden aus dem Wegenetz berechnet.\n\nDie Karte zeichnet Wege ab ihrem Fund auf. Die Kartenhilfen befreundeter Vögel zeigen weiterhin versteckte Orte und heutige Fundstücke.\n\nZum Weiterverwenden eines vorhandenen lokalen Spielstands dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden. Vorher eine Kopie der alten Datei behalten. Browserdaten nicht löschen. Gespeicherte Fotos bleiben erhalten; neue Fotos verwenden die neue Waldzeichnung.\n')
-with zipfile.ZipFile(args.output/'Wald-Spiel-v13.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
-for name in ['Wald-Spiel-v13.html','Wald-Spiel-v13.zip']:(args.output/name).chmod(0o644)
-print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v13.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')
+ arc.writestr('Start.txt','Tipp-Expedition 4.7 – Waldatelier 14\n\nZIP vollständig entpacken, dann Wald-Spiel.html im Browser öffnen. Alle Bilder sind eingebettet; es werden keine Bilder aus dem Internet geladen.\n\nHohe Dünen, weichere Sandwege und sichtbare Schattenplätze sind in Version 14 überarbeitet. An einem Schattenplatz schützt dich die bestehende Spielregel vor dem zusätzlichen Hitzeverbrauch; während der Mittagshitze rastest du mit Ü bis 15 Uhr. Wald und Wüste verwenden eingebettete Illustrationen. Die Wüste enthält Wasserstellen, Sandrosenrätsel, Sandsturm und Hafenstadt. Die Spielregeln und Preise bleiben erhalten. Die Waldgestaltung folgt der bestätigten T-Abzweigung. Standortmarker, besondere Orte, Hindernisse und Rätsel behalten ihre Bedeutung und Spielpositionen. Schilder werden aus dem Wegenetz berechnet.\n\nDie Karte zeichnet Wege ab ihrem Fund auf. Die Kartenhilfen befreundeter Vögel zeigen weiterhin versteckte Orte und heutige Fundstücke.\n\nZum Weiterverwenden eines vorhandenen lokalen Spielstands dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden. Vorher eine Kopie der alten Datei behalten. Browserdaten nicht löschen. Gespeicherte Fotos bleiben erhalten; neue Fotos verwenden die neue Waldzeichnung.\n')
+with zipfile.ZipFile(args.output/'Wald-Spiel-v14.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
+for name in ['Wald-Spiel-v14.html','Wald-Spiel-v14.zip']:(args.output/name).chmod(0o644)
+print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v14.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')

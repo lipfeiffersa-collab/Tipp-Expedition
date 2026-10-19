@@ -31,6 +31,8 @@ s=s.replace("{n:'Dornteufel',l:'Moloch horridus',f:'Feine Rillen in seiner Haut 
 s=s.replace('Dornteufel','Dornschwanzagame').replace('Der Dornschwanzagame','Die Dornschwanzagame').replace('Das ist ein Dornschwanzagame. Er sieht gefährlich aus, ist aber harmlos.','Das ist eine Dornschwanzagame. Ihr stacheliger Schwanz dient der Verteidigung; halte Abstand.').replace('Er ist harmlos. Geh einfach weiter.','Sie ist harmlos. Geh einfach weiter.').replace('Du kannst ihn in Ruhe lassen und einfach weitergehen.','Du kannst sie in Ruhe lassen und einfach weitergehen.').replace('etwas Kleines, Stacheliges.','eine gedrungene Echse mit kräftigem, stacheligem Schwanz.')
 s=s.replace('Man lässt ihn in Ruhe.','Man lässt sie in Ruhe.')
 s=s.replace('Ein Händler unter einem rot-weißen Tuch. In seiner Auslage liegen Fossilien, Krüge und Fläschchen mit bunten Tränken.','Ein Händler unter einem cremefarbenen Tuch. In seiner Auslage liegen Datteln, Stoffe, Wasserkrüge und Karten.')
+# Revision 14: the storm exposes the foot of the dune, not an entire vanished mountain of sand.
+s=s.replace('Der Sandsturm hat die hohe Düne weggeweht! Zwischen den Felsen ist ein Eingang, mit einer Steinplatte verschlossen.','Der Sandsturm hat Sand am Fuß der hohen Düne abgetragen! Darunter ist ein Eingang frei geworden, mit einer Steinplatte verschlossen.')
 # Rendering-source changes follow.
 a=s.index('function draw(now){');b=s.index('\nfunction loop(now)',a)
 segment=s[a:b].replace('vx.drawImage(bc,','forestBlit(')
@@ -41,7 +43,7 @@ segment=re.sub(r"for\(let i=0;i<9;i\+\+\)\{const x=150.*?vx\.fillRect\(Math\.rou
 segment=segment.replace("if(G&&G.phase==='explore'&&!trans&&!G.cave){","if(G&&G.phase==='explore'&&!trans&&!G.cave&&!(fActive()&&(fLastItem||fLastFocus))){")
 segment=segment.replace("  if(G&&G.enc&&G.enc.max","  if(fActive()){fDrawFire();fDrawPickupHint(now);}\n  if(G&&G.enc&&G.enc.max")
 s=s[:a]+segment+s[b:]
-assets={f.stem:'data:image/webp;base64,'+base64.b64encode(f.read_bytes()).decode() for f in sorted((root/'assets').glob('*.webp')) if f.stem in {'wuestenmaterial','wuestenflora','wuestenmarker','wuestenfunde','wuestentiere','wuestenorte','hafenbauten','hafenpanorama','saharafelsbild','tierportraets','felspassagen','spechtflug','begegnungen','hoehlenobjekte','hoehlenbewohner','hoehlenmaterial','nachtmaterial','nachtwald','waldtiere','gegenstaende','wegmarker','requisiten','baeume','nachtpfad','waldflora','grundwald','orte5a','orte5b','wegmaterial','zustaende5'}}
+assets={f.stem:'data:image/webp;base64,'+base64.b64encode(f.read_bytes()).decode() for f in sorted((root/'assets').glob('*.webp')) if f.stem in {'duenen','wuestenmaterial','wuestenflora','wuestenmarker','wuestenfunde','wuestentiere','wuestenorte','hafenbauten','hafenpanorama','saharafelsbild','tierportraets','felspassagen','spechtflug','begegnungen','hoehlenobjekte','hoehlenbewohner','hoehlenmaterial','nachtmaterial','nachtwald','waldtiere','gegenstaende','wegmarker','requisiten','baeume','nachtpfad','waldflora','grundwald','orte5a','orte5b','wegmaterial','zustaende5'}}
 bound_file=root/'atlas-bounds.json'
 bound_data=json.loads(bound_file.read_text()) if bound_file.exists() else {}
 bounds={k:v['bounds'] for k,v in bound_data.items() if k in assets and hashlib.sha256((root/'assets'/f'{k}.webp').read_bytes()).hexdigest()==v['sha256']}
