@@ -5383,9 +5383,26 @@ uTracks=function(road){rVisiblePrints=[];const prints=(x,y,s)=>{uPrint(x,y,s);rV
 };
 // One continuous dune basin; never stretch a single sky row into a different landscape.
 uTerrain=function(){uDuneScene(0);};
+// A trail is compacted existing sand, not a separately coloured ribbon.
+// Keep its wind ripples and local dune colours; weather only the edges of the mask.
+const rSandCache=new Map();let rSandKey='';
+const rRoadGeometry=uRoad;uRoad=function(n=null,h=G.pos.h,z=ZJ){rSandKey=JSON.stringify([G.seed,G.pos,n?.id,h,z,n?[0,1,2,3].map(d=>passable(n,d)):null]);return rRoadGeometry(n,h,z);};
+const rSandSoft=document.createElement('canvas');rSandSoft.width=1280;rSandSoft.height=720;
+function rSandMask(path){
+ const g=uRoadMask.getContext('2d',{willReadFrequently:true});g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,1280,720);g.setTransform(4,0,0,4,0,0);g.fillStyle='#fff';g.filter='blur(5px)';g.fill(path);g.filter='none';
+ return g.getImageData(0,408,1280,312).data;
+}
 uSoil=function(path){
- fctx.save();fctx.fillStyle='#d6b379';fctx.globalAlpha=.79;fctx.filter='blur(3px)';fctx.fill(path);fctx.restore();
- fctx.save();fctx.clip(path);fctx.globalAlpha=.24;uTexture(0,0,103,W,77);fctx.fillStyle='#d8b77f';fctx.globalAlpha=.40;fctx.fill(path);fctx.globalAlpha=1;const rnd=mulberry(149);for(let i=0;i<125;i++){const y=105+rnd()*75,x=rnd()*W,k=(y-103)/77;uLine(fctx,[[x,y],[x+2*k,y-.3*k,x+4*k,y]],i%3?'#f3d39955':'#a8865538',.15+.18*k);}fctx.restore();
+ if(rSandCache.has(rSandKey)){fctx.putImageData(rSandCache.get(rSandKey),0,408);return;}
+ const mask=rSandMask(path),bg=fctx.getImageData(0,408,1280,312),soft=rSandSoft.getContext('2d',{willReadFrequently:true});soft.clearRect(0,0,1280,720);soft.filter='blur(2px)';soft.drawImage(F_CANVAS,0,0);soft.filter='none';const blurred=soft.getImageData(0,408,1280,312).data,out=bg.data;
+ for(let y=0;y<312;y++)for(let x=0;x<1280;x++){
+  const wx=x/4,wy=102+y/4,depth=(wy-102)/78;
+  const driftX=(Math.sin(wy*.43)+Math.sin(wy*1.19+1.7)*.45)*(1+depth*2.4),driftY=(Math.sin(wx*.12)+Math.sin(wx*.39+2)*.45)*(.45+depth*.65);
+  const mx=Math.max(0,Math.min(1279,Math.round(x+driftX*4))),my=Math.max(0,Math.min(311,Math.round(y+driftY*4))),m=mask[(my*1280+mx)*4+3]/255;
+  if(m<.005)continue;const i=(y*1280+x)*4,grain=Math.sin(x*1.77+y*2.51)*.65,weather=.80+.14*Math.sin(wx*.16+wy*.21)+.06*Math.sin(wx*.47-wy*.11),a=m*weather;
+  for(let c=0;c<3;c++){const sand=out[i+c]*.72+blurred[i+c]*.28;out[i+c]=out[i+c]*(1-a)+(sand*.85+grain)*a;}
+ }
+ fctx.putImageData(bg,0,408);rSandCache.set(rSandKey,bg);if(rSandCache.size>12)rSandCache.delete(rSandCache.keys().next().value);
 };
 const rShelter=uShelterPatch;
 uShelterPatch=function(x,y,rx=48,ry=13){rShelter(x,y,rx*1.12,ry*1.35);fctx.save();const g=fctx.createRadialGradient(x,y,rx*.12,x,y,rx*1.2);g.addColorStop(0,'#333e3b99');g.addColorStop(.65,'#37413e7d');g.addColorStop(1,'#414a4300');uEllipse(fctx,x,y,rx*1.13,ry*1.4,g);fctx.restore();};
@@ -5473,7 +5490,7 @@ forestReady.then(()=>{
  const h=F_ATLAS.stadtgang.img,cw=h.width/3,ch=h.height/3;R_HUMAN.push(...rPoseRow('stadtgang',Array.from({length:9},(_,i)=>[Math.round(i%3*cw),Math.round(Math.floor(i/3)*ch),Math.floor(cw),Math.floor(ch)])));
  const a=F_ATLAS.wuestengang.img,ys=[0,196,430,595,765,1058,a.height];const xs=[[0,335,650,975,a.width],[0,324,637,952,a.width],[0,342,650,968,a.width],[0,350,657,971,a.width],[0,326,638,950,a.width],[0,314,628,942,a.width]];for(let row=0;row<6;row++)R_ANIMAL.push(rPoseRow('wuestengang',Array.from({length:4},(_,i)=>[xs[row][i],ys[row],xs[row][i+1]-xs[row][i],ys[row+1]-ys[row]])));
  S.desertKnown15=S.desertKnown15||{};if(!S.desertKnowledgeMigration15){for(const a of U_ANIMALS){const sp=DEAD[a].sp;if(S.seen?.[sp]||S.photos?.[sp]||S.fed?.[sp]||S.pet?.[sp])rLearn('animal:'+a);}for(const k of ['datteln','kaktusfeigen'])if(S.res[k]>0)rLearn('item:'+k);S.desertKnowledgeMigration15=true;}
- qPhotoCache.clear();if(S.album&&S.photoArt15!==15){for(const key of Object.keys(S.album))if(key.startsWith('foto_'))S.album[key]={...S.album[key],img:fotoScene(key)};S.photoArt15=15;}save();window.forestArt.version='4.7 Waldatelier 15 – Klare Wege und lebendige Hafenstadt';
+ qPhotoCache.clear();if(S.album&&S.photoArt15!==15){for(const key of Object.keys(S.album))if(key.startsWith('foto_'))S.album[key]={...S.album[key],img:fotoScene(key)};S.photoArt15=15;}save();window.forestArt.version='4.7 Waldatelier 15.1 – Natürliche Sandwege';
 });
 
 const rOverlay=desertOverlay;desertOverlay=function(now){rOverlay(now);if(uActive()&&!G.city&&!G.puz&&!G.storm&&!qEffect&&rUnknown()){const f=uLastItem||uLastFocus;if(f)uLabel(vx,'I',f.cx??f.x??160,Math.min(164,f.base+11));}};DESERT_EX.overlay=desertOverlay;
