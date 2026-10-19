@@ -1,4 +1,4 @@
-# Waldatelier 12 – Illustrationsfassung für Tipp-Expedition 4.7
+# Waldatelier 13 – Illustrationsfassung für Tipp-Expedition 4.7
 
 Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer bestätigte handgezeichnete Waldillustration mit mittlerer Detaildichte und einer quer verlaufenden T-Abzweigung. `Stilreferenz.json` dokumentiert die dazu erzeugten Motive. Die früheren Versuche sind keine Gestaltungsreferenz für Folgeänderungen.
 
@@ -6,7 +6,7 @@ Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer
 
 Im Repository: `python waldatelier/build.py`. Benötigt Python 3 und die eingebetteten WebP-Quelldateien. Ergebnis: `Tipp-Expedition-4.7-Waldatelier.html`.
 
-`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v12.html` und `Wald-Spiel-v12.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle einundzwanzig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
+`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v13.html` und `Wald-Spiel-v13.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle dreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
 
 Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Gespeicherte Fotos bleiben erhalten, neue Fotos verwenden die aktuelle Waldzeichnung.
 
@@ -101,3 +101,11 @@ Der Kriechabschnitt liegt unter einem Felsüberhang. Ä-Biegungen zeigen dichte,
 - `check-rewards.py`: korrigierte Münzbelohnungen, Migration älterer geöffneter Truhen, Schutz vor Doppelauszahlung und negative Goldstände.
 
 Die Browserprüfungen verwenden HTTP und Chromium; eine vollständige manuelle Durchspielung wird damit nicht behauptet.
+
+## Revision 13: Wüste und Hafenstadt
+
+Die vollständige Umsetzung und ihre Prüfung beschreibt [Wueste-Analyse-und-Gestaltung.md](Wueste-Analyse-und-Gestaltung.md#umsetzung-in-revision-13). `wueste.js` ergänzt eigenständige Wüstenflora, neun Tierarten, Fundstücke, 22 Standortmarker, acht feste Orte, Wasser-/Wetterzustände, Zeltsequenz, Felsbildrätsel und die fünf Stationen der Hafenstadt. Der bestätigte Austausch zur Dornschwanzagame erhält alte Fortschritte und archiviert das frühere Dornteufel-Foto ausdrücklich.
+
+`python waldatelier/check-desert.py` prüft die neue Welt mit tatsächlichen Tasteneingaben und einem alten Artfortschritt. `check-v12.py` bleibt die Regression für Wald, Ruinenpfad, Begegnungen und Nachtpfad. Der Export enthält sämtliche Bilder inline und behält den inneren Dateinamen `Wald-Spiel.html`.
+
+Die geprüften Atlaszuschnitte liegen in `atlas-bounds.json`, jeweils an den SHA-256 des Bildbogens gebunden. Dadurch wird die teure Komponentensuche beim Start übersprungen. Bei geänderten Bildern verwirft `build.py` automatisch den betreffenden Cacheeintrag; der Browser berechnet dann den Zuschnitt neu. Nach Bauen und Starten des lokalen Prüfservers kann `python waldatelier/cache-atlas-bounds.py` die überprüften Grenzen aktualisieren. Das Skript vergleicht zusätzlich die tatsächlich geladenen Bilder mit den Quelldateien.

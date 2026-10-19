@@ -1,5 +1,5 @@
 from pathlib import Path
-import base64,json,re
+import base64,json,re,hashlib
 root=Path(__file__).parent
 s=(root/'Spiel-4.7-Ausgangsversion.html').read_text()
 # Preserve the uploaded source; apply the user's explicit chest reward corrections at build time.
@@ -26,20 +26,29 @@ part=part.replace('const n=curNode();n.chest=true;', 'const n=curNode();if(n.che
 part=part.replace('S.coins=(S.coins||0)+10;', "S.coins=(S.coins||0)+7;S.old=(S.old||0)+3;markCoinReward('cactusChest');")
 part=part.replace('In der Truhe liegen 10 Goldmünzen!', 'In der Truhe liegen 3 alte Münzen und 7 Goldmünzen!')
 s=s[:a]+part+s[b:]
+# Revision 13: retain the stable internal key, replace the Australian species in all user-facing text.
+s=s.replace("{n:'Dornteufel',l:'Moloch horridus',f:'Feine Rillen in seiner Haut leiten Wasser von Tau und feuchtem Sand bis zu seinem Maul.'}","{n:'Dornschwanzagame',l:'Uromastyx acanthinura',f:'Die nordafrikanische Dornschwanzagame frisst überwiegend Pflanzen. In der Mittagshitze zieht sie sich in ihren Bau zurück. Der kräftige, stachelige Schwanz schützt sie vor Feinden.'}")
+s=s.replace('Dornteufel','Dornschwanzagame').replace('Der Dornschwanzagame','Die Dornschwanzagame').replace('Das ist ein Dornschwanzagame. Er sieht gefährlich aus, ist aber harmlos.','Das ist eine Dornschwanzagame. Ihr stacheliger Schwanz dient der Verteidigung; halte Abstand.').replace('Er ist harmlos. Geh einfach weiter.','Sie ist harmlos. Geh einfach weiter.').replace('Du kannst ihn in Ruhe lassen und einfach weitergehen.','Du kannst sie in Ruhe lassen und einfach weitergehen.').replace('etwas Kleines, Stacheliges.','eine gedrungene Echse mit kräftigem, stacheligem Schwanz.')
+s=s.replace('Man lässt ihn in Ruhe.','Man lässt sie in Ruhe.')
+s=s.replace('Ein Händler unter einem rot-weißen Tuch. In seiner Auslage liegen Fossilien, Krüge und Fläschchen mit bunten Tränken.','Ein Händler unter einem cremefarbenen Tuch. In seiner Auslage liegen Datteln, Stoffe, Wasserkrüge und Karten.')
 # Rendering-source changes follow.
 a=s.index('function draw(now){');b=s.index('\nfunction loop(now)',a)
 segment=s[a:b].replace('vx.drawImage(bc,','forestBlit(')
 # The warm light fades to zero on both sides of the horizon, over the whole image.
 segment=segment.replace("const g=vx.createLinearGradient(0,0,0,HOR+10);g.addColorStop(0,'rgba(255,120,50,0)');g.addColorStop(1,'rgba(255,120,50,.22)');vx.fillStyle=g;vx.fillRect(0,0,W,HOR+10);", "const g=vx.createLinearGradient(0,0,0,H);g.addColorStop(0,'rgba(255,145,82,0)');g.addColorStop(.35,'rgba(255,145,82,.055)');g.addColorStop(.53,'rgba(255,145,82,.10)');g.addColorStop(.76,'rgba(255,145,82,.035)');g.addColorStop(1,'rgba(255,145,82,0)');vx.fillStyle=g;vx.fillRect(0,0,W,H);")
+segment=segment.replace("if(!reduceMotion){vx.fillStyle='rgba(235,240,215,.55)'","if(!reduceMotion&&!uActive()){vx.fillStyle='rgba(235,240,215,.55)'")
 segment=re.sub(r"for\(let i=0;i<9;i\+\+\)\{const x=150.*?vx\.fillRect\(Math\.round\(x\),Math\.round\(124-hh\),2,Math\.round\(hh\)\);\}",'',segment,flags=re.S)
 segment=segment.replace("if(G&&G.phase==='explore'&&!trans&&!G.cave){","if(G&&G.phase==='explore'&&!trans&&!G.cave&&!(fActive()&&(fLastItem||fLastFocus))){")
 segment=segment.replace("  if(G&&G.enc&&G.enc.max","  if(fActive()){fDrawFire();fDrawPickupHint(now);}\n  if(G&&G.enc&&G.enc.max")
 s=s[:a]+segment+s[b:]
-assets={f.stem:'data:image/webp;base64,'+base64.b64encode(f.read_bytes()).decode() for f in sorted((root/'assets').glob('*.webp')) if f.stem in {'tierportraets','felspassagen','spechtflug','begegnungen','hoehlenobjekte','hoehlenbewohner','hoehlenmaterial','nachtmaterial','nachtwald','waldtiere','gegenstaende','wegmarker','requisiten','baeume','nachtpfad','waldflora','grundwald','orte5a','orte5b','wegmaterial','zustaende5'}}
-code='\nconst F_IMAGE_DATA='+json.dumps(assets,separators=(',',':'))+';\n'+(root/'wald.js').read_text()+'\n'+(root/'nachtpfad.js').read_text()+'\n'+(root/'dezent.js').read_text()+'\n'+(root/'hoehle.js').read_text()+'\n'+(root/'belohnungen.js').read_text()+'\n'+(root/'erlebnisse.js').read_text()
+assets={f.stem:'data:image/webp;base64,'+base64.b64encode(f.read_bytes()).decode() for f in sorted((root/'assets').glob('*.webp')) if f.stem in {'wuestenmaterial','wuestenflora','wuestenmarker','wuestenfunde','wuestentiere','wuestenorte','hafenbauten','hafenpanorama','saharafelsbild','tierportraets','felspassagen','spechtflug','begegnungen','hoehlenobjekte','hoehlenbewohner','hoehlenmaterial','nachtmaterial','nachtwald','waldtiere','gegenstaende','wegmarker','requisiten','baeume','nachtpfad','waldflora','grundwald','orte5a','orte5b','wegmaterial','zustaende5'}}
+bound_file=root/'atlas-bounds.json'
+bound_data=json.loads(bound_file.read_text()) if bound_file.exists() else {}
+bounds={k:v['bounds'] for k,v in bound_data.items() if k in assets and hashlib.sha256((root/'assets'/f'{k}.webp').read_bytes()).hexdigest()==v['sha256']}
+code='\nconst F_IMAGE_DATA='+json.dumps(assets,separators=(',',':'))+';\nconst F_BOUNDS='+json.dumps(bounds,separators=(',',':'))+';\n'+(root/'wald.js').read_text()+'\n'+(root/'nachtpfad.js').read_text()+'\n'+(root/'dezent.js').read_text()+'\n'+(root/'hoehle.js').read_text()+'\n'+(root/'belohnungen.js').read_text()+'\n'+(root/'erlebnisse.js').read_text()+'\n'+(root/'wueste.js').read_text()
 init="buildIcons();\nsyncSound();\nshow('home');"
 assert s.count(init)==1
-s=s.replace(init,code+"\n$('#btn-play').disabled=true;$('#home-note').textContent='Waldzeichnungen werden geladen …';forestReady.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Waldzeichnungen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});")
+s=s.replace(init,code+"\n$('#btn-play').disabled=true;$('#home-note').textContent='Illustrationen werden geladen …';forestReady.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Illustrationen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});")
 s=s.replace('</style>',(root/'wald.css').read_text()+'\n</style>',1)
 (root.parent/'Tipp-Expedition-4.7-Waldatelier.html').write_text(s)
 print('Built',len(s.encode()),'bytes with',len(assets),'embedded sheets')

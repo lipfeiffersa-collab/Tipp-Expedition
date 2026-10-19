@@ -65,7 +65,7 @@ animalGone=function(a){qPerch(a);if(qHerdHere()&&a==='reh'&&!qAction){G.enc=null
  S.world.roeClearing=S.world.roeClearing||{helped:0};S.world.roeClearing.helped=Math.min(3,S.world.roeClearing.helped+1);G.enc=null;save();return;
  }return qAnimalGone(a);};
 function qBegin(kind,data){qEffect={kind,...data,t:performance.now(),elapsed:0,last:performance.now(),game:G,pos:JSON.stringify(G.pos),caption:G.caption.slice()};updateControls();}
-function qFinish(){if(!qEffect)return;const e=qEffect;qEffect=null;if(G){if(G===e.game&&G.caption.length===e.caption.length+1&&e.caption.every((line,i)=>G.caption[i]===line))setCaption(e.caption,true);renderScene();updateControls();}}
+function qFinish(){if(!qEffect)return;const e=qEffect;qEffect=null;if(e.onFinish&&G===e.game&&e.pos===JSON.stringify(G.pos))e.onFinish();if(G){if(G===e.game&&G.caption.length===e.caption.length+1&&e.caption.every((line,i)=>G.caption[i]===line))setCaption(e.caption,true);renderScene();updateControls();}}
 function qAnimalAction(kind,fn){
  if(!qForest())return fn();
  const a=animalHere();if(!a||a==='salamander'||(kind==='feed'&&(!(S.food>0)||!tameable(a)))||(kind==='pet'&&!trusted(a)&&!qHerdHere()))return;
@@ -99,7 +99,7 @@ const qFotoScene=fotoScene;
 fotoScene=function(key){const cacheKey=(S.world?.seed||0)+':'+key;if(qPhotoCache.has(cacheKey))return qPhotoCache.get(cacheKey).src;if(qPhotoBusy)return null;
  const saved=fctx.getImageData(0,0,1280,720),meta=[fLastItem,fLastAnimal,fLastFocus,G.mark,G.animScr],record=dRecording,rec=hRecording;
  qPhotoBusy=true;let src;
- try{src=qFotoScene(key);}finally{qPhotoBusy=false;dRecording=record;hRecording=rec;fctx.putImageData(saved,0,0);[fLastItem,fLastAnimal,fLastFocus,G.mark,G.animScr]=meta;}
+ try{src=(typeof uFotoScene==='function'&&uFotoHandles(key))?uFotoScene(key):qFotoScene(key);}finally{qPhotoBusy=false;dRecording=record;hRecording=rec;fctx.putImageData(saved,0,0);[fLastItem,fLastAnimal,fLastFocus,G.mark,G.animScr]=meta;}
  const image=new Image();qPhotoCache.set(cacheKey,image);image.onload=()=>{if(G&&!qPhotoBusy)renderScene();};image.src=src;return src;
 };
 function qPhoto(key,x,y,s,ctx){const w=29*s,h=19*s;ctx.save();ctx.translate(x,y-h*.48);ctx.rotate(-.09);ctx.fillStyle='#e6ddc6';ctx.fillRect(-w/2,-h/2,w,h);

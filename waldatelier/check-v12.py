@@ -6,7 +6,7 @@ import json
 OUT=Path(mkdtemp(prefix='tipp-v12-'))
 URL='http://127.0.0.1:8000/Tipp-Expedition-4.7-Waldatelier.html'
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);pg=b.new_page(viewport={'width':1600,'height':1050});errors=[];pg.on('pageerror',lambda e:errors.append(str(e)))
+ b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);pg=b.new_page(viewport={'width':1600,'height':1050});pg.set_default_navigation_timeout(90000);errors=[];pg.on('pageerror',lambda e:errors.append(str(e)))
  # Load an actual v11 save in v12; old topology IDs and positions must not change.
  pg.goto('http://127.0.0.1:8000/downloads/Tipp-Expedition-v11.html');pg.locator('#btn-play').click();pg.keyboard.press('f');pg.wait_for_timeout(250);pg.keyboard.press('j');pg.wait_for_timeout(350)
  before=pg.evaluate('''()=>{paused=true;G.pos={n:'E',e:null,k:0,h:1,arrH:1};G.w.N.RU.revealed=true;G.w.N.HUT.open=true;S.coins=21;S.old=8;S.inv=[...new Set([...S.inv,'karte','kamera','feldtagebuch'])];S.res.schnecke=5;save();return {seed:G.seed,coins:S.coins,old:S.old,ids:Object.fromEntries(Object.entries(G.w.N).map(([k,n])=>[k,n.uid])),edges:G.w.edges.map(e=>[e.uid,e.a,e.b]),pos:{...G.pos}};}''')
