@@ -73,7 +73,7 @@ with sync_playwright() as p:
  pg.evaluate("paused=true;G.phase='explore';trans=null;G.pos={n:'HUT',e:null,k:0,h:0,arrH:0};G.w.N.HUT.open=true;G.w.N.HUT.got=true;G.w.N.HUT.chest=false;S.inv=[...new Set([...S.inv,'karte'])];S.food=18;S.coins=0;arrive();paused=false;")
  pg.keyboard.press('g');assert pg.evaluate('qEffect?.kind==="loot"&&qEffect.loot.some(([k,n])=>k==="tierfutter"&&n===2)&&S.coins===5')
  pg.wait_for_timeout(300);pg.locator('.stage').screenshot(path=str(OUT/'chest-rewards.png'));pg.keyboard.press('g');assert pg.evaluate('S.coins')==5
- pg.keyboard.press('Space');pg.evaluate('openChest(G.w.N.HUT)');assert pg.evaluate('S.coins')==5
+ pg.keyboard.press('Space');assert pg.evaluate("!qEffect&&!G.caption.at(-1).startsWith('Leertaste:')");pg.evaluate('openChest(G.w.N.HUT)');assert pg.evaluate('S.coins')==5
  print('PASS chest animation: true capped quantities, quantities visible, one-time payout and skip control.',flush=True)
  # Owl: food action keeps its permanent perch, and farewell is drawn while controls pause.
  pg.evaluate("paused=true;G.pos={n:null,e:0,k:1,h:0,arrH:0};S.world.items={};S.world.animals={kauz:spotKey()};S.food=5;arrive();draw(performance.now());paused=false;")

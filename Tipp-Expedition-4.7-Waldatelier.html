@@ -5038,8 +5038,8 @@ const qAnimalGone=animalGone;
 animalGone=function(a){qPerch(a);if(qHerdHere()&&a==='reh'&&!qAction){G.enc=null;save();return;}if(qAction&&qHerdHere()&&a==='reh'){
  S.world.roeClearing=S.world.roeClearing||{helped:0};S.world.roeClearing.helped=Math.min(3,S.world.roeClearing.helped+1);G.enc=null;save();return;
  }return qAnimalGone(a);};
-function qBegin(kind,data){qEffect={kind,...data,t:performance.now(),elapsed:0,last:performance.now(),game:G,pos:JSON.stringify(G.pos)};updateControls();}
-function qFinish(){if(!qEffect)return;qEffect=null;if(G){renderScene();updateControls();}}
+function qBegin(kind,data){qEffect={kind,...data,t:performance.now(),elapsed:0,last:performance.now(),game:G,pos:JSON.stringify(G.pos),caption:G.caption.slice()};updateControls();}
+function qFinish(){if(!qEffect)return;const e=qEffect;qEffect=null;if(G){if(G===e.game&&G.caption.length===e.caption.length+1&&e.caption.every((line,i)=>G.caption[i]===line))setCaption(e.caption,true);renderScene();updateControls();}}
 function qAnimalAction(kind,fn){
  if(!qForest())return fn();
  const a=animalHere();if(!a||a==='salamander'||(kind==='feed'&&(!(S.food>0)||!tameable(a)))||(kind==='pet'&&!trusted(a)&&!qHerdHere()))return;

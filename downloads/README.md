@@ -14,7 +14,7 @@ Die Futterkrippe wird erst nach fünf Schneckenhäusern und dem gelösten Wappen
 
 Der bearbeitbare Quellstand und die Prüfscripte liegen in `../waldatelier/`. Das vollständige Spiel liegt zusätzlich als `../Tipp-Expedition-4.7-Waldatelier.html` vor.
 
-SHA-256 der Version-12-ZIP: `4767fb6f5d10ff9be696b267bf31d99b75d77d936d2c3747b18074c50a5c1dca`
+SHA-256 der Version-12-ZIP: `90bf21f8c1467997548f3ce2b88321a20dcb249ddbcafcf3a6d0a4d19f22fefc`
 
 ## Vorherige Version
 
