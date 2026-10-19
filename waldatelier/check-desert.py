@@ -1,4 +1,4 @@
-"""Revision 14: desert geometry, actual controls, survival, journal, city and save compatibility."""
+"""Revision 15: desert geometry, actual controls, survival, journal, city and save compatibility."""
 from pathlib import Path
 from tempfile import mkdtemp
 from playwright.sync_api import sync_playwright
@@ -6,9 +6,11 @@ import json
 OUT=Path(mkdtemp(prefix='tipp-desert-'))
 URL='http://127.0.0.1:8000/Tipp-Expedition-4.7-Waldatelier.html'
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);pg=b.new_page(viewport={'width':1600,'height':1050});errors=[];pg.on('pageerror',lambda e:errors.append(str(e)))
+ b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);pg=b.new_page(viewport={'width':1600,'height':1050});pg.set_default_timeout(90000);errors=[];pg.on('pageerror',lambda e:errors.append(str(e)))
  pg.goto(URL,wait_until='domcontentloaded',timeout=90000);pg.locator('#btn-play').click();pg.evaluate("enterDesert(true);paused=true;S.settings.goal=120;S.needs={w:DROP_MS*10,f:BERRY_MS*10};S.inv=[...new Set([...S.inv,'kamera','feldtagebuch','karte','wasserbeutel'])];S.known=[...new Set([...S.known,'g','h','s','q','u','w','e','ü','z','i','a','o','p',' ','Backspace'])];S.world.animals={};S.world.items={};G.enc=null;")
- assert pg.evaluate('Object.keys(F_ATLAS).length')==31
+ # This is the known-expedition regression; fresh identification is exercised by check-v15.py.
+ pg.evaluate("for(const a of U_ANIMALS)rLearn('animal:'+a);for(const k of U_ITEMS)rLearn('item:'+k);for(const k of Object.keys(R_FACTS))rLearn(k);")
+ assert pg.evaluate('Object.keys(F_ATLAS).length')==34
  assert pg.evaluate('DEAD.dornteufel.sp')=='Dornschwanzagame'
  assert pg.evaluate('SPECIES[2].some(s=>s.n==="Dornschwanzagame"&&s.l==="Uromastyx acanthinura")')
  def snap(name):

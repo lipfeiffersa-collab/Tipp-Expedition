@@ -1,4 +1,4 @@
-# Waldatelier 14 – Illustrationsfassung für Tipp-Expedition 4.7
+# Waldatelier 15 – Illustrationsfassung für Tipp-Expedition 4.7
 
 Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer bestätigte handgezeichnete Waldillustration mit mittlerer Detaildichte und einer quer verlaufenden T-Abzweigung. `Stilreferenz.json` dokumentiert die dazu erzeugten Motive. Die früheren Versuche sind keine Gestaltungsreferenz für Folgeänderungen.
 
@@ -6,9 +6,9 @@ Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer
 
 Im Repository: `python waldatelier/build.py`. Benötigt Python 3 und die eingebetteten WebP-Quelldateien. Ergebnis: `Tipp-Expedition-4.7-Waldatelier.html`.
 
-`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v14.html` und `Wald-Spiel-v14.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle einunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
+`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v15.html` und `Wald-Spiel-v15.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle vierunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
 
-Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Gespeicherte Fotos bleiben erhalten, neue Fotos verwenden die aktuelle Waldzeichnung.
+Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Tierfotos bleiben erhalten. Gefundene Hinweisfotos werden als zusammenhängende Bilder erneuert.
 
 ## Aufbau
 
@@ -113,3 +113,14 @@ Die geprüften Atlaszuschnitte liegen in `atlas-bounds.json`, jeweils an den SHA
 ## Revision 14: Dünen und Schatten
 
 `duenen.webp` und die aktualisierte Wüstenzeichnung zeigen hohe Dünen, weich auslaufende Sandwege und den Höhleneingang unter einem großen Dünenhang. Nutzbare Schattenplätze erhalten größere Schattenflächen und einen an den echten Hitzeschutz gebundenen Rast-Hinweis. `check-dunes.py` prüft dazu Schatten, tatsächlichen Wasserverbrauch, Ü und die Höhlenzustände. Einzelheiten stehen in der [Wüstenanalyse](Wueste-Analyse-und-Gestaltung.md#revision-14-hohe-dünen-sandwege-und-nutzbare-schattenplätze).
+
+
+## Revision 15: Wüstenkorrekturen
+
+`revision15.js` ergänzt nach den bisherigen Modulen die präzisen Teilstrecken-Spuren (`world.trails15`), lesbare Kreuzungen und stärkere Schatten, vollständige Gehbilder, sechs Tier-Gangarten, eine zusammenhängende Stadttorkulisse sowie den sichtbaren Herbergsablauf. Die 34 eingebetteten Bildbögen benötigen keine Internetverbindung. `stadtgang` wird auf eine gemeinsame Bodenhöhe normalisiert; `wuestengang` verwendet artspezifische Zeilen- und Spaltengrenzen. Orts- und Kanten-IDs, Preise, Rätsel und ursprüngliche Belohnungen bleiben erhalten.
+
+Bestimmungen stehen dauerhaft in `desertKnown15`. Essbare Früchte werden erst danach gesammelt und automatisch verbraucht; Oscher und Koloquinte bleiben als giftig vermerkt. Schon dokumentierte Tierarten werden beim Umstieg übernommen. Genaues Spurenzeichnen beginnt mit dieser Version: Die alte pauschale Kantenmarkierung kann keine tatsächlichen Teilstrecken belegen und wird dafür nicht übernommen. Entdeckte Kartenwege bleiben erhalten. Ein Sandsturm verweht die neuen Spuren.
+
+Herbergszahlungen erfolgen weiterhin im bestehenden Menü. `innStayPending` sichert eine bezahlte, unterbrochene Nacht, damit Neuladen weder eine zweite Zahlung noch einen doppelten Tageswechsel verursacht. Die Sequenz lässt sich pausieren und mit Leertaste abschließen.
+
+`check-v15.py` prüft tatsächliche I/P/G/F/J-Tasten, gefährliche Arten, Nahrung vor/nach Bestimmung, Spuren mit Rückweg und Neuladen, sieben Sandrosen, alle sechs Hinweisfotos, Herbergszahlung und unterbrochene Übernachtung sowie vollständige Bewegungsphasen. `check-desert.py` deckt zusätzlich bestehende Wüsten-, Sturm-, Zelt-, Truhen-, Stadt- und Migrationsabläufe ab. `check-export-v15.py` prüft die eigenständige ZIP und unveränderte Überlebensregeln.

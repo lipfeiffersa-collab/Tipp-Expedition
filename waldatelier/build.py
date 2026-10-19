@@ -33,6 +33,17 @@ s=s.replace('Man lässt ihn in Ruhe.','Man lässt sie in Ruhe.')
 s=s.replace('Ein Händler unter einem rot-weißen Tuch. In seiner Auslage liegen Fossilien, Krüge und Fläschchen mit bunten Tränken.','Ein Händler unter einem cremefarbenen Tuch. In seiner Auslage liegen Datteln, Stoffe, Wasserkrüge und Karten.')
 # Revision 14: the storm exposes the foot of the dune, not an entire vanished mountain of sand.
 s=s.replace('Der Sandsturm hat die hohe Düne weggeweht! Zwischen den Felsen ist ein Eingang, mit einer Steinplatte verschlossen.','Der Sandsturm hat Sand am Fuß der hohen Düne abgetragen! Darunter ist ein Eingang frei geworden, mit einer Steinplatte verschlossen.')
+# Revision 15 records only steps that have actually completed, never an entire entered edge.
+a=s.index('function caveHit(ch)');b=s.index('function jumpCreek()',a)
+part=s[a:b].replace('()=>{P.k=nk;arrive();}', '()=>{rTrailStep(e,P.k,nk);P.k=nk;arrive();}')
+part=part.replace('()=>{P.n=nk<=0?e.a:e.b;', '()=>{rTrailStep(e,P.k,nk);P.n=nk<=0?e.a:e.b;')
+part=part.replace('()=>{P.e=ei;P.h=d;', '()=>{rTrailStep(e,e.a===n.id?0:e.n,e.a===n.id?1:e.n-1);P.e=ei;P.h=d;')
+s=s[:a]+part+s[b:]
+s=s.replace('else if((S.res.datteln||0)>0)', "else if(rCanEat('datteln')&&(S.res.datteln||0)>0)")
+s=s.replace('else if((S.res.kaktusfeigen||0)>0)', "else if(rCanEat('kaktusfeigen')&&(S.res.kaktusfeigen||0)>0)")
+a=s.index('const needMin=');b=s.index('function updateNeeds()',a)
+part=s[a:b].replace('(S.res.datteln||0)', "(rCanEat('datteln')?(S.res.datteln||0):0)").replace('(S.res.kaktusfeigen||0)', "(rCanEat('kaktusfeigen')?(S.res.kaktusfeigen||0):0)")
+s=s[:a]+part+s[b:]
 # Rendering-source changes follow.
 a=s.index('function draw(now){');b=s.index('\nfunction loop(now)',a)
 segment=s[a:b].replace('vx.drawImage(bc,','forestBlit(')
@@ -43,11 +54,11 @@ segment=re.sub(r"for\(let i=0;i<9;i\+\+\)\{const x=150.*?vx\.fillRect\(Math\.rou
 segment=segment.replace("if(G&&G.phase==='explore'&&!trans&&!G.cave){","if(G&&G.phase==='explore'&&!trans&&!G.cave&&!(fActive()&&(fLastItem||fLastFocus))){")
 segment=segment.replace("  if(G&&G.enc&&G.enc.max","  if(fActive()){fDrawFire();fDrawPickupHint(now);}\n  if(G&&G.enc&&G.enc.max")
 s=s[:a]+segment+s[b:]
-assets={f.stem:'data:image/webp;base64,'+base64.b64encode(f.read_bytes()).decode() for f in sorted((root/'assets').glob('*.webp')) if f.stem in {'duenen','wuestenmaterial','wuestenflora','wuestenmarker','wuestenfunde','wuestentiere','wuestenorte','hafenbauten','hafenpanorama','saharafelsbild','tierportraets','felspassagen','spechtflug','begegnungen','hoehlenobjekte','hoehlenbewohner','hoehlenmaterial','nachtmaterial','nachtwald','waldtiere','gegenstaende','wegmarker','requisiten','baeume','nachtpfad','waldflora','grundwald','orte5a','orte5b','wegmaterial','zustaende5'}}
+assets={f.stem:'data:image/webp;base64,'+base64.b64encode(f.read_bytes()).decode() for f in sorted((root/'assets').glob('*.webp')) if f.stem in {'stadtzugang','stadtgang','wuestengang','duenen','wuestenmaterial','wuestenflora','wuestenmarker','wuestenfunde','wuestentiere','wuestenorte','hafenbauten','hafenpanorama','saharafelsbild','tierportraets','felspassagen','spechtflug','begegnungen','hoehlenobjekte','hoehlenbewohner','hoehlenmaterial','nachtmaterial','nachtwald','waldtiere','gegenstaende','wegmarker','requisiten','baeume','nachtpfad','waldflora','grundwald','orte5a','orte5b','wegmaterial','zustaende5'}}
 bound_file=root/'atlas-bounds.json'
 bound_data=json.loads(bound_file.read_text()) if bound_file.exists() else {}
 bounds={k:v['bounds'] for k,v in bound_data.items() if k in assets and hashlib.sha256((root/'assets'/f'{k}.webp').read_bytes()).hexdigest()==v['sha256']}
-code='\nconst F_IMAGE_DATA='+json.dumps(assets,separators=(',',':'))+';\nconst F_BOUNDS='+json.dumps(bounds,separators=(',',':'))+';\n'+(root/'wald.js').read_text()+'\n'+(root/'nachtpfad.js').read_text()+'\n'+(root/'dezent.js').read_text()+'\n'+(root/'hoehle.js').read_text()+'\n'+(root/'belohnungen.js').read_text()+'\n'+(root/'erlebnisse.js').read_text()+'\n'+(root/'wueste.js').read_text()
+code='\nconst F_IMAGE_DATA='+json.dumps(assets,separators=(',',':'))+';\nconst F_BOUNDS='+json.dumps(bounds,separators=(',',':'))+';\n'+(root/'wald.js').read_text()+'\n'+(root/'nachtpfad.js').read_text()+'\n'+(root/'dezent.js').read_text()+'\n'+(root/'hoehle.js').read_text()+'\n'+(root/'belohnungen.js').read_text()+'\n'+(root/'erlebnisse.js').read_text()+'\n'+(root/'wueste.js').read_text()+'\n'+(root/'revision15.js').read_text()
 init="buildIcons();\nsyncSound();\nshow('home');"
 assert s.count(init)==1
 s=s.replace(init,code+"\n$('#btn-play').disabled=true;$('#home-note').textContent='Illustrationen werden geladen …';forestReady.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Illustrationen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});")
