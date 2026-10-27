@@ -124,7 +124,7 @@ function uLight(ctx=fctx){
  const t=dTime(),warm=t>=17*60&&t<21*60?Math.sin(Math.min(1,(t-17*60)/240)*Math.PI)*.11:t<8*60&&t>=D_WAKE?.10*(1-(t-D_WAKE)/120):0;
  if(warm>0){const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,`rgba(228,161,100,${warm*.3})`);g.addColorStop(.6,`rgba(221,149,85,${warm})`);g.addColorStop(1,`rgba(221,149,85,${warm*.3})`);uRect(ctx,0,0,W,H,g);}
  let dark=t>=19*60+30?Math.min(.80,(t-(19*60+30))/90*.80):t<D_WAKE?.80:0;
- if(dark){uRect(ctx,0,0,W,H,`rgba(20,30,54,${dark})`);if(S.inv.includes('laterne')&&S.oil>0){const glow=ctx.createRadialGradient(160,166,2,160,166,122);glow.addColorStop(0,'#e4b76a5c');glow.addColorStop(1,'#e4b76a00');uRect(ctx,0,54,W,126,glow);}for(let i=0;i<28;i++)uEllipse(ctx,(i*73+19)%W,(i*31+9)%58,.25,.25,'#e9e7d277');}
+ if(dark){uRect(ctx,0,0,W,H,`rgba(20,30,54,${dark})`);if(S.inv.includes('laterne')&&S.oil>0){const glow=ctx.createRadialGradient(160,166,2,160,166,122);glow.addColorStop(0,'#e4b76a5c');glow.addColorStop(1,'#e4b76a00');uRect(ctx,0,0,W,H,glow);}}
 }
 const uLegacyRender=renderDesert;
 renderDesert=function(){if(!uActive())return uLegacyRender();uLastAnimal=uLastItem=uLastFocus=null;uShadeAreas=[];fctx.clearRect(0,0,W,H);const P=G.pos,h=here();let road=null;

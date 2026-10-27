@@ -1,14 +1,12 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 16
+## Aktuelle Version 16.1
 
-**[Tipp-Expedition-v16.zip herunterladen](Tipp-Expedition-v16.zip)** · etwa 21 MB
+**[Tipp-Expedition-v16-1.zip herunterladen](Tipp-Expedition-v16-1.zip)** · etwa 21 MB
 
 ZIP vollständig entpacken und **Wald-Spiel.html** öffnen. Alle Bilder sind eingebettet. Auf der GitHub-Dateiseite heißt die Downloadfunktion „Download raw file“.
 
-In Version 16 überarbeitet: Der Sandpfad hat eine eigene fein gekörnte Trittfläche und natürliche Ränder. Große Wegmarker stehen mit ihrer ganzen Breite neben der Pfadmitte, sodass sie die Abzweigung nicht verdecken. **O** schwenkt zum Himmel. **Leertaste oder O** senken den Blick wieder; nach kurzer Zeit kehrt er auch automatisch zurück. Sonne, Sterne, Wasser suchende Flughühner und Sturmwarnungen folgen der bisherigen Spiellogik.
-
-Die alte Lehmsteinmauer, ihre Trümmer und die geschlossene/offene Truhe haben zusammenpassende Illustrationen. Beim Abtragen mit **G/H** wächst die Bresche schrittweise; die Truhe wird dahinter schon vor dem letzten Schlag sichtbar.
+Version 16.1 korrigiert den Nachthimmel. Sterne und Himmel liegen hinter den sichtbaren Konturen von Dünen, Felsen und Pflanzen. Der Blick nach oben orientiert sich am sichtbaren Himmelsausschnitt. Die obere rechteckige Kante des Laternenlichts entfällt. **O** blickt nach oben; **O oder Leertaste** senken den Blick wieder. Die Tagansicht bleibt erhalten.
 
 Aus Version 15 weiterhin enthalten: größere Schattenflächen und Fußspuren nur auf tatsächlich gelaufenen Teilstrecken. Zusammenhängende Hinweisfotos ersetzen die zerschnittene Darstellung. Am Dünen-Eingang zeigt **U** die Steinplatte aus der Nähe; sieben Sandrosen und Felsbildrätsel bleiben erhalten. Das Stadttor liegt zwischen hohen Felswänden, mit Stadt und Meer dahinter. Die Stadtfigur ist größer und hat vollständige Gehphasen, ebenso die sechs zutraulichen Wüstentierarten beim Weglaufen beziehungsweise Wegfliegen. Eine Übernachtung zeigt Eintritt, Nacht, Morgen und Austritt; **Leertaste** schließt sie ab.
 
@@ -20,10 +18,10 @@ Für vorhandene Spielstände dieselbe HTML-Datei unter demselben Namen am selben
 
 Der bearbeitbare Quellstand und die Prüfungen liegen in `../waldatelier/`; die vollständige HTML-Datei zusätzlich in `../Tipp-Expedition-4.7-Waldatelier.html`.
 
-SHA-256 der Version-16-ZIP: `47af0e76df9e4fdd1559f0775cd1b42014c7c90971ef2f77a3306147d52d5c20`
+SHA-256 der Version-16.1-ZIP: `f3f63b3fea00b999b3f85101f5bb4fbdc904269bd54dfecb8a2252330f7c69d9`
 
-[Wege, Schatten, Stadt und Höhle als Vorschaubilder](../waldatelier/vorschau-v16/)
+[Wege, Schatten, Stadt und Höhle als Vorschaubilder](../waldatelier/vorschau-v16-1/)
 
 ## Vorherige Versionen
 
-[Version 15.1](Tipp-Expedition-v15-1.zip), [Version 15](Tipp-Expedition-v15.zip), [Version 14](Tipp-Expedition-v14.zip), [Version 13](Tipp-Expedition-v13.zip), [Version 12](Tipp-Expedition-v12.zip) und [Version 11](Tipp-Expedition-v11.zip) bleiben erhalten.
+[Version 16](Tipp-Expedition-v16.zip), [Version 15.1](Tipp-Expedition-v15-1.zip), [Version 15](Tipp-Expedition-v15.zip), [Version 14](Tipp-Expedition-v14.zip), [Version 13](Tipp-Expedition-v13.zip), [Version 12](Tipp-Expedition-v12.zip) und [Version 11](Tipp-Expedition-v11.zip) bleiben erhalten.

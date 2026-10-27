@@ -1,4 +1,4 @@
-# Waldatelier 16 – Illustrationsfassung für Tipp-Expedition 4.7
+# Waldatelier 16.1 – Illustrationsfassung für Tipp-Expedition 4.7
 
 Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer bestätigte handgezeichnete Waldillustration mit mittlerer Detaildichte und einer quer verlaufenden T-Abzweigung. `Stilreferenz.json` dokumentiert die dazu erzeugten Motive. Die früheren Versuche sind keine Gestaltungsreferenz für Folgeänderungen.
 
@@ -6,7 +6,7 @@ Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer
 
 Im Repository: `python waldatelier/build.py`. Benötigt Python 3 und die eingebetteten WebP-Quelldateien. Ergebnis: `Tipp-Expedition-4.7-Waldatelier.html`.
 
-`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v16.html` und `Wald-Spiel-v16.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
+`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v16-1.html` und `Wald-Spiel-v16-1.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
 
 Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Tierfotos bleiben erhalten. Gefundene Hinweisfotos werden als zusammenhängende Bilder erneuert.
 
@@ -142,3 +142,10 @@ O öffnet einen animierten Aufwärtsschwenk. Ein eigener Himmel verlängert die 
 `check-v16.py` prüft tatsächliche O/U/G/H/Leertasten, Kamerarückkehr und Pause, vier Wetter-/Tageszeit-Hinweise, acht Abtragsschritte, die korrigierte Truhenbelohnung und Neuladen. `check-desert.py` prüft zusätzlich die vorhandenen Wüsten- und Stadtfunktionen.
 
 Große Wegmarker berücksichtigen in Revision 16 ihre gesamte projizierte Breite, nicht nur den Ankerpunkt. Ihr Abstand zum begehbaren Pfad wird gemeinsam mit der Schattenposition berechnet.
+
+
+## Revision 16.1: Nachthimmel an den Landschaftskonturen
+
+`nachthimmel.js` bestimmt aus der noch unbeleuchteten Spielansicht eine zusammenhängende Himmelsmaske. Farb- und Helligkeitskanten sowie lokale Struktur begrenzen sie an Dünen, Felsen und Vegetation. Der Nachthimmel wird durch diese Maske hinter der beleuchteten Vordergrundkulisse sichtbar. Alte, frei über die Szene verteilte Sterne entfallen. Die Laternen-Aufhellung nutzt den gesamten radialen Verlauf ohne rechteckigen Beschnitt.
+
+Der Nachtblick richtet den Ausschnitt auf eine tatsächlich sichtbare Himmelsöffnung. Landschaft und Himmelsmaske bewegen sich gemeinsam; kein Rand eines aufgesetzten Szenenrechtecks tritt ins Bild. Die Tagansicht verwendet weiterhin den bisherigen Ablauf. `check-night-sky.py` prüft bestimmte Himmel-/Geländepunkte, die O-/Leertasten-Bedienung, vier Bewegungsphasen über Dünen, zwischen Felsen und unter Palmen sowie 40 Nachtansichten. Es prüft außerdem, dass der Tag unverändert bleibt und das Zeichnen den Spielstand nicht ändert.
