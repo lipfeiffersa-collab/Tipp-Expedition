@@ -1,4 +1,4 @@
-# Waldatelier 16.1 – Illustrationsfassung für Tipp-Expedition 4.7
+# Waldatelier 16.2 – Illustrationsfassung für Tipp-Expedition 4.7
 
 Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer bestätigte handgezeichnete Waldillustration mit mittlerer Detaildichte und einer quer verlaufenden T-Abzweigung. `Stilreferenz.json` dokumentiert die dazu erzeugten Motive. Die früheren Versuche sind keine Gestaltungsreferenz für Folgeänderungen.
 
@@ -6,7 +6,7 @@ Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer
 
 Im Repository: `python waldatelier/build.py`. Benötigt Python 3 und die eingebetteten WebP-Quelldateien. Ergebnis: `Tipp-Expedition-4.7-Waldatelier.html`.
 
-`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v16-1.html` und `Wald-Spiel-v16-1.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
+`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v16-2.html` und `Wald-Spiel-v16-2.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
 
 Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Tierfotos bleiben erhalten. Gefundene Hinweisfotos werden als zusammenhängende Bilder erneuert.
 
@@ -149,3 +149,12 @@ Große Wegmarker berücksichtigen in Revision 16 ihre gesamte projizierte Breite
 `nachthimmel.js` bestimmt aus der noch unbeleuchteten Spielansicht eine zusammenhängende Himmelsmaske. Farb- und Helligkeitskanten sowie lokale Struktur begrenzen sie an Dünen, Felsen und Vegetation. Der Nachthimmel wird durch diese Maske hinter der beleuchteten Vordergrundkulisse sichtbar. Alte, frei über die Szene verteilte Sterne entfallen. Die Laternen-Aufhellung nutzt den gesamten radialen Verlauf ohne rechteckigen Beschnitt.
 
 Der Nachtblick richtet den Ausschnitt auf eine tatsächlich sichtbare Himmelsöffnung. Landschaft und Himmelsmaske bewegen sich gemeinsam; kein Rand eines aufgesetzten Szenenrechtecks tritt ins Bild. Die Tagansicht verwendet weiterhin den bisherigen Ablauf. `check-night-sky.py` prüft bestimmte Himmel-/Geländepunkte, die O-/Leertasten-Bedienung, vier Bewegungsphasen über Dünen, zwischen Felsen und unter Palmen sowie 40 Nachtansichten. Es prüft außerdem, dass der Tag unverändert bleibt und das Zeichnen den Spielstand nicht ändert.
+
+
+## Revision 16.2: Kreuzungslesbarkeit und Wetter
+
+`wege-und-wetter.js` verbreitert die quer verlaufenden Pfade um etwa die Hälfte und erhöht den Materialkontrast. Weiche, unregelmäßige Ränder und die vorhandene Sandstruktur bleiben erhalten. Tatsächliche Ausgänge, Standortmarker und gespeicherte Fußspuren sind weiter an das ursprüngliche Wegenetz gebunden.
+
+Ein gemeinsamer Himmelsrenderer ersetzt die getrennten Tag-/Nacht-Zusammensetzungen. Alle Himmelsflächen sind vollständig gefüllt; ein Bildausschnitt mit offenem beziehungsweise blauem unteren Rand entsteht nicht. Aktives Wetter hat Vorrang vor den normalen Sonnen-, Vogel- und Sternhinweisen. Sandsturm und Vorwarnung haben eigene durchgehende Staubhimmel; Tag und Nacht werden berücksichtigt. E bleibt beim Blick in einen herannahenden Sturm als Eingraben-Taste verfügbar. Kamera und Wetteranimation pausieren zusammen.
+
+`check-v16-2.py` prüft eine tatsächlich mit F/J betretene Kaktuskreuzung bei schmalem Spielfenster, Materialkontrast und Wegbreite sowie 20 Kamerastufen bei klarem Himmel, Sturmwarnung, Nacht, Tagsturm und Nachtsturm. Es prüft auch einen Sturm, der während des Himmelsblicks beginnt, E und das anschließende Ü-Überleben.
