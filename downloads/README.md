@@ -6,7 +6,7 @@
 
 ZIP vollständig entpacken und **Wald-Spiel.html** öffnen. Alle Bilder sind eingebettet. Auf der GitHub-Dateiseite heißt die Downloadfunktion „Download raw file“.
 
-In Version 16 überarbeitet: Der Sandpfad hat eine eigene fein gekörnte Trittfläche und natürliche Ränder. **O** schwenkt zum Himmel. **Leertaste oder O** senken den Blick wieder; nach kurzer Zeit kehrt er auch automatisch zurück. Sonne, Sterne, Wasser suchende Flughühner und Sturmwarnungen folgen der bisherigen Spiellogik.
+In Version 16 überarbeitet: Der Sandpfad hat eine eigene fein gekörnte Trittfläche und natürliche Ränder. Große Wegmarker stehen mit ihrer ganzen Breite neben der Pfadmitte, sodass sie die Abzweigung nicht verdecken. **O** schwenkt zum Himmel. **Leertaste oder O** senken den Blick wieder; nach kurzer Zeit kehrt er auch automatisch zurück. Sonne, Sterne, Wasser suchende Flughühner und Sturmwarnungen folgen der bisherigen Spiellogik.
 
 Die alte Lehmsteinmauer, ihre Trümmer und die geschlossene/offene Truhe haben zusammenpassende Illustrationen. Beim Abtragen mit **G/H** wächst die Bresche schrittweise; die Truhe wird dahinter schon vor dem letzten Schlag sichtbar.
 
@@ -20,7 +20,7 @@ Für vorhandene Spielstände dieselbe HTML-Datei unter demselben Namen am selben
 
 Der bearbeitbare Quellstand und die Prüfungen liegen in `../waldatelier/`; die vollständige HTML-Datei zusätzlich in `../Tipp-Expedition-4.7-Waldatelier.html`.
 
-SHA-256 der Version-16-ZIP: `b4af7a2309d480591705ae7d5ab401619311bd67af949781605d7809d25352c9`
+SHA-256 der Version-16-ZIP: `47af0e76df9e4fdd1559f0775cd1b42014c7c90971ef2f77a3306147d52d5c20`
 
 [Wege, Schatten, Stadt und Höhle als Vorschaubilder](../waldatelier/vorschau-v16/)
 

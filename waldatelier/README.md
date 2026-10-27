@@ -140,3 +140,5 @@ O öffnet einen animierten Aufwärtsschwenk. Ein eigener Himmel verlängert die 
 `lehmruine.webp` enthält Mauer, Trümmer sowie dieselbe Truhe geschlossen und geöffnet. Die Truhe wird unter der Mauer gezeichnet. Eine unregelmäßige, mit jedem G/H-Schlag wachsende Bresche gibt die Sicht auf sie frei. Kurze fallende Lehmstücke ergänzen den Abtrag. Acht Schläge und die ursprüngliche einmalige Belohnung bleiben erhalten. Die Atlasgrenzen sind eigens vermessen. `wuestenhimmel.webp` ist eine durchgehende Himmelsmalerei. Alle 36 Bildbögen sind eingebettet.
 
 `check-v16.py` prüft tatsächliche O/U/G/H/Leertasten, Kamerarückkehr und Pause, vier Wetter-/Tageszeit-Hinweise, acht Abtragsschritte, die korrigierte Truhenbelohnung und Neuladen. `check-desert.py` prüft zusätzlich die vorhandenen Wüsten- und Stadtfunktionen.
+
+Große Wegmarker berücksichtigen in Revision 16 ihre gesamte projizierte Breite, nicht nur den Ankerpunkt. Ihr Abstand zum begehbaren Pfad wird gemeinsam mit der Schattenposition berechnet.
