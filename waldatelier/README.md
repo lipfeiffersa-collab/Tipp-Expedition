@@ -1,4 +1,4 @@
-# Waldatelier 16.2 – Illustrationsfassung für Tipp-Expedition 4.7
+# Waldatelier 17 – Illustrationsfassung für Tipp-Expedition 4.7
 
 Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer bestätigte handgezeichnete Waldillustration mit mittlerer Detaildichte und einer quer verlaufenden T-Abzweigung. `Stilreferenz.json` dokumentiert die dazu erzeugten Motive. Die früheren Versuche sind keine Gestaltungsreferenz für Folgeänderungen.
 
@@ -6,7 +6,7 @@ Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer
 
 Im Repository: `python waldatelier/build.py`. Benötigt Python 3 und die eingebetteten WebP-Quelldateien. Ergebnis: `Tipp-Expedition-4.7-Waldatelier.html`.
 
-`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v16-2.html` und `Wald-Spiel-v16-2.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
+`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v17.html` und `Wald-Spiel-v17.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
 
 Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Tierfotos bleiben erhalten. Gefundene Hinweisfotos werden als zusammenhängende Bilder erneuert.
 
@@ -158,3 +158,16 @@ Der Nachtblick richtet den Ausschnitt auf eine tatsächlich sichtbare Himmelsöf
 Ein gemeinsamer Himmelsrenderer ersetzt die getrennten Tag-/Nacht-Zusammensetzungen. Alle Himmelsflächen sind vollständig gefüllt; ein Bildausschnitt mit offenem beziehungsweise blauem unteren Rand entsteht nicht. Aktives Wetter hat Vorrang vor den normalen Sonnen-, Vogel- und Sternhinweisen. Sandsturm und Vorwarnung haben eigene durchgehende Staubhimmel; Tag und Nacht werden berücksichtigt. E bleibt beim Blick in einen herannahenden Sturm als Eingraben-Taste verfügbar. Kamera und Wetteranimation pausieren zusammen.
 
 `check-v16-2.py` prüft eine tatsächlich mit F/J betretene Kaktuskreuzung bei schmalem Spielfenster, Materialkontrast und Wegbreite sowie 20 Kamerastufen bei klarem Himmel, Sturmwarnung, Nacht, Tagsturm und Nachtsturm. Es prüft auch einen Sturm, der während des Himmelsblicks beginnt, E und das anschließende Ü-Überleben.
+
+
+## Version 17: Desktopansicht und Bedienung
+
+`desktop.css` gibt der Spielansicht den Platz des bisherigen Inventars. Karte und Versorgung bleiben in einer schmalen rechten Spalte. Die Bildschirmtastatur ist mit F3 einblendbar; nur diese Anzeigepräferenz wird separat in localStorage gespeichert. Die jeweils gültigen Aktionstasten mit Fingerhinweisen bleiben sichtbar. Bei Rätseln entfällt die rechte Spalte; das Wüstenschiebebild wird zusätzlich um 20 Prozent vergrößert. Die Kamera im eigentlichen Spiel bleibt unverändert.
+
+`desktop.js` verschiebt das vorhandene Inventar in eine mit F2 erreichbare, pausierende Übersicht mit fünf Kategorien. Bilder, Mengen und ursprüngliche Versorgungsanzeigen bleiben erhalten. Pfeiltasten, Tab, Home/End und Bild auf/ab bedienen die Übersicht. Enter zeigt Name und Menge, Escape/F2 schließen sie. Der vorherige Pausenzustand und Fokus werden wiederhergestellt. Menübuchstaben bleiben gültig; Pfeiltasten/Enter ergänzen sie. Escape schließt Menüs und Rätsel, Enter bestätigt in den vorhandenen Unterbrechungsdialogen. Die Pause ist auch in der Stadt verfügbar.
+
+Der Build ersetzt den bisherigen Fall ohne neuen Text beim normalen Weitergehen durch eine aktuelle Weg-/Gangbeschreibung. Fundhinweise bleiben dadurch nicht an einem inzwischen verlassenen Ort stehen. Gegenstände, Tierkontakte, Positionen, Schlüssel, Rätsel, Preise und Belohnungen werden durch diese Änderungen nicht ersetzt.
+
+`kuestenweg.js` verwendet die vorhandene Stadttorkulisse auf der gesamten letzten Wegkante in Richtung Stadt. Ein geringer kontinuierlicher Zoom verbindet sie mit der Nahansicht. Auf dieser Kante werden keine Dünen und kein zusätzliches einzelnes Tor darübergezeichnet. Gegenstände, Tiere, Begleiter, Fußspuren und Tages-/Wetterbeleuchtung bleiben erhalten. Die bestehende Herbergsgrafik wird doppelt so breit dargestellt, damit ihre Tür zur Spielfigur passt; ihr Mondschild sitzt entsprechend weiter außen.
+
+Prüfung: `python waldatelier/check-desktop-v17.py` testet tatsächliche Tastendrücke, Inventarsortierung und Fokus/Scrollen, erhaltene Pause, unveränderte Versorgung während des Inventars, Menüwahl, veraltete Fundhinweise nach einem F/J-Schritt, Küstenweg, Stadtpause und einen echten Schieberätselzug. Es erstellt Vergleichsbilder bei 900, 1280, 1600 und 1920 Pixeln Fensterbreite. `check-desert.py` prüft die bestehenden Welt-, Fund-, Sturm-, Tier-, Rätsel- und Stadtfunktionen. `check-export-v17.py` prüft den eigenständigen Offline-Export.

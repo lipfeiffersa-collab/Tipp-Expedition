@@ -1,0 +1,40 @@
+/* The game gets the width previously occupied by a permanently open backpack. */
+body.in-game .app{--desktop-chrome:320px;max-width:min(1920px,calc(max(340px,100dvh - var(--desktop-chrome))*16/9 + 224px));padding:12px 18px;gap:10px}
+body.in-game .playrow{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:14px;align-items:stretch}
+body.in-game .play{max-width:none;min-width:0;width:100%;flex:initial}
+body.in-game .hud strong{font-size:1.5rem}
+body.in-game .dialog{padding:10px 14px;min-height:78px;line-height:1.4}
+body.in-game .dialog p{font-size:clamp(15px,1.1vw,18px)}
+body.in-game .mapbox{width:100%;padding:10px;contain:size}
+body.in-game #map{width:100%;max-height:245px;min-height:70px;image-rendering:auto}
+body.in-game .needs,body.in-game .quest{font-size:.85rem}
+.desktop-tools{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.desktop-tools>span{margin-left:auto;color:var(--muted);font-size:.78rem}
+body.in-game #kb,body.in-game #legend{display:none}
+body.in-game.keyboard-expanded .app{--desktop-chrome:500px}
+body.in-game.keyboard-expanded #kb{display:flex}
+body.in-game.keyboard-expanded #legend{display:flex}
+body.in-game .actions{gap:7px;min-height:44px}
+body.in-game .act{padding:4px 9px 4px 5px;gap:8px}
+body.in-game .act strong{font-size:.92rem}
+body.in-game .act small{font-size:.72rem}
+body.in-game .act .kc{height:32px;min-width:32px;font-size:1.05rem}
+body.in-game.puzzle-focus .app{--desktop-chrome:270px;max-width:min(1920px,calc(max(340px,100dvh - var(--desktop-chrome))*16/9 + 36px))}
+body.in-game.puzzle-focus .playrow{grid-template-columns:minmax(0,1fr)}
+body.in-game.puzzle-focus .mapbox,body.in-game.puzzle-focus #kb,body.in-game.puzzle-focus #legend,body.in-game.puzzle-focus .clock,body.in-game.puzzle-focus .abox{display:none!important}
+.inventory-dialog{position:fixed;inset:0;z-index:40;background:#09120de8;display:grid;place-items:center;padding:24px}
+.inventory-card{width:min(1180px,100%);max-height:calc(100dvh - 48px);display:flex;flex-direction:column;gap:12px;background:#1f2c25;border:1px solid #778369;border-radius:16px;padding:22px;box-shadow:0 15px 60px #0008;overflow:hidden}
+.inventory-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+#inventory-detail{min-height:1.5em;color:#e0c58a}
+.inventory-card #invbox{contain:none;align-self:stretch;flex:1 1 auto;width:100%;min-height:0;overflow:auto;padding:5px;border:0;background:none}
+.inventory-card .inv{grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:10px}
+.inventory-card .inv li{padding:0;border:0;background:none;font-size:.9rem;overflow-wrap:normal}
+.inventory-card .inv .sep{text-align:left;align-items:flex-start;padding:12px 0 3px;font-size:.78rem;color:#c4cfb8;letter-spacing:.12em}
+.inventory-item{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:7px;padding:10px;background:#2b3b2f;border:1px solid #71806455;border-radius:9px;min-height:114px}
+.inventory-item img{width:100%;height:65px;object-fit:contain}
+.inventory-item .cnt{top:5px;right:7px}
+.inventory-item:focus-visible{outline:3px solid var(--accent);outline-offset:-3px;background:#3d4c35}
+.tm-it.menu-selected{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;background:#d5b97818}
+.inventory-card .inv li.fresh{outline:none}.inventory-card li.fresh .inventory-item{border-color:var(--accent)}
+@media(max-width:1000px){body.in-game .playrow{grid-template-columns:minmax(0,1fr) 145px;gap:10px}body.in-game .mapbox{padding:6px}body.in-game .needs,body.in-game .quest{font-size:.75rem}.desktop-tools>span{display:none}}
+@media(max-width:760px){body.in-game .app{padding:8px}body.in-game .playrow{grid-template-columns:minmax(0,1fr)}body.in-game .mapbox{contain:none;display:flex;flex-direction:row;align-items:center;max-height:160px}body.in-game #map{max-height:140px;width:130px;flex:none}body.in-game .mapbox>.eyebrow{display:none}body.in-game .side-extra{margin:0!important}.inventory-dialog{padding:10px}.inventory-card{padding:12px;max-height:calc(100dvh - 20px)}.inventory-card .inv{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}.inventory-heading h2{font-size:1.3rem}}

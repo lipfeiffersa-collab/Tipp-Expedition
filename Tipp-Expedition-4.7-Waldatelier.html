@@ -286,6 +286,47 @@ body{background:#18251f}.stage{box-shadow:none}.dialog,.sidebox{background:#1f2c
 .moss{background:#17261ee8}.grave{background-image:linear-gradient(#c5c1a32a,#6c74562a),var(--wald-stone);background-size:cover;border-color:#777b61;color:#343c2c;box-shadow:inset 0 0 0 1px #c1bea344,0 6px 18px #0004}
 .patch{background-image:linear-gradient(#67732f22,#344b2f22),var(--wald-moss)!important;background-size:cover!important;color:#f0ecd3;text-shadow:0 1px 3px #16271f,0 0 4px #16271f}
 
+/* The game gets the width previously occupied by a permanently open backpack. */
+body.in-game .app{--desktop-chrome:320px;max-width:min(1920px,calc(max(340px,100dvh - var(--desktop-chrome))*16/9 + 224px));padding:12px 18px;gap:10px}
+body.in-game .playrow{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:14px;align-items:stretch}
+body.in-game .play{max-width:none;min-width:0;width:100%;flex:initial}
+body.in-game .hud strong{font-size:1.5rem}
+body.in-game .dialog{padding:10px 14px;min-height:78px;line-height:1.4}
+body.in-game .dialog p{font-size:clamp(15px,1.1vw,18px)}
+body.in-game .mapbox{width:100%;padding:10px;contain:size}
+body.in-game #map{width:100%;max-height:245px;min-height:70px;image-rendering:auto}
+body.in-game .needs,body.in-game .quest{font-size:.85rem}
+.desktop-tools{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.desktop-tools>span{margin-left:auto;color:var(--muted);font-size:.78rem}
+body.in-game #kb,body.in-game #legend{display:none}
+body.in-game.keyboard-expanded .app{--desktop-chrome:500px}
+body.in-game.keyboard-expanded #kb{display:flex}
+body.in-game.keyboard-expanded #legend{display:flex}
+body.in-game .actions{gap:7px;min-height:44px}
+body.in-game .act{padding:4px 9px 4px 5px;gap:8px}
+body.in-game .act strong{font-size:.92rem}
+body.in-game .act small{font-size:.72rem}
+body.in-game .act .kc{height:32px;min-width:32px;font-size:1.05rem}
+body.in-game.puzzle-focus .app{--desktop-chrome:270px;max-width:min(1920px,calc(max(340px,100dvh - var(--desktop-chrome))*16/9 + 36px))}
+body.in-game.puzzle-focus .playrow{grid-template-columns:minmax(0,1fr)}
+body.in-game.puzzle-focus .mapbox,body.in-game.puzzle-focus #kb,body.in-game.puzzle-focus #legend,body.in-game.puzzle-focus .clock,body.in-game.puzzle-focus .abox{display:none!important}
+.inventory-dialog{position:fixed;inset:0;z-index:40;background:#09120de8;display:grid;place-items:center;padding:24px}
+.inventory-card{width:min(1180px,100%);max-height:calc(100dvh - 48px);display:flex;flex-direction:column;gap:12px;background:#1f2c25;border:1px solid #778369;border-radius:16px;padding:22px;box-shadow:0 15px 60px #0008;overflow:hidden}
+.inventory-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+#inventory-detail{min-height:1.5em;color:#e0c58a}
+.inventory-card #invbox{contain:none;align-self:stretch;flex:1 1 auto;width:100%;min-height:0;overflow:auto;padding:5px;border:0;background:none}
+.inventory-card .inv{grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:10px}
+.inventory-card .inv li{padding:0;border:0;background:none;font-size:.9rem;overflow-wrap:normal}
+.inventory-card .inv .sep{text-align:left;align-items:flex-start;padding:12px 0 3px;font-size:.78rem;color:#c4cfb8;letter-spacing:.12em}
+.inventory-item{position:relative;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;gap:7px;padding:10px;background:#2b3b2f;border:1px solid #71806455;border-radius:9px;min-height:114px}
+.inventory-item img{width:100%;height:65px;object-fit:contain}
+.inventory-item .cnt{top:5px;right:7px}
+.inventory-item:focus-visible{outline:3px solid var(--accent);outline-offset:-3px;background:#3d4c35}
+.tm-it.menu-selected{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;background:#d5b97818}
+.inventory-card .inv li.fresh{outline:none}.inventory-card li.fresh .inventory-item{border-color:var(--accent)}
+@media(max-width:1000px){body.in-game .playrow{grid-template-columns:minmax(0,1fr) 145px;gap:10px}body.in-game .mapbox{padding:6px}body.in-game .needs,body.in-game .quest{font-size:.75rem}.desktop-tools>span{display:none}}
+@media(max-width:760px){body.in-game .app{padding:8px}body.in-game .playrow{grid-template-columns:minmax(0,1fr)}body.in-game .mapbox{contain:none;display:flex;flex-direction:row;align-items:center;max-height:160px}body.in-game #map{max-height:140px;width:130px;flex:none}body.in-game .mapbox>.eyebrow{display:none}body.in-game .side-extra{margin:0!important}.inventory-dialog{padding:10px}.inventory-card{padding:12px;max-height:calc(100dvh - 20px)}.inventory-card .inv{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}.inventory-heading h2{font-size:1.3rem}}
+
 </style>
 </head>
 <body>
@@ -1387,7 +1428,7 @@ function arrive(first,how){
   else if(P.e!=null){
     if(how==='enter'){lines=[destText(h,P.h),G.walkedOnce?'Geh mit F und J, immer abwechselnd.':'Geh los: F und J abwechselnd, wie Schritte.'];G.walkedOnce=true;}
     else if(turned)lines=[turned,destText(h,P.h)];
-    else if(G.capEvent)lines=['Du gehst weiter.','F und J, immer abwechselnd.'];
+    else lines=['Du gehst weiter.','F und J, immer abwechselnd.'];
   }else if(h.t==='fork'){
     const n=h.node,mv=nodeMoves();
     if(mv.f==null&&mv.j==null){
@@ -2286,7 +2327,7 @@ function caveLines(h,known,turned,how,first){if(G.ex)return G.ex.lines(h,known,t
     if(how==='enter')return [caveDest(h,P.h),stepHint()];
     if(turned)return [turned,G.pose==='stand'?caveDest(h,P.h):stepHint()];
     if(G.capEvent)return [G.pose==='crawl'?'Du kriechst weiter.':G.pose==='duck'?'Du gehst geduckt weiter.':'Du gehst weiter.','F und J, immer abwechselnd.'];
-    return null;}
+    return [caveDest(h,P.h),stepHint()];}
   if(h.t==='fork'){const n=h.node,mv=nodeMoves();
     if(mv.f==null&&mv.j==null){const e=mv.walk!=null?G.w.edges[n.exits[P.h]]:null;
       if(n.t==='tuer')return [turned||'Die Steintür steht offen.',e?caveDest(e,P.h):''];
@@ -2703,7 +2744,7 @@ function desertLines(h,known,turned,how,first){const P=G.pos;G.caveAct=null;
     if(turned)return [turned,desertDest(h,P.h)];
     if(first==='resume')return ['Du bist wieder in der Wüste unterwegs.',desertDest(h,P.h)];
     if(G.capEvent)return ['Du gehst weiter.','F und J, immer abwechselnd.'];
-    return null;}
+    return [desertDest(h,P.h),'F und J, immer abwechselnd.'];}
   if(h.t==='fork'){const n=h.node,mv=nodeMoves();
     if(mv.f==null&&mv.j==null){const e=mv.walk!=null?G.w.edges[n.exits[P.h]]:null;
       if(n.start)return [turned||'Hier bist du aus dem Schacht geklettert.',e?desertDest(e,P.h):''];
@@ -4244,7 +4285,7 @@ window.addEventListener('keydown',e=>{
   handleKey(ch);
 });
 function togglePause(){
-  if(!G||!['wake','explore','lock','moss','page','menu','lantern','jr'].includes(G.phase)||!$('#ov-done').hidden||!$('#ov-goal').hidden)return;
+  if(!G||!['wake','explore','lock','moss','page','menu','lantern','jr','city','innSleep'].includes(G.phase)||!$('#ov-done').hidden||!$('#ov-goal').hidden)return;
   paused=!paused;$('#ov-pause').hidden=!paused;$('#btn-pause').textContent=paused?'Weiter':'Pause';updateControls();
 }
 $('#btn-pause').onclick=e=>{e.currentTarget.blur();togglePause();};
@@ -5420,8 +5461,8 @@ const rCityFrame=cityFrame;
 cityFrame=function(dt){if(rInn)return;const C=G?.city;if(!C)return;const d=C.tx-C.x,walk=Math.sign(d)*Math.min(Math.abs(d),dt*57);if(Math.abs(d)>.1){C.x+=walk;C.anim=(C.anim||0)+Math.abs(walk);C.moving=true;}else{C.x=C.tx;C.moving=false;}};
 // Keep the established continuous harbor and stations, but the entrance is behind us.
 cityDraw=function(now){if(!uActive()||!G.city)return uCityDraw(now);const C=G.city;ccam=Math.max(0,Math.min(CITY_W-CVW,C.x-CVW/2));fctx.clearRect(0,0,W,H);const a=F_ATLAS.hafenpanorama;fctx.save();fctx.scale(CZ,CZ);fctx.translate(-ccam,-CY0);fctx.drawImage(a.img,0,0,a.img.width,a.img.height,0,-17,CITY_W,212);uRect(fctx,0,122,CITY_W,15,'#dfc69b');
- for(const st of CITY_ST){if(st.id==='tor')continue;const idx={haendler:1,schiff:2,mann:5,herberge:3}[st.id],width={haendler:65,schiff:70,mann:22,herberge:72}[st.id];fSprite('hafenbauten',idx,st.x,CITY_GY,width,st.id==='mann'?44:null,fctx);U_AUDIT.city.add(st.id);}
- uPath(fctx,[[401,142],[410,142],[422,174],[412,174]],'#806548','#594b3c',.6);for(let y=145;y<174;y+=3)uLine(fctx,[[402+(y-142)*.35,y],[411+(y-142)*.35,y]],'#ad8b5c',.4);fSprite('hafenbauten',4,442,181,105,null,fctx);uLine(fctx,[[563,91],[572,91],[572,97]],'#70583b',.8);uRect(fctx,567,96,11,10,'#64513c');uEllipse(fctx,572,101,3.2,3.2,'#f2dc9f');uEllipse(fctx,574,100,2.9,2.9,'#64513c');
+ for(const st of CITY_ST){if(st.id==='tor')continue;const idx={haendler:1,schiff:2,mann:5,herberge:3}[st.id],width={haendler:65,schiff:70,mann:22,herberge:144}[st.id];fSprite('hafenbauten',idx,st.x,CITY_GY,width,st.id==='mann'?44:null,fctx);U_AUDIT.city.add(st.id);}
+ uPath(fctx,[[401,142],[410,142],[422,174],[412,174]],'#806548','#594b3c',.6);for(let y=145;y<174;y+=3)uLine(fctx,[[402+(y-142)*.35,y],[411+(y-142)*.35,y]],'#ad8b5c',.4);fSprite('hafenbauten',4,442,181,105,null,fctx);uLine(fctx,[[603,91],[612,91],[612,97]],'#70583b',.8);uRect(fctx,607,96,11,10,'#64513c');uEllipse(fctx,612,101,3.2,3.2,'#f2dc9f');uEllipse(fctx,614,100,2.9,2.9,'#64513c');
  if(!C.noPlayer){let x=C.x,alpha=1,t=C.moving?C.anim:0;if(rInn){const e=rInn.elapsed,p=e<1200?Math.min(1,e/1200):e>3300?Math.max(0,1-(e-3300)/1200):1;x=rInn.x+(rInn.door-rInn.x)*p;alpha=e<1200?Math.min(1,(1200-e)/280):e>3300?Math.min(1,(e-3300)/280):0;t=e*.045;}fctx.save();fctx.globalAlpha=alpha;uPlayer(x,CITY_GY,C.face,t);fctx.restore();}fctx.restore();uLight();};
 const rAnimalAction=uAnimalAction;
 uAnimalAction=function(kind,fn){const value=rAnimalAction(kind,fn);if(qEffect?.u)qEffect.duration=kind==='pet'?4800:4500;return value;};
@@ -5606,6 +5647,92 @@ expected=function(){const keys=sExpected();if(vSky&&keys.length&&!paused&&G.stor
 forestReady.then(()=>{window.forestArt.version='4.7 Waldatelier 16.2 – Kreuzungen und wettergerechter Himmel';});
 
 const sStartStorm=startStorm;startStorm=function(){const existed=!!G.storm,result=sStartStorm();if(!existed&&G.storm)renderScene();return result;};
+
+/* Version 17: keyboard-first desktop framing; UI state is separate from saved worlds. */
+const d17Toolbar=document.createElement('div');
+d17Toolbar.className='desktop-tools';
+d17Toolbar.innerHTML='<button class="btn small" id="btn-inventory" aria-controls="inventory-dialog" aria-expanded="false">Inventar · F2</button><button class="btn small" id="btn-keyboard" aria-controls="kb" aria-expanded="false">Tastatur einblenden · F3</button><span>Esc: Pause · Enter: bestätigen / weiter</span>';
+$('#screen-game').insertBefore(d17Toolbar,$('.playrow'));
+const d17Modal=document.createElement('div');
+d17Modal.id='inventory-dialog';d17Modal.hidden=true;d17Modal.className='inventory-dialog';d17Modal.setAttribute('role','dialog');d17Modal.setAttribute('aria-modal','true');d17Modal.setAttribute('aria-labelledby','inventory-title');
+d17Modal.innerHTML='<div class="inventory-card"><div class="inventory-heading"><div><p class="eyebrow">Rucksack</p><h2 id="inventory-title">Dein Inventar</h2></div><button class="btn small" id="btn-inventory-close">Zurück · Esc / F2</button></div><p class="note">Pfeiltasten: Gegenstand wählen · Enter: Details · Tab: nächstes Feld</p><p id="inventory-detail" aria-live="polite">Wähle einen Gegenstand, um Name und Menge zu lesen.</p></div>';
+$('#screen-game').append(d17Modal);$('.inventory-card').append($('#invbox'));$('#invbox > .eyebrow').hidden=true;
+let d17InventoryState=null,d17Expanded=false;
+try{d17Expanded=localStorage.getItem('tipp-desktop-keyboard')==='true';}catch(_){}
+function d17Layout(){
+ document.body.classList.toggle('puzzle-focus',!!G&&(!!G.puz||G.phase==='lock'||G.phase==='moss'));
+ document.body.classList.toggle('keyboard-expanded',d17Expanded);
+ $('#kb').setAttribute('aria-hidden',String(!d17Expanded));$('#btn-keyboard').setAttribute('aria-expanded',String(d17Expanded));$('#btn-keyboard').textContent=d17Expanded?'Tastatur ausblenden · F3':'Tastatur einblenden · F3';
+}
+function d17Keyboard(){d17Expanded=!d17Expanded;try{localStorage.setItem('tipp-desktop-keyboard',String(d17Expanded));}catch(_){}d17Layout();}
+function d17OpenInventory(){
+ if(!G||trans||G.city?.moving||!$('#ov-goal').hidden||!$('#ov-done').hidden)return;
+ d17InventoryState={game:G,paused,focus:document.activeElement};paused=true;renderInv();d17Modal.hidden=false;$('#btn-inventory').setAttribute('aria-expanded','true');updateControls();
+ ($('#inv button')||$('#btn-inventory-close')).focus();
+}
+function d17CloseInventory(){
+ if(!d17InventoryState)return;const state=d17InventoryState;d17InventoryState=null;d17Modal.hidden=true;$('#btn-inventory').setAttribute('aria-expanded','false');
+ if(G===state.game){paused=state.paused;lastInput=performance.now();updateControls();}
+ if(state.focus?.isConnected)state.focus.focus({preventScroll:true});
+}
+const d17Groups=[['Ausrüstung',null],['Nahrung & Versorgung',new Set(['tierfutter','beeren','honig','datteln','kaktusfeigen','oel','tropfen'])],['Baumaterial',new Set(['holz','feder','zapfen','tannenzapfen','feuerstein','palmwedel','akazienzweig','stoff'])],['Rätsel & Dokumente',new Set(['seite','schnecke','sandrose','eichel','kiesel','schluessel','schatzkarte','ticket'])],['Fundstücke & Münzen',null]];
+const d17RenderInv=renderInv;
+renderInv=function(fresh){
+ d17RenderInv(fresh);const groups=d17Groups.map(()=>[]);
+ for(const li of [...$('#inv').children]){if(li.classList.contains('sep'))continue;const src=li.querySelector('img')?.src,k=Object.keys(ICON).find(k=>ICON[k]===src),name=li.querySelector('span:not(.cnt)')?.textContent||li.title;
+  let group=d17Groups.findIndex(([,keys])=>keys?.has(k));if(group<0)group=S.inv.includes(k)?0:4;
+  const count=li.querySelector('.cnt')?.textContent||'',button=document.createElement('button');button.type='button';button.className='inventory-item';button.dataset.item=k||'';button.setAttribute('aria-label',name+(count?' · '+count:''));while(li.firstChild)button.append(li.firstChild);li.append(button);button.onclick=()=>{$('#inventory-detail').textContent=name+(count?' · Menge '+count.replace('×',''):'');};groups[group].push(li);
+ }
+ $('#inv').replaceChildren();groups.forEach((items,i)=>{if(!items.length)return;const heading=document.createElement('li');heading.className='sep';heading.textContent=d17Groups[i][0];$('#inv').append(heading,...items);});
+};
+const d17Controls=updateControls;updateControls=function(){const result=d17Controls();d17Layout();return result;};
+const d17Show=show;show=function(name){if(d17InventoryState)d17CloseInventory();const value=d17Show(name);d17Layout();return value;};
+$('#btn-inventory').onclick=()=>d17OpenInventory();$('#btn-inventory-close').onclick=d17CloseInventory;$('#btn-keyboard').onclick=d17Keyboard;
+$('#btn-resume').textContent='Weiterspielen · Enter';
+let d17Menu=null,d17MenuIndex=0;
+function d17MarkMenu(){const rows=[...$('#tm-items').children];rows.forEach((el,i)=>{el.classList.toggle('menu-selected',i===d17MenuIndex);el.tabIndex=i===d17MenuIndex?0:-1;el.setAttribute('role','button');el.setAttribute('aria-label',G.menu.items[i]?.label||el.textContent);});}
+const d17MenuRender=renderMenu;renderMenu=function(){const value=d17MenuRender();if(d17Menu!==G.menu){d17Menu=G.menu;d17MenuIndex=0;}d17MarkMenu();$('#tm-info').textContent+=' · Pfeiltasten: wählen · Enter: bestätigen';return value;};
+function d17Consume(e){e.preventDefault();e.stopImmediatePropagation();}
+function d17FocusMove(root,key){const nodes=[...root.querySelectorAll('button:not(:disabled),select,input,[tabindex="0"]')].filter(el=>el.getClientRects().length);if(!nodes.length)return;let index=nodes.indexOf(document.activeElement),step=key==='ArrowLeft'||key==='ArrowUp'?-1:1;
+ if(root===d17Modal&&(key==='ArrowDown'||key==='ArrowUp')&&document.activeElement.matches('.inventory-item')){const first=document.activeElement.getBoundingClientRect();const candidates=nodes.filter(el=>el.matches('.inventory-item')).map(el=>({el,r:el.getBoundingClientRect()})).filter(({r})=>step*(r.top-first.top)>4).sort((a,b)=>Math.abs(a.r.top-first.top)-Math.abs(b.r.top-first.top)||Math.abs(a.r.left-first.left)-Math.abs(b.r.left-first.left));if(candidates.length){candidates[0].el.focus();return;}}
+ nodes[(index+step+nodes.length)%nodes.length].focus();
+}
+window.addEventListener('keydown',e=>{
+ if(e.ctrlKey||e.metaKey||e.altKey)return;
+ if(!d17Modal.hidden){
+  if(['Escape','F2'].includes(e.key)){d17Consume(e);if(!e.repeat)d17CloseInventory();return;}
+  if(e.key==='Tab'){d17Consume(e);d17FocusMove(d17Modal,e.shiftKey?'ArrowLeft':'ArrowRight');return;}
+  if(e.key.startsWith('Arrow')){d17Consume(e);d17FocusMove(d17Modal,e.key);return;}
+  if(['PageDown','PageUp','Home','End'].includes(e.key)){d17Consume(e);const list=$('#invbox');if(e.key==='Home'||e.key==='End'){const buttons=[...$('#inv').querySelectorAll('button')];buttons[e.key==='Home'?0:buttons.length-1]?.focus();}else list.scrollBy({top:list.clientHeight*(e.key==='PageDown'?1:-1)});return;}
+  if(e.key==='Enter'||e.key===' '){d17Consume(e);if(!e.repeat)document.activeElement?.click();return;}
+  d17Consume(e);return;
+ }
+ if(!$('#screen-game').hidden&&G){
+  if(e.key==='F2'){d17Consume(e);if(!e.repeat)d17OpenInventory();return;}
+  if(e.key==='F3'){d17Consume(e);if(!e.repeat)d17Keyboard();return;}
+  const overlay=['#ov-pause','#ov-goal','#ov-page','#ov-done'].map(id=>$(id)).find(el=>!el.hidden);
+  if(overlay){if(e.key==='Escape'){d17Consume(e);if(!e.repeat&&overlay.id==='ov-pause')$('#btn-resume').click();return;}if(e.key.startsWith('Arrow')){d17Consume(e);d17FocusMove(overlay,e.key);return;}if(e.key==='Enter'){d17Consume(e);if(e.repeat)return;const focused=overlay.contains(document.activeElement)&&document.activeElement.matches('button')?document.activeElement:null;(focused||overlay.querySelector('.primary')||overlay.querySelector('button'))?.click();return;}}
+  if(G.phase==='menu'&&(e.key==='Enter'||e.key.startsWith('Arrow'))){d17Consume(e);if(e.repeat)return;if(e.key==='Enter'){const row=document.activeElement?.closest('#tm-items > .tm-it');if(row)d17MenuIndex=[...$('#tm-items').children].indexOf(row);const item=G.menu.items[d17MenuIndex];if(item)handleKey(item.k);}else if(G.menu.items.length){d17MenuIndex=(d17MenuIndex+(['ArrowLeft','ArrowUp'].includes(e.key)?-1:1)+G.menu.items.length)%G.menu.items.length;d17MarkMenu();$('#tm-items').children[d17MenuIndex]?.focus();}return;}
+  if(e.key==='Escape'&&G.phase==='menu'){d17Consume(e);if(!e.repeat)handleKey('Backspace');return;}
+  if(e.key==='Escape'&&(G.puz||G.phase==='lock'||G.phase==='moss')){d17Consume(e);if(!e.repeat)handleKey('Backspace');return;}
+ }
+},true);
+d17Layout();
+// Enlarge the puzzle itself as well as its viewport; keep its labels inside the frame.
+const d17PuzzleDraw=pzDraw;pzDraw=function(now){if(!uActive()||!G.puz)return d17PuzzleDraw(now);vx.save();vx.translate(160,86);vx.scale(1.2,1.2);vx.translate(-160,-86);d17PuzzleDraw(now);vx.restore();};
+forestReady.then(()=>{window.forestArt.version='4.7 Waldatelier 17 – Desktop und Tastaturbedienung';});
+
+/* One coastal pass for the complete final approach, using the established city entrance. */
+function d17Coast(){if(!uActive()||G.city||G.pos.e==null)return null;const e=G.w.edges[G.pos.e],forward=G.pos.h===e.dir,n=G.w.N[forward?e.b:e.a];return n.place==='stadt'?{e,n,dist:forward?e.n-G.pos.k:G.pos.k}:null;}
+function d17CoastPlate(progress){const a=F_ATLAS.stadtzugang,zoom=1+.12*Math.max(0,Math.min(1,progress)),sw=a.img.width/zoom,sh=a.img.height/zoom;fctx.drawImage(a.img,(a.img.width-sw)/2,(a.img.height-sh)*.58,sw,sh,0,0,W,H);}
+const d17DesertDest=desertDest;desertDest=function(e,h){const n=G.w.N[h===e.dir?e.b:e.a];return n.place==='stadt'?'Der Weg führt zwischen hohen Felsen zum Stadttor. Dahinter liegen die Stadt und das Meer.':d17DesertDest(e,h);};
+const d17Place=uPlace;uPlace=function(n){if(n.place==='stadt'){d17CoastPlate(1);uLastFocus={x:162,y:107,base:153,keyHint:' '};return;}return d17Place(n);};
+const d17DesertRender=renderDesert;
+renderDesert=function(){const coast=d17Coast();if(!coast)return d17DesertRender();uLastAnimal=uLastItem=uLastFocus=null;uShadeAreas=[];fctx.clearRect(0,0,W,H);d17CoastPlate(1-coast.dist/coast.e.n);uTracks(null);
+ const item=itemHere();if(item&&!uPhotoBusy){const box=uItem(item,159,157,1);uLastItem={key:item,...box,cx:159,base:157};}
+ const a=animalHere();if(a&&!uPhotoBusy)uAnimal(a);if(G.guide&&!uPhotoBusy){const rd=guideRel();if(rd!=='B')uAnimal('flughuhn',rd==='L'?51:rd==='R'?269:166,113,21,false);}
+ G.mark=null;G.animScr=uLastAnimal?[Math.round(uLastAnimal.x+uLastAnimal.w/2),Math.round(uLastAnimal.y+uLastAnimal.h/2)]:null;uLight();
+};DESERT_EX.render=renderDesert;
 
 $('#btn-play').disabled=true;$('#home-note').textContent='Illustrationen werden geladen …';forestReady.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Illustrationen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});
 </script>
