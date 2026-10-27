@@ -35,6 +35,7 @@ body.in-game.puzzle-focus .mapbox,body.in-game.puzzle-focus #kb,body.in-game.puz
 .inventory-item .cnt{top:5px;right:7px}
 .inventory-item:focus-visible{outline:3px solid var(--accent);outline-offset:-3px;background:#3d4c35}
 .tm-it.menu-selected{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;background:#d5b97818}
+.tent-guide{font-size:.72rem;line-height:1.4;color:var(--muted);padding:4px 2px}
 .inventory-card .inv li.fresh{outline:none}.inventory-card li.fresh .inventory-item{border-color:var(--accent)}
 @media(max-width:1000px){body.in-game .playrow{grid-template-columns:minmax(0,1fr) 145px;gap:10px}body.in-game .mapbox{padding:6px}body.in-game .needs,body.in-game .quest{font-size:.75rem}.desktop-tools>span{display:none}}
 @media(max-width:760px){body.in-game .app{padding:8px}body.in-game .playrow{grid-template-columns:minmax(0,1fr)}body.in-game .mapbox{contain:none;display:flex;flex-direction:row;align-items:center;max-height:160px}body.in-game #map{max-height:140px;width:130px;flex:none}body.in-game .mapbox>.eyebrow{display:none}body.in-game .side-extra{margin:0!important}.inventory-dialog{padding:10px}.inventory-card{padding:12px;max-height:calc(100dvh - 20px)}.inventory-card .inv{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}.inventory-heading h2{font-size:1.3rem}}
