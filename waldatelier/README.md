@@ -1,4 +1,4 @@
-# Waldatelier 15.1 – Illustrationsfassung für Tipp-Expedition 4.7
+# Waldatelier 16 – Illustrationsfassung für Tipp-Expedition 4.7
 
 Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer bestätigte handgezeichnete Waldillustration mit mittlerer Detaildichte und einer quer verlaufenden T-Abzweigung. `Stilreferenz.json` dokumentiert die dazu erzeugten Motive. Die früheren Versuche sind keine Gestaltungsreferenz für Folgeänderungen.
 
@@ -6,7 +6,7 @@ Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer
 
 Im Repository: `python waldatelier/build.py`. Benötigt Python 3 und die eingebetteten WebP-Quelldateien. Ergebnis: `Tipp-Expedition-4.7-Waldatelier.html`.
 
-`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v15-1.html` und `Wald-Spiel-v15-1.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle vierunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
+`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v16.html` und `Wald-Spiel-v16.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
 
 Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Tierfotos bleiben erhalten. Gefundene Hinweisfotos werden als zusammenhängende Bilder erneuert.
 
@@ -129,3 +129,14 @@ Herbergszahlungen erfolgen weiterhin im bestehenden Menü. `innStayPending` sich
 ## Revision 15.1: ausschließlich die Wüstenwege
 
 Die deckende, helle Wegfüllung entfällt. `uSoil` erhält die Sandfarben und Windrippeln der vorhandenen Dünenkulisse und stellt verdichteten Sand durch eine moderate Abdunklung dar. Die Wegmaske erhält weich auslaufende, unregelmäßige Ränder. Die tatsächlichen Abzweigungen und die präzise Spurenlogik bleiben unverändert. Ein auf zwölf Ansichten begrenzter Cache verhindert eine erneute Pixelberechnung bei jedem Bild. `check-road-v15-1.py` prüft Sandstruktur und Farbkontrast, zwölf Kreuzungsansichten, Spurenrichtung, unveränderte Spielstände und wiederholte Darstellung. Mit `TIPP_TEST_URL` kann dieselbe Prüfung gegen den eigenständigen Export laufen.
+
+
+## Revision 16: Wege, Himmelsblick und Lehmruine
+
+`revision16.js` ergänzt eine fein gekörnte, perspektivisch abgetastete Trittfläche mit weniger Windrippeln als der benachbarte lockere Dünensand. Die drei ursprünglichen Ausgänge jeder Ansicht entstehen weiter aus dem tatsächlichen Wegenetz. Schattenflächen sind an sichtbare beziehungsweise am Bildrand liegende Landschaftselemente gebunden.
+
+O öffnet einen animierten Aufwärtsschwenk. Ein eigener Himmel verlängert die Szene nach oben, beim Zurückblicken bleibt die ursprüngliche Position erhalten. Die Hinweise auf Sonne, Polarstern, Wasser suchende Flughühner und Sandsturm kommen weiterhin aus der bestehenden Spiellogik. Leertaste oder O senken den Blick; Pausieren stoppt die Bewegung.
+
+`lehmruine.webp` enthält Mauer, Trümmer sowie dieselbe Truhe geschlossen und geöffnet. Die Truhe wird unter der Mauer gezeichnet. Eine unregelmäßige, mit jedem G/H-Schlag wachsende Bresche gibt die Sicht auf sie frei. Kurze fallende Lehmstücke ergänzen den Abtrag. Acht Schläge und die ursprüngliche einmalige Belohnung bleiben erhalten. Die Atlasgrenzen sind eigens vermessen. `wuestenhimmel.webp` ist eine durchgehende Himmelsmalerei. Alle 36 Bildbögen sind eingebettet.
+
+`check-v16.py` prüft tatsächliche O/U/G/H/Leertasten, Kamerarückkehr und Pause, vier Wetter-/Tageszeit-Hinweise, acht Abtragsschritte, die korrigierte Truhenbelohnung und Neuladen. `check-desert.py` prüft zusätzlich die vorhandenen Wüsten- und Stadtfunktionen.

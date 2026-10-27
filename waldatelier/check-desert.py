@@ -10,7 +10,7 @@ with sync_playwright() as p:
  pg.goto(URL,wait_until='domcontentloaded',timeout=90000);pg.locator('#btn-play').click();pg.evaluate("enterDesert(true);paused=true;S.settings.goal=120;S.needs={w:DROP_MS*10,f:BERRY_MS*10};S.inv=[...new Set([...S.inv,'kamera','feldtagebuch','karte','wasserbeutel'])];S.known=[...new Set([...S.known,'g','h','s','q','u','w','e','ü','z','i','a','o','p',' ','Backspace'])];S.world.animals={};S.world.items={};G.enc=null;")
  # This is the known-expedition regression; fresh identification is exercised by check-v15.py.
  pg.evaluate("for(const a of U_ANIMALS)rLearn('animal:'+a);for(const k of U_ITEMS)rLearn('item:'+k);for(const k of Object.keys(R_FACTS))rLearn(k);")
- assert pg.evaluate('Object.keys(F_ATLAS).length')==34
+ assert pg.evaluate('Object.keys(F_ATLAS).length')==36
  assert pg.evaluate('DEAD.dornteufel.sp')=='Dornschwanzagame'
  assert pg.evaluate('SPECIES[2].some(s=>s.n==="Dornschwanzagame"&&s.l==="Uromastyx acanthinura")')
  def snap(name):

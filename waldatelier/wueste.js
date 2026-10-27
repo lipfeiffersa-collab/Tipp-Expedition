@@ -35,12 +35,12 @@ function uSoil(path){
 }
 function uRoad(n=null,h=G.pos.h,z=ZJ){
  const yD=z=>103+(179-103)/z,yn=n?yD(z):139,yf=n?yD(z+DZOFF):125,L=!!n&&passable(n,dL(h)),R=!!n&&passable(n,dR(h)),F=!n||passable(n,h),nw=uRoadWidth(yn),fw=uRoadWidth(yf),p=new Path2D(),pos=uPos(),bend=Math.sin(pos.x*.38+pos.y*.31+h)*4;
- if(!n){p.moveTo(113+bend,H);p.bezierCurveTo(134+bend,164,129,151,143,139);p.bezierCurveTo(155,128,149,115,157,104);p.lineTo(163,104);p.bezierCurveTo(164,118,181,124,178,139);p.bezierCurveTo(179,153,202,164,207+bend,H);p.closePath();uSoil(p);return {path:p,yn,yf,L,R,F,n,h};}
- p.moveTo(105+bend,H);p.bezierCurveTo(112+bend,161,160-nw,yn+6,160-nw,yn);
+ if(!n){p.moveTo(122+bend,H);p.bezierCurveTo(134+bend,164,129,151,143,139);p.bezierCurveTo(155,128,149,115,157,104);p.lineTo(163,104);p.bezierCurveTo(164,118,181,124,178,139);p.bezierCurveTo(179,153,202,164,198+bend,H);p.closePath();uSoil(p);return {path:p,yn,yf,L,R,F,n,h};}
+ p.moveTo(120+bend,H);p.bezierCurveTo(125+bend,161,160-nw,yn+6,160-nw,yn);
  if(L){p.lineTo(0,yn);p.lineTo(0,yf);p.quadraticCurveTo(70,yf-1,160-fw,yf);}else p.lineTo(160-fw,yf);
  if(F){p.bezierCurveTo(160-fw,yf-(yf-104)*.4,157,104+(yf-104)*.3,157,104);p.lineTo(163,104);p.bezierCurveTo(163,104+(yf-104)*.3,160+fw,yf-(yf-104)*.4,160+fw,yf);}else p.lineTo(160+fw,yf);
  if(R){p.quadraticCurveTo(250,yf-1,320,yf);p.lineTo(320,yn);p.lineTo(160+nw,yn);}else p.lineTo(160+nw,yn);
- p.bezierCurveTo(160+nw,yn+6,208+bend,161,215+bend,H);p.closePath();uSoil(p);
+ p.bezierCurveTo(160+nw,yn+6,195+bend,161,200+bend,H);p.closePath();uSoil(p);
  return {path:p,yn,yf,L,R,F,n,h};
 }
 function uShadow(x,y,w,h=3){const grad=fctx.createRadialGradient(x,y,.5,x,y,w*.6);grad.addColorStop(0,'#65573b77');grad.addColorStop(1,'#65573b00');uEllipse(fctx,x,y,w*.65,h,grad);}
