@@ -15,13 +15,17 @@ if args.previous and args.previous.exists():
 
 assert len(data)==37 and {'grundwald','orte5a','orte5b','zustaende5','wegmaterial','sofortbild'}<=data.keys()
 html=source[:a]+json.dumps(data,separators=(',',':'))+source[z:]
-args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v22.html').write_text(html)
-with zipfile.ZipFile(args.output/'Wald-Spiel-v22.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
+args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v23.html').write_text(html)
+with zipfile.ZipFile(args.output/'Wald-Spiel-v23.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
  arc.writestr('Wald-Spiel.html',html)
  arc.writestr('Schiff-Test.html','<!doctype html><html lang="de"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=Wald-Spiel.html#schiff"><title>Schiffsstart</title><a href="Wald-Spiel.html#schiff">Schiff mit eigenem Testspielstand starten</a></html>')
- arc.writestr('Start.txt',"""Tipp-Expedition – Version 22
+ arc.writestr('Start.txt',"""Tipp-Expedition – Version 23
 
 ZIP vollständig entpacken. Wald-Spiel.html öffnet das ganze Spiel. Schiff-Test.html startet direkt auf dem Schiff mit getrenntem Testspielstand. Alle Bilder sind eingebettet; keine Internetverbindung nötig.
+
+Neu in Version 23: An erreichten Kreuzungen und Kurven liegen kleine schwarze Kreise mit F, J und dem Leertastensymbol auf den jeweiligen Wegen. An besonderen Orten wie der Oase und während des Gehens erscheinen diese Kreise nicht. Das große Abbiegefenster entfällt.
+
+Am Wüsteneingang (Schacht mit alter Leiter) führt L zurück in die gespeicherte Mine. Eine vergessene Spitzhacke liegt weiter im alten Stollen. Am Minenausgang führt L wieder in dieselbe Wüste zurück. Karten, Funde, Rätsel, Münzen, Inventar sowie Wüstentag und Uhrzeit bleiben erhalten.
 
 Karte und Tastatur: Die Karte hat neben Aufgaben und Beständen einen eigenen Bereich. F3 schaltet die Bildschirmtastatur auch in Rätseln ein/aus. Die Spielansicht richtet sich nach dem tatsächlichen Platzbedarf der Bedienelemente. Die Fata Morgana ist auf dem vorgesehenen Weg zwischen 10 und 17 Uhr bis zum letzten Annäherungsschritt sichtbar und verschwindet am Standort. Während eines Sandsturms ist sie nicht sichtbar.
 
@@ -34,6 +38,6 @@ F2 Inventar, F3 Tastatur, F4 Tagebuch, F5 Kamera, F6 Aufgaben. F7 schaltet das S
 Vorhandenen lokalen Spielstand weiterverwenden: dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden. Vorher die bisherige Datei sichern. Browserdaten nicht löschen.
 """)
 
-with zipfile.ZipFile(args.output/'Wald-Spiel-v22.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
-for name in ['Wald-Spiel-v22.html','Wald-Spiel-v22.zip']:(args.output/name).chmod(0o644)
-print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v22.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')
+with zipfile.ZipFile(args.output/'Wald-Spiel-v23.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
+for name in ['Wald-Spiel-v23.html','Wald-Spiel-v23.zip']:(args.output/name).chmod(0o644)
+print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v23.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')

@@ -1,6 +1,20 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 22
+## Aktuelle Version 23
+
+**[Tipp-Expedition-v23.zip herunterladen](Tipp-Expedition-v23.zip)** · etwa 37 MB
+
+Das große Abbiegefenster ist durch kleine schwarze Kreise mit F, J und dem Leertastensymbol direkt auf den Wegen ersetzt. Die Kreise erscheinen erst an erreichten Kreuzungen und Kurven. Die Oase und andere Ortsansichten bleiben davon frei.
+
+Am Wüsteneingang führt L die alte Leiter zurück in die gespeicherte Mine. Eine vergessene Spitzhacke lässt sich im alten Stollen holen. Am Minenausgang führt L wieder zurück in dieselbe Wüste. Fortschritt, Funde, Geld und Inventar bleiben erhalten.
+
+[Vorschaubilder der Version 23](../waldatelier/vorschau-v23/)
+
+ZIP entpacken und Wald-Spiel.html öffnen. Für einen bestehenden lokalen Spielstand dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden. Die bisherige Datei vorher sichern. Schiff-Test.html bleibt der getrennte Direktstart für das Schiff.
+
+SHA-256: `94c073f50536a2fdb8a1ce7f0226e1509eabf4de810d104013b869a3351809e9`
+
+## Version 22
 
 **[Tipp-Expedition-v22.zip herunterladen](Tipp-Expedition-v22.zip)** · etwa 37 MB
 
