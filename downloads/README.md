@@ -1,6 +1,18 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 18
+## Aktuelle Version 21
+
+**[Tipp-Expedition-v21.zip herunterladen](Tipp-Expedition-v21.zip)** · etwa 30 MB
+
+ZIP vollständig entpacken. **Wald-Spiel.html** öffnet das ganze Spiel, **Schiff-Test.html** startet direkt auf dem Schiff mit eigenem Testspielstand. Der reguläre Einstieg bleibt beim Seemann mit Ticket und Abfahrtszeit.
+
+Neu: längerer Abschnitt an Deck mit niedriger Spiere, Waten, Festhalten am Mast, Leiter (L), Treppe (T), Wantennetz (K), Fässern und brüchigen Planken. Danach führen Kriechstellen und Tauziehen durch den kürzeren Schiffsrumpf bis zum Untergang. F7 schaltet das Schaukeln ab, F3 zeigt die Tastatur. Die Fahrt endet am Übergang zur späteren Traumsequenz.
+
+[Aufnahmen aus dem spielbaren Schiff](../waldatelier/vorschau-v21/)
+
+SHA-256: `f3c236192c970ea7d087bc65b348f6a457ada792a08e72b1e2aa66f2cf93bec5`
+
+## Bisherige Funktionen ab Version 18
 
 **[Tipp-Expedition-v18.zip herunterladen](Tipp-Expedition-v18.zip)** · etwa 22 MB
 

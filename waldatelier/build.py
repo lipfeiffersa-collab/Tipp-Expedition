@@ -51,6 +51,9 @@ s=s.replace('Kapitel 2 ist noch in Arbeit. Bis dahin kannst du den Wald weiter e
 s=s.replace('Kapitel 1 geschafft! Kapitel 2 ist noch in Arbeit. Du kannst den Wald weiter erkunden.', 'Ein neuer Tag wartet auf dich. Erkunde den Wald weiter und folge den Hinweisen in deinem Feldtagebuch.')
 # The ruin trail is unlocked by its puzzle, not by befriending a riding animal.
 s=s.replace('(hid&&!RIDE.some(isFriend))', '(hid&&!o19RuinPosition(w,P)&&!RIDE.some(isFriend))')
+s=s.replace("'menu','lantern','jr','city'].includes(G.phase)","'menu','lantern','jr','city','ship'].includes(G.phase)")
+# Isolated direct ship preview: a fragment never overwrites the regular save.
+s=s.replace("const STORE='tipp-expedition-rpg-v1';","const STORE=location.hash==='#schiff'?'tipp-expedition-schiff-demo-v21':'tipp-expedition-rpg-v1';")
 # Rendering-source changes follow.
 a=s.index('function draw(now){');b=s.index('\nfunction loop(now)',a)
 segment=s[a:b].replace('vx.drawImage(bc,','forestBlit(')
@@ -71,11 +74,13 @@ for name,fallback in [('desertLines',"[desertDest(h,P.h),'F und J, immer abwechs
  a=s.index('function '+name+'(');b=s.index('\n  if(h.t===',a)
  part=s[a:b];assert part.count('return null;')==1
  s=s[:a]+part.replace('return null;','return '+fallback+';')+s[b:]
-s=s.replace("'menu','lantern','jr'].includes(G.phase)","'menu','lantern','jr','city','innSleep'].includes(G.phase)")
-code='\nconst O19_SKETCH='+json.dumps('data:image/webp;base64,'+base64.b64encode((root/'assets'/'tagebuch-skizze19.webp').read_bytes()).decode())+';\nconst F_IMAGE_DATA='+json.dumps(assets,separators=(',',':'))+';\nconst F_BOUNDS='+json.dumps(bounds,separators=(',',':'))+';\n'+(root/'wald.js').read_text()+'\n'+(root/'nachtpfad.js').read_text()+'\n'+(root/'dezent.js').read_text()+'\n'+(root/'hoehle.js').read_text()+'\n'+(root/'belohnungen.js').read_text()+'\n'+(root/'erlebnisse.js').read_text()+'\n'+(root/'wueste.js').read_text()+'\n'+(root/'revision15.js').read_text()+'\n'+(root/'revision16.js').read_text()+'\n'+(root/'nachthimmel.js').read_text()+'\n'+(root/'wege-und-wetter.js').read_text()+'\n'+(root/'desktop.js').read_text()+'\n'+(root/'kuestenweg.js').read_text()+'\n'+(root/'zelt.js').read_text()+'\n'+(root/'polaroid.js').read_text()+'\n'+(root/'entdecker.js').read_text()+'\n'+(root/'orientierung19.js').read_text()+'\n'+(root/'aufgaben20.js').read_text()
+s=s.replace("'menu','lantern','jr'].includes(G.phase)","'menu','lantern','jr','city','innSleep','ship'].includes(G.phase)")
+ship_assets={p.stem.removeprefix('schiff21-'):'data:image/webp;base64,'+base64.b64encode(p.read_bytes()).decode() for p in (root/'assets').glob('schiff21-*.webp')}
+assert len(ship_assets)==5
+code='\nconst S21_IMAGE_DATA='+json.dumps(ship_assets,separators=(',',':'))+';\nconst S21_BOUNDS='+(root/'schiff21-art.json').read_text()+';\nconst O19_SKETCH='+json.dumps('data:image/webp;base64,'+base64.b64encode((root/'assets'/'tagebuch-skizze19.webp').read_bytes()).decode())+';\nconst F_IMAGE_DATA='+json.dumps(assets,separators=(',',':'))+';\nconst F_BOUNDS='+json.dumps(bounds,separators=(',',':'))+';\n'+(root/'wald.js').read_text()+'\n'+(root/'nachtpfad.js').read_text()+'\n'+(root/'dezent.js').read_text()+'\n'+(root/'hoehle.js').read_text()+'\n'+(root/'belohnungen.js').read_text()+'\n'+(root/'erlebnisse.js').read_text()+'\n'+(root/'wueste.js').read_text()+'\n'+(root/'revision15.js').read_text()+'\n'+(root/'revision16.js').read_text()+'\n'+(root/'nachthimmel.js').read_text()+'\n'+(root/'wege-und-wetter.js').read_text()+'\n'+(root/'desktop.js').read_text()+'\n'+(root/'kuestenweg.js').read_text()+'\n'+(root/'zelt.js').read_text()+'\n'+(root/'polaroid.js').read_text()+'\n'+(root/'entdecker.js').read_text()+'\n'+(root/'orientierung19.js').read_text()+'\n'+(root/'aufgaben20.js').read_text()+'\n'+(root/'schiff21.js').read_text()
 init="buildIcons();\nsyncSound();\nshow('home');"
 assert s.count(init)==1
-s=s.replace(init,code+"\n$('#btn-play').disabled=true;$('#home-note').textContent='Illustrationen werden geladen …';p20Ready.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Illustrationen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});")
-s=s.replace('</style>',(root/'wald.css').read_text()+'\n'+(root/'desktop.css').read_text()+'\n'+(root/'expedition18.css').read_text()+'\n'+(root/'orientierung19.css').read_text()+'\n'+(root/'aufgaben20.css').read_text()+'\n</style>',1)
+s=s.replace(init,code+"\n$('#btn-play').disabled=true;$('#home-note').textContent='Illustrationen werden geladen …';sh21Ready.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Illustrationen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});")
+s=s.replace('</style>',(root/'wald.css').read_text()+'\n'+(root/'desktop.css').read_text()+'\n'+(root/'expedition18.css').read_text()+'\n'+(root/'orientierung19.css').read_text()+'\n'+(root/'aufgaben20.css').read_text()+'\n'+(root/'schiff21.css').read_text()+'\n</style>',1)
 (root.parent/'Tipp-Expedition-4.7-Waldatelier.html').write_text(s)
 print('Built',len(s.encode()),'bytes with',len(assets),'embedded sheets')

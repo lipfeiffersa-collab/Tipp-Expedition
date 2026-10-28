@@ -1,0 +1,14 @@
+body.in-game.ship21-active .app{--desktop-chrome:320px;max-width:min(1920px,calc(max(340px,100dvh - var(--desktop-chrome))*16/9 + 36px))}
+body.in-game.ship21-active.keyboard-expanded .app{--desktop-chrome:550px}
+body.in-game.ship21-active .playrow{grid-template-columns:minmax(0,1fr)}
+body.in-game.ship21-active #mapbox,body.in-game.ship21-active #clock,body.in-game.ship21-active #abox{display:none!important}
+body.in-game.ship21-active .dialog{min-height:78px}
+@media(max-height:900px){body.in-game.ship21-active.keyboard-expanded .desktop-tools>span{display:none}body.in-game.ship21-active.keyboard-expanded .actions .act small{display:none}body.in-game.ship21-active.keyboard-expanded #kb .k{height:clamp(24px,3.2vh,30px)}}
+
+body.in-game.ship21-active.keyboard-expanded .app{--desktop-chrome:650px;max-width:min(1920px,calc(max(230px,100dvh - var(--desktop-chrome))*16/9 + 36px))}
+body.in-game.ship21-active.keyboard-expanded .desktop-tools>span,body.in-game.ship21-active.keyboard-expanded .hud-time,body.in-game.ship21-active.keyboard-expanded .actions .act small,body.in-game.ship21-active.keyboard-expanded #legend{display:none!important}
+body.in-game.ship21-active.keyboard-expanded .desktop-tools .btn span{font-size:0}
+body.in-game.ship21-active.keyboard-expanded .desktop-tools .btn small{font-size:.7rem}
+body.in-game.ship21-active.keyboard-expanded .actions .act strong{font-size:.78rem}
+body.in-game.ship21-active.keyboard-expanded #hint:empty{display:none}
+body.in-game.ship21-active.keyboard-expanded #kb .k{height:clamp(24px,3.2vh,30px)}
