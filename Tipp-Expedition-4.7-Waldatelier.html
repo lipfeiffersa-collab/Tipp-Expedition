@@ -393,6 +393,14 @@ body.in-game.puzzle-focus.keyboard-expanded .desktop-tools{position:relative;z-i
 }
 @media(max-height:950px){body.in-game.puzzle-focus.keyboard-expanded #kb .k{height:clamp(24px,3.2vh,30px)}}
 
+#p20-map-tasks{flex:none;width:100%;max-width:100%;margin:10px 0 12px;padding:10px 9px;background:#253027;border:1px solid #8e98714d;border-radius:8px;color:#ebe7d4;font-size:.78rem;line-height:1.45;text-align:left}
+.p20-task-heading{display:flex;align-items:center;justify-content:space-between;gap:5px;color:#d8c68f;font-size:.75rem}
+.p20-task-heading strong{font-weight:600}.p20-task-all{font:inherit;color:#d9d9c1;background:#344332;border:1px solid #86916b;border-radius:4px;padding:1px 4px;cursor:pointer}.p20-task-all:focus-visible{outline:2px solid #f1d286;outline-offset:2px}.p20-task-all:disabled{opacity:.4;cursor:default}
+#p20-map-tasks ul{list-style:none;margin:6px 0 0;padding:0}#p20-map-tasks li{padding:6px 0;border-top:1px solid #b9bc8b22;overflow-wrap:anywhere}#p20-map-tasks li:first-child{border-top:0}
+@media(max-width:1000px){#p20-map-tasks{font-size:.7rem;padding:7px 6px}.p20-task-heading{font-size:.66rem}}
+@media(max-width:760px){#p20-map-tasks{max-width:230px;min-width:130px;margin:3px 7px}#p20-map-tasks li{padding:2px 0}}
+@media(max-width:1000px){#p20-map-tasks{margin:5px 0 7px}#p20-map-tasks li{padding:4px 0}}
+
 </style>
 </head>
 <body>
@@ -5928,7 +5936,7 @@ const P18_TASKS=[
 ];
 const p18Toast=document.createElement('div');p18Toast.className='p18-toast';p18Toast.hidden=true;p18Toast.setAttribute('role','status');$('#stage').append(p18Toast);let p18ToastQueue=[],p18ToastTimer=null;
 function p18ShowToast(){if(p18ToastTimer||!p18ToastQueue.length)return;const t=p18ToastQueue.shift();p18Toast.textContent=t;p18Toast.hidden=false;p18ToastTimer=setTimeout(()=>{p18Toast.hidden=true;p18ToastTimer=null;p18ShowToast();},4500);}
-function p18CheckTasks(){const s=p18State();if(typeof FIRE!=='undefined'&&Object.entries(FIRE).every(([k,n])=>(S.res[k]||0)>=n))s.metrics.fire=1;let changed=false;for(const task of P18_TASKS){if(s.claimed[task.id]||(s.metrics[task.metric]||0)<task.goal)continue;const [key,qty]=task.reward;if(key==='film'&&(S.res.film||0)+qty>CAP||key==='tierfutter'&&(S.food||0)+qty>FOOD_CAP)continue;s.claimed[task.id]=dayKey();if(key==='film')S.res.film=(S.res.film||0)+qty;else if(key==='tierfutter')S.food=(S.food||0)+qty;else S.coins=(S.coins||0)+qty;p18ToastQueue.push('Erfolg: '+task.name+' · +'+qty+' '+(key==='film'?'Sofortbildfilm':key==='tierfutter'?'Tierfutter':'Goldmünzen'));changed=true;}if(changed){save();renderInv();p18ShowToast();}}
+function p18CheckTasks(){const s=p18State();if(typeof FIRE!=='undefined'&&Object.entries(FIRE).every(([k,n])=>(S.res[k]||0)>=n))s.metrics.fire=1;let changed=false;for(const task of P18_TASKS){if(s.claimed[task.id]||(s.metrics[task.metric]||0)<task.goal)continue;if(!task.reward){s.claimed[task.id]=dayKey();changed=true;continue;}const [key,qty]=task.reward;if(key==='film'&&(S.res.film||0)+qty>CAP||key==='tierfutter'&&(S.food||0)+qty>FOOD_CAP)continue;s.claimed[task.id]=dayKey();if(key==='film')S.res.film=(S.res.film||0)+qty;else if(key==='tierfutter')S.food=(S.food||0)+qty;else S.coins=(S.coins||0)+qty;p18ToastQueue.push('Erfolg: '+task.name+' · +'+qty+' '+(key==='film'?'Sofortbildfilm':key==='tierfutter'?'Tierfutter':'Goldmünzen'));changed=true;}if(changed){save();renderInv();p18ShowToast();}}
 function p18Count(metric,n=1){const s=p18State();s.metrics[metric]=(s.metrics[metric]||0)+n;p18CheckTasks();}
 const p18Feed=feedAnimal;feedAnimal=function(){const a=animalHere(),sp=a&&DEAD[a].sp,before=sp?S.fed[sp]||0:0,wasTrusted=a&&trusted(a),r=p18Feed(...arguments),diff=sp?(S.fed[sp]||0)-before:0;if(diff>0){p18Count('feeds',diff);if(a==='reh')p18Count('reh',diff);if(!wasTrusted&&trusted(a))p18QueueHelp('trust','Das Tier vertraut dir jetzt','Mit S kannst du es vorsichtig streicheln. Ein Tierfreund kann dir später helfen, Hindernisse zu überwinden oder Hinweise zu finden.','tierfutter');}return r;};
 const p18Pet=petAnimal;petAnimal=function(){const a=animalHere(),sp=a&&DEAD[a].sp,before=sp?S.pet[sp]||0:0,wasFriend=a&&isFriend(a),r=p18Pet(...arguments),diff=sp?(S.pet[sp]||0)-before:0;if(diff>0){p18Count('pets',diff);if(!wasFriend&&isFriend(a))p18QueueHelp('friend','Ein neuer Tierfreund','Drücke T, um deinen Tierfreund zu rufen. Jedes Tier hilft anders: Manche zeigen dir den Weg, andere helfen über ein Hindernis.','tierfutter');}return r;};
@@ -5943,7 +5951,7 @@ let p18FindDepth=0;
 function p18VisibleFind(fn){return function(){if(p18FindDepth)return fn(...arguments);p18FindDepth++;const before=qLootState(),oldIntro=needsIntro,peaks={};needsIntro=function(){const now=qLootState();for(const[k,v]of Object.entries(now))peaks[k]=Math.max(peaks[k]||0,v);return oldIntro(...arguments);};let result;try{result=fn(...arguments);}finally{needsIntro=oldIntro;p18FindDepth--;}const after=qLootState(),loot=[];for(const key of new Set([...Object.keys(after),...Object.keys(peaks)])){const n=Math.max(after[key]||0,peaks[key]||0)-(before[key]||0);if(n>0)loot.push([key,n]);}if(loot.length&&G?.phase==='explore'&&!qEffect&&!p18Help&&!p18TutorialQueue.length){qBegin('loot',{loot,title:'Hier gefunden',duration:Math.max(2800,Math.ceil(loot.length/4)*1800)});setCaption([...G.caption,'Leertaste: Fund ansehen und weiter.'],true);}p18CheckTasks();return result;};}
 pick=p18VisibleFind(pick);searchPlace=p18VisibleFind(searchPlace);pickD=p18VisibleFind(pickD);searchFossil=p18VisibleFind(searchFossil);breakDruse=p18VisibleFind(breakDruse);pickOil=p18VisibleFind(pickOil);
 // Personal prints and optional achievements are separate, correctly paginated journal sections.
-const p18Pages=journalPages;journalPages=function(){const pages=p18Pages(),s=p18State(),extra=[];if(S.inv.includes('kamera')||s.gallery.length){if(!s.gallery.length)extra.push({tab:'Sofortbilder',title:'Deine Sofortbilder',cls:'',html:'<p>Hier klebst du deine eigenen Aufnahmen ein. K fotografiert ein Tier oder öffnet den Sucher. F5 öffnet den Sucher direkt.</p>'});for(let i=0;i<s.gallery.length;i++)extra.push({tab:'Sofortbilder',title:'Deine Sofortbilder',cls:'',html:s.gallery.slice(i,i+1).map(photo=>'<figure class="p18-print"><img src="'+photo.src+'" alt="'+esc(photo.title)+'"><figcaption>'+esc(photo.title)+' · Tag '+photo.day+'</figcaption><button class="btn small p18-remove" data-photo="'+photo.id+'">Foto entfernen</button></figure>').join('')});if(extra.length%2)extra.push({tab:'Sofortbilder',title:'',html:'',cls:'empty'});}for(let i=0;i<P18_TASKS.length;i+=2)extra.push({tab:'Entdecken',title:i?'':'Freiwillig entdecken',cls:'',html:(i?'':'<p>Diese Aufgaben helfen dir beim Entdecken. Sie sind freiwillig und sperren keinen Weg.</p>')+P18_TASKS.slice(i,i+2).map(task=>{const n=Math.min(task.goal,s.metrics[task.metric]||0),[key,qty]=task.reward;return '<section class="p18-task"><h4>'+(s.claimed[task.id]?'✓ ':'')+esc(task.name)+'</h4><p>'+esc(task.text)+'</p><p>'+n+'/'+task.goal+' · Belohnung: '+qty+' '+(key==='film'?'Film':key==='tierfutter'?'Tierfutter':'Goldmünzen')+'</p><small>'+(s.claimed[task.id]?'Erfolg freigeschaltet · Belohnung erhalten':n===task.goal?'Erfüllt – Belohnung wartet, bis im Rucksack Platz ist.':'Noch offen')+'</small></section>';}).join('')});if(extra.length%2)extra.push({tab:'Entdecken',title:'',html:'',cls:'empty'});const at=pages.findIndex(p=>p.tab==='Rucksack');pages.splice(at<0?pages.length:at,0,...extra);return pages;};
+const p18Pages=journalPages;journalPages=function(){const pages=p18Pages(),s=p18State(),extra=[];if(S.inv.includes('kamera')||s.gallery.length){if(!s.gallery.length)extra.push({tab:'Sofortbilder',title:'Deine Sofortbilder',cls:'',html:'<p>Hier klebst du deine eigenen Aufnahmen ein. K fotografiert ein Tier oder öffnet den Sucher. F5 öffnet den Sucher direkt.</p>'});for(let i=0;i<s.gallery.length;i++)extra.push({tab:'Sofortbilder',title:'Deine Sofortbilder',cls:'',html:s.gallery.slice(i,i+1).map(photo=>'<figure class="p18-print"><img src="'+photo.src+'" alt="'+esc(photo.title)+'"><figcaption>'+esc(photo.title)+' · Tag '+photo.day+'</figcaption><button class="btn small p18-remove" data-photo="'+photo.id+'">Foto entfernen</button></figure>').join('')});if(extra.length%2)extra.push({tab:'Sofortbilder',title:'',html:'',cls:'empty'});}for(let i=0;i<P18_TASKS.length;i+=2)extra.push({tab:'Entdecken',title:i?'':'Freiwillig entdecken',cls:'',html:(i?'':'<p>Diese Aufgaben helfen dir beim Entdecken. Sie sind freiwillig und sperren keinen Weg.</p>')+P18_TASKS.slice(i,i+2).map(p20JournalTask).join('')});if(extra.length%2)extra.push({tab:'Entdecken',title:'',html:'',cls:'empty'});const at=pages.findIndex(p=>p.tab==='Rucksack');pages.splice(at<0?pages.length:at,0,...extra);return pages;};
 const p18RenderJournal=renderJournal;renderJournal=function(){const r=p18RenderJournal();$('#journal').querySelectorAll('.p18-remove').forEach(button=>button.onclick=()=>{if(button.dataset.armed!=='yes'){button.dataset.armed='yes';button.textContent='Entfernen bestätigen · Enter';return;}const s=p18State();s.gallery=s.gallery.filter(p=>p.id!==button.dataset.photo);save();renderJournal();});return r;};
 const p18Expected=expected,p18Actions=actionsNow,p18Hit=onHit;
 expected=function(){if(p18Help||p18Journal)return [];if(p18Camera)return ['f','j','e','d',' ','r','Backspace'];const keys=p18Expected();if(keys.length&&!animalHere()&&p18PhotoAllowed()&&!keys.includes('k'))keys.push('k');return keys;};
@@ -6015,7 +6023,60 @@ function o19RuinPosition(w,p){if(!w.N.RU?.open)return false;const ids=['RU_WEG',
 const o19ShowPage=showPage;showPage=function(){const r=o19ShowPage();$('#page-img').classList.remove('p18-found-print');$('#page-img').alt='Tagebuchskizze: Dromedar, Fennek und Skorpion';return r;};
 const o19Snap=showSnap;showSnap=function(src,title){return o19Snap(src,o19Clearing()&&title==='Unterwegs im Wald'?'Futterkrippe hinter der Ruine':title);};
 
-$('#btn-play').disabled=true;$('#home-note').textContent='Illustrationen werden geladen …';o19Ready.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Illustrationen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});
+/* Contextual, persisted task tracker. The existing optional rewards are unchanged. */
+P18_TASKS.push(
+ {id:'find-camera20',name:'Die Kamera zum Film',text:'Im Rucksack liegt Sofortbildfilm. Finde die passende Kamera.',metric:'camera20',goal:1,reward:null},
+ {id:'ruin-shells20',name:'Die fünf Mulden',text:'An der Ruine sind fünf Mulden. Finde fünf Schneckenhäuser und setze sie mit G ein.',metric:'shells20',goal:5,reward:null},
+ {id:'treasure-trail20',name:'Der Weg auf der Schatzkarte',text:'Folge dem neuen Pfad am Antilopenschädel zur verlassenen Zelthütte.',metric:'treasure20',goal:1,reward:null}
+);
+function p20TaskState(){const s=p18State();s.taskBoard20=s.taskBoard20||{next:0,started:{}};return s.taskBoard20;}
+function p20TaskDone(task){const s=p18State();return !!s.claimed[task.id]||(s.metrics[task.metric]||0)>=task.goal;}
+let p20Syncing=false;
+function p20Sync(){
+ if(p20Syncing)return;p20Syncing=true;
+ try{const s=p18State(),state=p20TaskState(),before=JSON.stringify([state,s.metrics]);
+  const forest=qForest()?S.world:S.wald,uid=Object.keys(NODE_DEF).indexOf('RU')+1,ruin=qForest()?G.w.N.RU:forest?.flags?.[uid];
+  const shells=ruin?.open||S.pageFrom?.ruine?5:(S.res.schnecke||0)+(ruin?.shells||0);
+  s.metrics.shells20=Math.max(s.metrics.shells20||0,Math.min(5,shells));
+  s.metrics.camera20=Math.max(s.metrics.camera20||0,S.inv.includes('kamera')?1:0);
+  s.metrics.treasure20=Math.max(s.metrics.treasure20||0,inDesert()&&(G?.w.N.ZH.seen||G?.pos.e==null&&G?.pos.n==='ZH')?1:0);
+  const activate=id=>{if(state.started[id]==null)state.started[id]=++state.next;};
+  // The order is the natural discovery order when an older save is first imported.
+  if(S.inv.includes('rucksack'))activate('find-camera20');
+  if(S.inv.includes('kamera'))activate('first-photo');
+  const animal=G?.phase==='explore'?animalHere():null;
+  if((animal&&tameable(animal)&&S.food>0)||(s.metrics.feeds||0)>0)activate('first-feed');
+  if((s.metrics.feeds||0)>0||(animal&&trusted(animal)))activate('first-pet');
+  if((s.metrics.pets||0)>0||(s.metrics.helps||0)>0)activate('first-help');
+  if(qForest()&&(G.w.N.HUT.open||['dusk','day2','night'].includes(S.world.stage))||(s.metrics.fire||0)>0)activate('fire-ready');
+  if(animal==='reh'||(s.metrics.reh||0)>0)activate('deer-five');
+  if(ruin?.seen||ruin?.revealed||ruin?.shells||ruin?.open||S.pageFrom?.ruine||qForest()&&G.pos.e==null&&G.pos.n==='RU')activate('ruin-shells20');
+  if(S.inv.includes('schatzkarte'))activate('treasure-trail20');
+  if(JSON.stringify([state,s.metrics])!==before)save();
+ }finally{p20Syncing=false;}
+}
+function p20OpenTasks(){const state=p20TaskState();return P18_TASKS.filter(t=>state.started[t.id]!=null&&!p20TaskDone(t)).sort((a,b)=>state.started[b.id]-state.started[a.id]).slice(0,3);}
+function p20ShortTask(t){const s=p18State(),n=Math.min(t.goal,s.metrics[t.metric]||0);return {
+ 'find-camera20':'Kamera finden','first-photo':'Erstes eigenes Foto aufnehmen','first-feed':'Ein Tier füttern','first-pet':'Ein Tier streicheln','first-help':'Tierhilfe nutzen',
+ 'fire-ready':Object.entries(FIRE).reduce((sum,[k,goal])=>sum+Math.min(goal,S.res[k]||0),0)+'/12 Materialien fürs Feuer',
+ 'deer-five':n+'/'+t.goal+' Rehe gefüttert','ruin-shells20':n+'/5 Schneckenhäuser gefunden','treasure-trail20':'Schatzkartenweg erkunden'
+ }[t.id]||t.name;}
+const p20Board=document.createElement('section');p20Board.id='p20-map-tasks';p20Board.hidden=true;p20Board.setAttribute('aria-label','Aktuelle freiwillige Aufgaben');$('#map-note').after(p20Board);
+function p20Render(){const tasks=p20OpenTasks();p20Board.hidden=!G||!tasks.length;const html='<div class="p20-task-heading"><strong>Aktuelle Aufgaben</strong><button class="p20-task-all" type="button" '+(!S.inv.includes('feldtagebuch')?'disabled':'')+' aria-label="Alle Aufgaben im Tagebuch öffnen · F6">F6</button></div><ul>'+tasks.map(t=>'<li data-task="'+t.id+'">'+esc(p20ShortTask(t))+'</li>').join('')+'</ul>';if(p20Board.innerHTML!==html){p20Board.innerHTML=html;p20Board.querySelector('button').onclick=()=>p18OpenJournal('Entdecken');}}
+function p20Refresh(){p20Sync();p20Render();}
+const p20Inv=renderInv;renderInv=function(){const result=p20Inv(...arguments);p20Refresh();return result;};
+const p20Arrive=arrive;arrive=function(){const result=p20Arrive(...arguments);p20Refresh();return result;};
+const p20Checks=p18CheckTasks;p18CheckTasks=function(){p20Sync();const result=p20Checks(...arguments);p20Render();return result;};
+// A small row disappears when its goal is met, even if a full backpack delays
+// the original reward. The journal still records completed achievements.
+function p20JournalTask(task){const s=p18State(),n=Math.min(task.goal,s.metrics[task.metric]||0),done=p20TaskDone(task),started=p20TaskState().started[task.id]!=null;
+ const reward=task.reward?' · Belohnung: '+task.reward[1]+' '+(task.reward[0]==='film'?'Film':task.reward[0]==='tierfutter'?'Tierfutter':'Goldmünzen'):'';
+ const status=done?(task.reward&&!s.claimed[task.id]?'Erfüllt – die Belohnung wartet, bis im Rucksack Platz ist.':task.reward?'Erfolg freigeschaltet · Belohnung erhalten':'Erledigt'):started?'Aktuelle freiwillige Aufgabe':'Wird passend zu deinen Entdeckungen eingeblendet';
+ return '<section class="p18-task"><h4>'+(done?'✓ ':'')+esc(task.name)+'</h4><p>'+esc(task.text)+'</p><p>'+n+'/'+task.goal+reward+'</p><small>'+status+'</small></section>';
+}
+const p20Ready=o19Ready.then(()=>{p20Refresh();window.forestArt.version='4.7 Waldatelier 20 – Aktuelle Entdeckeraufgaben';});
+
+$('#btn-play').disabled=true;$('#home-note').textContent='Illustrationen werden geladen …';p20Ready.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Illustrationen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});
 </script>
 </body>
 </html>

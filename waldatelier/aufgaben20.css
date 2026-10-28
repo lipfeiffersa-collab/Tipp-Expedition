@@ -1,0 +1,7 @@
+#p20-map-tasks{flex:none;width:100%;max-width:100%;margin:10px 0 12px;padding:10px 9px;background:#253027;border:1px solid #8e98714d;border-radius:8px;color:#ebe7d4;font-size:.78rem;line-height:1.45;text-align:left}
+.p20-task-heading{display:flex;align-items:center;justify-content:space-between;gap:5px;color:#d8c68f;font-size:.75rem}
+.p20-task-heading strong{font-weight:600}.p20-task-all{font:inherit;color:#d9d9c1;background:#344332;border:1px solid #86916b;border-radius:4px;padding:1px 4px;cursor:pointer}.p20-task-all:focus-visible{outline:2px solid #f1d286;outline-offset:2px}.p20-task-all:disabled{opacity:.4;cursor:default}
+#p20-map-tasks ul{list-style:none;margin:6px 0 0;padding:0}#p20-map-tasks li{padding:6px 0;border-top:1px solid #b9bc8b22;overflow-wrap:anywhere}#p20-map-tasks li:first-child{border-top:0}
+@media(max-width:1000px){#p20-map-tasks{font-size:.7rem;padding:7px 6px}.p20-task-heading{font-size:.66rem}}
+@media(max-width:760px){#p20-map-tasks{max-width:230px;min-width:130px;margin:3px 7px}#p20-map-tasks li{padding:2px 0}}
+@media(max-width:1000px){#p20-map-tasks{margin:5px 0 7px}#p20-map-tasks li{padding:4px 0}}
