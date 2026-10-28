@@ -1,0 +1,27 @@
+body.in-game:not(.ship21-active) .app{--rail22:570px;max-width:min(1920px,calc(var(--stage22,520px)*16/9 + var(--rail22) + 64px))}
+body.in-game:not(.ship21-active) .playrow{grid-template-columns:minmax(0,1fr) var(--rail22);align-items:stretch}
+body.in-game:not(.ship21-active) .stage{width:min(100%,calc(var(--stage22,520px)*16/9));align-self:center}
+body.in-game:not(.ship21-active) #mapbox{contain:none;overflow:visible;display:grid;grid-template-columns:minmax(200px,.9fr) minmax(0,1.1fr);align-items:start;gap:14px;padding:12px}
+.navigation22{min-width:0;text-align:center;display:flex;flex-direction:column;gap:12px}
+body.in-game #map{flex:none;width:100%;height:auto;max-height:none;min-height:0}
+.details22{min-width:0;display:flex;flex-direction:column;gap:10px}
+body.in-game #p20-map-tasks{margin:0;font-size:13px}
+body.in-game #side-extra{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:7px;align-items:start}
+body.in-game #side-extra .needs,body.in-game #side-extra .quest{font-size:12px;min-width:0;padding:7px}
+body.in-game #side-extra .needs div{white-space:normal}
+body.in-game #side-extra img{width:20px;flex:none;object-fit:contain}
+body.in-game #side-extra .quest{grid-column:1/-1}
+body.in-game #side-extra .tent-guide{grid-column:1/-1}
+body.in-game.keyboard-expanded:not(.ship21-active) .hud strong{font-size:1.3rem}
+body.in-game.keyboard-expanded:not(.ship21-active) .desktop-tools>span{display:none}
+body.in-game.keyboard-expanded:not(.ship21-active) #legend{display:none!important}
+body.in-game.keyboard-expanded:not(.ship21-active) #kb .k{height:28px}
+body.in-game.keyboard-expanded:not(.ship21-active) .actions .act small{display:none}
+body.in-game #hint:empty{display:none}
+body.in-game.puzzle-focus:not(.ship21-active) .app{--rail22:0px;max-width:min(1600px,calc(var(--stage22,520px)*16/9 + 36px))}
+body.in-game.puzzle-focus:not(.ship21-active) .playrow{grid-template-columns:minmax(0,1fr)}
+body.in-game.puzzle-focus #mapbox{display:none!important}
+@media(max-width:1450px){body.in-game:not(.ship21-active) .app{--rail22:440px}body.in-game:not(.ship21-active) #mapbox{grid-template-columns:minmax(185px,1fr) minmax(0,1.1fr);gap:10px;padding:9px}body.in-game #side-extra{grid-template-columns:1fr}body.in-game #p20-map-tasks li{padding:3px 0}}
+@media(max-width:1050px){body.in-game:not(.ship21-active) .app{--rail22:0px;max-width:100%}body.in-game:not(.ship21-active) .playrow{grid-template-columns:1fr}body.in-game:not(.ship21-active):not(.puzzle-focus) #mapbox{grid-template-columns:210px 1fr}body.in-game #side-extra{grid-template-columns:repeat(3,minmax(0,1fr))}body.in-game #side-extra .quest{grid-column:auto}}
+body.in-game.ship21-active .app,body.in-game.ship21-active.keyboard-expanded .app{max-width:min(1800px,calc(var(--stage22,520px)*16/9 + 36px))}
+body.in-game.ship21-active.keyboard-expanded #legend{display:none!important}

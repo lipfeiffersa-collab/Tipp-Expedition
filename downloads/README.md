@@ -1,6 +1,18 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 21.1
+## Aktuelle Version 22
+
+**[Tipp-Expedition-v22.zip herunterladen](Tipp-Expedition-v22.zip)** · etwa 37 MB
+
+Größere Karte mit Aufgaben und Beständen daneben, lesbare Rätsel auch mit F3-Tastatur und korrigierte Fata Morgana bis zum letzten Annäherungsschritt. Die Schiffspassage folgt dem abgestimmten Aufbau mit erhöhtem Mitteldeck, Rückweg unter Deck und vier Ebenen. H hangelt, W watet in Laufrichtung, L steigt durch die Luken hinunter; übrige Steuerung bleibt erhalten.
+
+ZIP entpacken und Wald-Spiel.html öffnen. Schiff-Test.html bietet einen direkten Einstieg mit eigenem Testspielstand. Vorhandene Wald-/Wüstenstände bleiben erhalten. Alte Schiffsstände werden auf einen passenden sicheren Merkpunkt des neuen Aufbaus übernommen, Geld und Inventar bleiben erhalten.
+
+[Vorschaubilder der Version 22](../waldatelier/vorschau-v22/)
+
+SHA-256: `37d832d1a9a6056d5bc90c1e608a3346eeb391e73f1d5d890767f35351c3ea61`
+
+## Version 21.1
 
 **[Tipp-Expedition-v21-1.zip herunterladen](Tipp-Expedition-v21-1.zip)** · etwa 33 MB
 
