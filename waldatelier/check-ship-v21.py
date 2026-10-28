@@ -2,7 +2,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import os,time
-OUT=Path('/workspace/review-ship21');OUT.mkdir(exist_ok=True)
+OUT=Path(os.environ.get('TIPP_SHIP_REVIEW','/workspace/review-ship21'));OUT.mkdir(exist_ok=True)
 URL=os.environ.get('TIPP_TEST_URL','http://127.0.0.1:8049/Tipp-Expedition-4.7-Waldatelier.html')
 with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);pg=b.new_page(viewport={'width':1600,'height':1000});pg.set_default_timeout(90000);errors=[];pg.on('pageerror',lambda e:errors.append(str(e)));pg.goto(URL+'#schiff',wait_until='domcontentloaded');pg.locator('#btn-play').click();assert pg.evaluate('STORE==="tipp-expedition-schiff-demo-v21"&&sh21Active()&&G.ship21.stage==="departure"');pg.screenshot(path=str(OUT/'01-abfahrt.png'));pg.keyboard.press('Space');keys=[];seen=set();stagnant=0;last_pose=None;started=time.monotonic();cdp=pg.context.new_cdp_session(pg)

@@ -76,7 +76,7 @@ for name,fallback in [('desertLines',"[desertDest(h,P.h),'F und J, immer abwechs
  s=s[:a]+part.replace('return null;','return '+fallback+';')+s[b:]
 s=s.replace("'menu','lantern','jr'].includes(G.phase)","'menu','lantern','jr','city','innSleep','ship'].includes(G.phase)")
 ship_assets={p.stem.removeprefix('schiff21-'):'data:image/webp;base64,'+base64.b64encode(p.read_bytes()).decode() for p in (root/'assets').glob('schiff21-*.webp')}
-assert len(ship_assets)==5
+assert len(ship_assets)==7
 code='\nconst S21_IMAGE_DATA='+json.dumps(ship_assets,separators=(',',':'))+';\nconst S21_BOUNDS='+(root/'schiff21-art.json').read_text()+';\nconst O19_SKETCH='+json.dumps('data:image/webp;base64,'+base64.b64encode((root/'assets'/'tagebuch-skizze19.webp').read_bytes()).decode())+';\nconst F_IMAGE_DATA='+json.dumps(assets,separators=(',',':'))+';\nconst F_BOUNDS='+json.dumps(bounds,separators=(',',':'))+';\n'+(root/'wald.js').read_text()+'\n'+(root/'nachtpfad.js').read_text()+'\n'+(root/'dezent.js').read_text()+'\n'+(root/'hoehle.js').read_text()+'\n'+(root/'belohnungen.js').read_text()+'\n'+(root/'erlebnisse.js').read_text()+'\n'+(root/'wueste.js').read_text()+'\n'+(root/'revision15.js').read_text()+'\n'+(root/'revision16.js').read_text()+'\n'+(root/'nachthimmel.js').read_text()+'\n'+(root/'wege-und-wetter.js').read_text()+'\n'+(root/'desktop.js').read_text()+'\n'+(root/'kuestenweg.js').read_text()+'\n'+(root/'zelt.js').read_text()+'\n'+(root/'polaroid.js').read_text()+'\n'+(root/'entdecker.js').read_text()+'\n'+(root/'orientierung19.js').read_text()+'\n'+(root/'aufgaben20.js').read_text()+'\n'+(root/'schiff21.js').read_text()
 init="buildIcons();\nsyncSound();\nshow('home');"
 assert s.count(init)==1

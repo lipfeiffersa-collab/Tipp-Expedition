@@ -1,6 +1,16 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 21
+## Aktuelle Version 21.1
+
+**[Tipp-Expedition-v21-1.zip herunterladen](Tipp-Expedition-v21-1.zip)** · etwa 33 MB
+
+Die Sturmfahrt ist optisch überarbeitet: sichtbare Deckflächen, durchgehende Schiffskonstruktion hinter den Aufgängen, gezeichneter Segelbaum und Schaumwellen. [Vorher/Nachher und Spielszenen](../waldatelier/vorschau-v21-1/).
+
+ZIP vollständig entpacken und Wald-Spiel.html oder den getrennten Direktstart Schiff-Test.html öffnen. Vorhandene Schiffsstände können bei gleichem Dateinamen, Speicherort und Browser weitergespielt werden.
+
+SHA-256 der Version-21.1-ZIP: `f593a37812607d40f295bf0977ee1c57e6da964e8b7098b006a2ea81f08a561e`
+
+## Version 21
 
 **[Tipp-Expedition-v21.zip herunterladen](Tipp-Expedition-v21.zip)** · etwa 30 MB
 

@@ -15,11 +15,13 @@ if args.previous and args.previous.exists():
 
 assert len(data)==37 and {'grundwald','orte5a','orte5b','zustaende5','wegmaterial','sofortbild'}<=data.keys()
 html=source[:a]+json.dumps(data,separators=(',',':'))+source[z:]
-args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v21.html').write_text(html)
-with zipfile.ZipFile(args.output/'Wald-Spiel-v21.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
+args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v21-1.html').write_text(html)
+with zipfile.ZipFile(args.output/'Wald-Spiel-v21-1.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
  arc.writestr('Wald-Spiel.html',html)
  arc.writestr('Schiff-Test.html','<!doctype html><html lang="de"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=Wald-Spiel.html#schiff"><title>Schiffsstart</title><a href="Wald-Spiel.html#schiff">Schiff mit eigenem Testspielstand starten</a></html>')
- arc.writestr('Start.txt',"""Tipp-Expedition – Version 21: Sturmfahrt
+ arc.writestr('Start.txt',"""Tipp-Expedition – Version 21.1: Sturmfahrt
+
+Optisch überarbeitet: sichtbare Deckflächen, durchgehender Schiffskörper, gezeichneter Segelbaum und Schaumwellen.
 
 ZIP vollständig entpacken. Wald-Spiel.html öffnet das vollständige Spiel. Alle Bilder sind eingebettet; keine Internetverbindung nötig.
 Schiff-Test.html öffnet das Schiff direkt mit einem eigenen Testspielstand. Der normale Spielstand bleibt davon getrennt. Im Startmenü auf Spielen klicken.
@@ -34,6 +36,6 @@ Der längere Abschnitt an Deck führt über niedrigen Segelbaum, übergespülte 
 Vorhandenen lokalen Spielstand weiterverwenden: dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden. Vorher die alte Datei sichern. Browserdaten nicht löschen.
 """)
 
-with zipfile.ZipFile(args.output/'Wald-Spiel-v21.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
-for name in ['Wald-Spiel-v21.html','Wald-Spiel-v21.zip']:(args.output/name).chmod(0o644)
-print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v21.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')
+with zipfile.ZipFile(args.output/'Wald-Spiel-v21-1.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
+for name in ['Wald-Spiel-v21-1.html','Wald-Spiel-v21-1.zip']:(args.output/name).chmod(0o644)
+print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v21-1.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')
