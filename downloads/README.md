@@ -1,14 +1,14 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 17.1
+## Aktuelle Version 17.2
 
-**[Tipp-Expedition-v17-1.zip herunterladen](Tipp-Expedition-v17-1.zip)** · etwa 21 MB
+**[Tipp-Expedition-v17-2.zip herunterladen](Tipp-Expedition-v17-2.zip)** · etwa 21 MB
 
 ZIP vollständig entpacken und **Wald-Spiel.html** öffnen. Alle Bilder sind eingebettet. Auf der GitHub-Dateiseite heißt die Downloadfunktion „Download raw file“.
 
-Version 17.1 ergänzt den erreichbaren **Zeltaufbau mit Z**. Fehlen Material oder ein geeigneter Platz, zeigt die Aktion die Voraussetzungen. An der Oase und im Kakteenfeld kannst du das Zelt jetzt auch tagsüber aufbauen, unabhängig von der Blickrichtung. Benötigt werden **10 Palmwedel, 6 Akazienzweige und 4 Stück Stoff**. Gestell, Bespannung und fertiges Zelt werden sichtbar gezeigt. **Leertaste** schließt den Aufbau ab; **Rücktaste** bricht ohne Verbrauch ab.
+Version 17.2 zeigt den **Zeltaufbau direkt in der Landschaft**: Gestell, Dach und fertiges Zelt stehen am selben Lagerplatz, ohne zusätzliches Detailfenster. Die Aufbauschritte werden im normalen Textbereich begleitet. Materialverbrauch, Abbruch, Einpacken, Wiederverwenden und Schlafen ab 18 Uhr bleiben erhalten. Z öffnet die Zeltaktion; gebaut wird an Oase oder Kakteenfeld aus 10 Palmwedeln, 6 Akazienzweigen und 4 Stück Stoff.
 
-**Ab 18 Uhr** ist eine Übernachtung mit Nacht-/Morgenübergang möglich. Einmal gebaut, ist das Zelt wiederverwendbar und kostet kein weiteres Material. Es bleibt am aktuellen Lagerplatz nach Speichern/Neuladen sichtbar. Beim Weitergehen wird es automatisch eingepackt; über Z kannst du es auch manuell einpacken. Der ursprüngliche Schlafplatz in der gelösten Dünenhöhle bleibt erhalten.
+Der letzte Weg zum Stadttor zeigt jetzt **mit jedem tatsächlichen F/J-Schritt eine deutliche Annäherung**. Die Kamera bewegt sich während des Schritts kontinuierlich zum nächsten Standort. Das bisherige Hineinzoomen mit anschließendem Zurückspringen entfällt auf dieser Strecke. Felsen, Stadt und Meer bleiben dieselbe zusammenhängende Kulisse.
 
 Die größere Desktopansicht aus Version 17 bleibt enthalten: **F2** öffnet das sortierte Inventar, **F3** die Bildschirmtastatur. Enter setzt nach einer Pause fort; Menüs lassen sich mit Pfeiltasten und Enter bedienen. Der Küstenweg zum Stadttor, die vergrößerte Herberge und alle bisherigen Inhalte bleiben erhalten. Der Schiffsteil wird in dieser Version nicht erweitert.
 
@@ -22,10 +22,10 @@ Für vorhandene Spielstände dieselbe HTML-Datei unter demselben Namen am selben
 
 Der bearbeitbare Quellstand und die Prüfungen liegen in `../waldatelier/`; die vollständige HTML-Datei zusätzlich in `../Tipp-Expedition-4.7-Waldatelier.html`.
 
-SHA-256 der Version-17.1-ZIP: `da70e8caf94f2b150a2b8e8ea37efdd5e09c5227aa8dd1f0a74c07d5e466b9f6`
+SHA-256 der Version-17.2-ZIP: `c8cd26fedc640943062865ee34656a92836c8bb62054d5884e163dcd4bd1ec0e`
 
-[Zeltaufbau und Lagerplatz ansehen](../waldatelier/vorschau-v17-1/)
+[Zeltaufbau und Stadtweg mit Spielaufnahme](../waldatelier/vorschau-v17-2/)
 
 ## Vorherige Versionen
 
-[Version 17](Tipp-Expedition-v17.zip), [Version 16.2](Tipp-Expedition-v16-2.zip), [Version 16.1](Tipp-Expedition-v16-1.zip), [Version 16](Tipp-Expedition-v16.zip), [Version 15.1](Tipp-Expedition-v15-1.zip), [Version 15](Tipp-Expedition-v15.zip), [Version 14](Tipp-Expedition-v14.zip), [Version 13](Tipp-Expedition-v13.zip), [Version 12](Tipp-Expedition-v12.zip) und [Version 11](Tipp-Expedition-v11.zip) bleiben erhalten.
+[Version 17.1](Tipp-Expedition-v17-1.zip), [Version 17](Tipp-Expedition-v17.zip), [Version 16.2](Tipp-Expedition-v16-2.zip), [Version 16.1](Tipp-Expedition-v16-1.zip), [Version 16](Tipp-Expedition-v16.zip), [Version 15.1](Tipp-Expedition-v15-1.zip), [Version 15](Tipp-Expedition-v15.zip), [Version 14](Tipp-Expedition-v14.zip), [Version 13](Tipp-Expedition-v13.zip), [Version 12](Tipp-Expedition-v12.zip) und [Version 11](Tipp-Expedition-v11.zip) bleiben erhalten.

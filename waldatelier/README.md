@@ -1,4 +1,4 @@
-# Waldatelier 17.1 – Illustrationsfassung für Tipp-Expedition 4.7
+# Waldatelier 17.2 – Illustrationsfassung für Tipp-Expedition 4.7
 
 Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer bestätigte handgezeichnete Waldillustration mit mittlerer Detaildichte und einer quer verlaufenden T-Abzweigung. `Stilreferenz.json` dokumentiert die dazu erzeugten Motive. Die früheren Versuche sind keine Gestaltungsreferenz für Folgeänderungen.
 
@@ -6,7 +6,7 @@ Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer
 
 Im Repository: `python waldatelier/build.py`. Benötigt Python 3 und die eingebetteten WebP-Quelldateien. Ergebnis: `Tipp-Expedition-4.7-Waldatelier.html`.
 
-`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v17-1.html` und `Wald-Spiel-v17-1.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
+`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v17-2.html` und `Wald-Spiel-v17-2.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
 
 Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Tierfotos bleiben erhalten. Gefundene Hinweisfotos werden als zusammenhängende Bilder erneuert.
 
@@ -182,3 +182,12 @@ Prüfung: `python waldatelier/check-desktop-v17.py` testet tatsächliche Tastend
 Schlafen bleibt ab 18 Uhr möglich. Die Sequenz blendet durch Nacht und Morgen; die ursprüngliche Übernachtungsfunktion setzt einmalig Tag und Uhrzeit weiter und füllt die Weltfunde nach. Durst und Nahrung folgen weiterhin den vorhandenen Regeln. Die ursprüngliche Z-Schlafaktion in der gelösten Dünenhöhle bleibt erhalten. Bei aktivem Sandsturm wird keine neue Zeltaktion angeboten.
 
 `check-tent-v17-1.py` prüft echte Z-, Leertasten-, Rücktasten-, Escape-, Enter- und F2-Eingaben: fehlendes Material, ungeeignete Orte, alle Blickrichtungen, Tagaufbau, Abbruch, Pause, automatischer Abschluss, Inventar, Speichern/Neuladen, Einpacken und Wiederverwenden, genau eine Nacht, ersten Abendaufbau im Kakteenfeld sowie den ursprünglichen Höhlenschlaf. `TIPP_TEST_URL` erlaubt dieselben Prüfungen am eigenständigen Export. Der Schiffsteil wird in dieser Version nicht erweitert.
+
+
+## Version 17.2: Aufbau am Lagerplatz und sichtbare Stadtannäherung
+
+Die Aufbauschritte stehen direkt in der Landschaft, an derselben Position und in derselben Größe wie das fertige Zelt. `t17WorldTent` zeichnet Gestell, teilweise bespanntes Dach und fertiges Zelt in die Szenenebene vor der Tages-/Wetterbeleuchtung. Beim Phasenwechsel wird die Szene aktualisiert. Ein zusätzliches Detailfenster entfällt; die Hinweise erscheinen im normalen Textbereich. Abbruch, Pause, Materialverbrauch, Speichern und Übernachten bleiben unverändert.
+
+`kuestenweg.js` vergrößert die Stadttorkulisse jetzt von der Fernansicht bis auf gut das Doppelte. Der Ausschnitt folgt dem Durchgang und dem Boden davor. Auf der letzten Wegkante interpoliert die Kamera während jedes tatsächlichen F/J-Schritts zwischen den beiden Standorten. Der bisherige starke Zwischenzoom mit anschließendem Zurückspringen entfällt auf dieser Kante. Die bestehende Schrittzahl und alle Bewegungs-/Material-/Kartenaktionen bleiben erhalten. Eine Pause hält auch die Kamerabewegung an.
+
+`check-coast-v17-2.py` prüft ein tatsächliches Abbiegen, alle anschließenden F/J-Schritte, sichtbare Bildänderungen, zunehmende Kameranähe, Pause und zwei schnell aufeinanderfolgende Schritte. Es zeichnet eine kurze Aufnahme des tatsächlichen Stadtwegs auf. Beim Zelt prüft es alle drei Aufbauschritte ohne Aufruf des Fensterzeichners sowie identische Zeltposition vor und nach dem Abschluss. `check-tent-v17-1.py` prüft weiterhin die vollständigen Zeltfunktionen; `check-export-v17-2.py` prüft den eigenständigen Offline-Export.

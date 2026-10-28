@@ -5725,15 +5725,22 @@ forestReady.then(()=>{window.forestArt.version='4.7 Waldatelier 17 – Desktop u
 
 /* One coastal pass for the complete final approach, using the established city entrance. */
 function d17Coast(){if(!uActive()||G.city||G.pos.e==null)return null;const e=G.w.edges[G.pos.e],forward=G.pos.h===e.dir,n=G.w.N[forward?e.b:e.a];return n.place==='stadt'?{e,n,dist:forward?e.n-G.pos.k:G.pos.k}:null;}
-function d17CoastPlate(progress){const a=F_ATLAS.stadtzugang,zoom=1+.12*Math.max(0,Math.min(1,progress)),sw=a.img.width/zoom,sh=a.img.height/zoom;fctx.drawImage(a.img,(a.img.width-sw)/2,(a.img.height-sh)*.58,sw,sh,0,0,W,H);}
+let c17Progress=null;
+function d17CoastPlate(progress){const a=F_ATLAS.stadtzugang,p=Math.max(0,Math.min(1,progress)),zoom=1/(1-.55*p),sw=a.img.width/zoom,sh=a.img.height/zoom,sx=(a.img.width-sw)/2,sy=(a.img.height-sh)*.8;fctx.drawImage(a.img,sx,sy,sw,sh,0,0,W,H);return {zoom,sx,sy,sw,sh};}
 const d17DesertDest=desertDest;desertDest=function(e,h){const n=G.w.N[h===e.dir?e.b:e.a];return n.place==='stadt'?'Der Weg führt zwischen hohen Felsen zum Stadttor. Dahinter liegen die Stadt und das Meer.':d17DesertDest(e,h);};
 const d17Place=uPlace;uPlace=function(n){if(n.place==='stadt'){d17CoastPlate(1);uLastFocus={x:162,y:107,base:153,keyHint:' '};return;}return d17Place(n);};
 const d17DesertRender=renderDesert;
-renderDesert=function(){const coast=d17Coast();if(!coast)return d17DesertRender();uLastAnimal=uLastItem=uLastFocus=null;uShadeAreas=[];fctx.clearRect(0,0,W,H);d17CoastPlate(1-coast.dist/coast.e.n);uTracks(null);
+renderDesert=function(){const coast=d17Coast();if(!coast)return d17DesertRender();uLastAnimal=uLastItem=uLastFocus=null;uShadeAreas=[];fctx.clearRect(0,0,W,H);d17CoastPlate(c17Progress??1-coast.dist/coast.e.n);uTracks(null);
  const item=itemHere();if(item&&!uPhotoBusy){const box=uItem(item,159,157,1);uLastItem={key:item,...box,cx:159,base:157};}
  const a=animalHere();if(a&&!uPhotoBusy)uAnimal(a);if(G.guide&&!uPhotoBusy){const rd=guideRel();if(rd!=='B')uAnimal('flughuhn',rd==='L'?51:rd==='R'?269:166,113,21,false);}
  G.mark=null;G.animScr=uLastAnimal?[Math.round(uLastAnimal.x+uLastAnimal.w/2),Math.round(uLastAnimal.y+uLastAnimal.h/2)]:null;uLight();
 };DESERT_EX.render=renderDesert;
+// Move the camera between the actual endpoints instead of zooming in and snapping back.
+const c17StartTrans=startTrans;startTrans=function(type,dir,apply,dur){const coast=d17Coast();c17StartTrans(type,dir,apply,dur);if(coast&&type==='zoom'&&dir===0){trans.coastal={from:1-coast.dist/coast.e.n,to:1-(coast.dist-1)/coast.e.n,elapsed:0,last:performance.now()};trans.dur=reduceMotion?60:320;}};
+const c17Draw=draw;draw=function(now){const tr=trans,c=tr?.coastal;if(!c)return c17Draw(now);const dt=Math.max(0,Math.min(100,now-c.last));c.last=now;if(!paused&&$('#ov-goal').hidden&&$('#ov-done').hidden)c.elapsed+=dt;const p=Math.min(1,c.elapsed/tr.dur);
+ if(p>=1){trans=null;tr.apply();forestBlit(0,0);if(G?.ex?.overlay)G.ex.overlay(now);setTimeout(processPending,0);return;}
+ c17Progress=c.from+(c.to-c.from)*(p*p*(3-2*p));try{renderScene();forestBlit(0,0);if(G?.ex?.overlay)G.ex.overlay(now);}finally{c17Progress=null;}
+};
 
 /* Version 17.1: discoverable daytime assembly; original evening sleep and reusable materials. */
 function t17Node(){return G?.ex&&inDesert()&&!G.city&&G.pos.e==null?G.w.N[G.pos.n]:null;}
@@ -5760,15 +5767,15 @@ sleepTent=function(){if(!G||G.phase!=='explore'||paused||qEffect||G.puz||G.storm
 const t17Opts=desertOpts;desertOpts=function(){const out=t17Opts().filter(([key,,run])=>key!=='z'||run!==sleepTent);if(out.some(([key])=>key==='z'))return out;if(!G.storm&&!vSky){const n=t17Node(),label=canTentHere(n)&&t17Ready()?(t17Camp()?(dTime()>=REST_FROM?'im Zelt schlafen':'Zelt ansehen / einpacken'):'Zelt aufbauen'+(dTime()>=REST_FROM?' und schlafen':'')):'Zeltplatz / Material prüfen';out.push(['z',label,sleepTent]);}return out;};DESERT_EX.opts=desertOpts;
 const t17Lines=desertLines;desertLines=function(){const lines=t17Lines(...arguments),n=t17Node();if(lines&&canTentHere(n)){const status=t17Status();return [lines[0],(lines[1]||'').replace(/\s*(?:Hier wäre ein guter Platz für ein Zelt\.|Hier kannst du abends dein Zelt aufbauen\.|Z: Zelt aufbauen und schlafen\.|Fürs Zelt fehlen noch:.*?\.)/g,'')+' '+status];}return lines;};DESERT_EX.lines=desertLines;
 const t17Arrive=arrive;arrive=function(){if(G?.ex&&S.world.tentCamp17&&(G.pos.e!=null||G.pos.n!==S.world.tentCamp17))delete S.world.tentCamp17;return t17Arrive(...arguments);};
-const t17Render=renderDesert;renderDesert=function(){const camp=t17Camp();if(!camp)return t17Render();const light=uLight;uLight=function(){};try{t17Render();uShadow(248,163,40,4);fSprite('wuestenfunde',22,248,163,75,null,fctx);uLastFocus=uLastFocus||{x:248,y:123,base:163,keyHint:'Z'};}finally{uLight=light;}uLight();};DESERT_EX.render=renderDesert;
-const t17TentDraw=uDrawTent;uDrawTent=function(e,t){if(!e.tent17)return t17TentDraw(e,t);if(reduceMotion)t=e.sleep?e.elapsed:2400;const built=e.standing||t>=2400;
- qCard(vx,39,20,242,142);vx.fillStyle='#ebdfbb';vx.textAlign='center';vx.font='bold 7px Georgia';const label=!built?(t<1200?'1 · Das Gestell aufrichten':'2 · Das Dach bespannen'):e.sleep?(t<3900?'Dein Nachtlager ist bereit':t<5600?'Du schläfst im Schutz des Zelts':'Der Morgen bricht an'):'3 · Dein Zelt steht';vx.fillText(label,160,34);fSprite('wuestenfunde',built?22:t<1200?23:22,160,143,188,98,vx);
- if(!built&&t>=1200){vx.save();vx.globalAlpha=.45;fSprite('wuestenfunde',4,160,121,80,null,vx);vx.restore();}
- if(e.sleep&&t>=3300){const darkness=t<4700?Math.min(.88,(t-3300)/1400*.88):t<5600?.88:Math.max(0,.88-(t-5600)/1400*.88);uRect(vx,0,0,W,H,`rgba(7,15,30,${darkness})`);vx.fillStyle='#f1e5c6';vx.font='7px Georgia';vx.fillText(t<5600?'Die Wüstennacht zieht vorüber …':'Warmes Morgenlicht fällt auf dein Zelt.',160,155);}
+function t17WorldTent(stage){const x=248,y=163,w=75;uShadow(x,y,40,4);if(stage===2){fSprite('wuestenfunde',22,x,y,w,null,fctx);return;}fSprite('wuestenfunde',23,x,y,w,null,fctx);if(stage===1){const b=F_ATLAS.wuestenfunde.bounds[22],h=w*b.h/b.w;fctx.save();fctx.beginPath();fctx.rect(x-w/2,y-h,w,h*.65);fctx.clip();fSprite('wuestenfunde',22,x,y,w,null,fctx);fctx.restore();}}
+const t17Render=renderDesert;renderDesert=function(){const camp=t17Camp(),building=qEffect?.tent17&&qEffect.game===G&&qEffect.pos===JSON.stringify(G.pos)?qEffect:null;if(!camp&&!building)return t17Render();const light=uLight;uLight=function(){};try{t17Render();t17WorldTent(building?(building.worldStage??(building.standing?2:0)):2);uLastFocus=uLastFocus||{x:248,y:123,base:163,keyHint:'Z'};}finally{uLight=light;}uLight();};DESERT_EX.render=renderDesert;
+const t17TentDraw=uDrawTent;uDrawTent=function(e,t){if(!e.tent17)return t17TentDraw(e,t);if(reduceMotion)t=e.sleep?e.elapsed:2400;const stage=e.standing||t>=2400?2:t<1200?0:1,label=stage===0?'Du richtest das Gestell am Lagerplatz auf.':stage===1?'Du bespannst das Gestell mit Stoff und Palmwedeln.':e.sleep?(t<3900?'Dein Nachtlager ist bereit.':t<5600?'Du schläfst im Schutz deines Zelts.':'Der Morgen bricht an.'):'Dein Zelt steht am Lagerplatz.';
+ if(e.worldStage!==stage){e.worldStage=stage;renderScene();forestBlit(0,0);}if(e.worldCaption!==label){e.worldCaption=label;setCaption([label,e.sleep?'Leertaste: Aufbau und Nacht abschließen. Rücktaste: abbrechen.':'Leertaste: Aufbau abschließen. Rücktaste: abbrechen.'],true);}
+ if(e.sleep&&t>=3300){const darkness=t<4700?Math.min(.88,(t-3300)/1400*.88):t<5600?.88:Math.max(0,.88-(t-5600)/1400*.88);uRect(vx,0,0,W,H,`rgba(7,15,30,${darkness})`);}
 };
 const t17Actions=actionsNow;actionsNow=function(){if(qEffect?.tent17)return [[' ',qEffect.sleep?'Aufbau und Nacht abschließen':'Zeltaufbau abschließen'],['Backspace','abbrechen und umdrehen']];return t17Actions();};
 const t17Quests=desertQuests;desertQuests=function(){return t17Quests()+(!S.inv.includes('zelt')?'<p class="tent-guide">Zeltplätze: Oase und Kakteenfeld.<br>Schlafen ab 18 Uhr.</p>':'');};
-forestReady.then(()=>{window.forestArt.version='4.7 Waldatelier 17.1 – Zeltaufbau und Nachtlager';});
+forestReady.then(()=>{window.forestArt.version='4.7 Waldatelier 17.2 – Zelt in der Landschaft und Stadtannäherung';});
 
 $('#btn-play').disabled=true;$('#home-note').textContent='Illustrationen werden geladen …';forestReady.then(()=>{buildIcons();syncSound();show('home');$('#btn-play').disabled=false;$('#home-note').textContent='';}).catch(error=>{console.error(error);$('#home-note').textContent='Die Illustrationen konnten nicht geladen werden. Bitte die vollständige HTML-Datei erneut öffnen.';});
 </script>
