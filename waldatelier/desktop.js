@@ -47,7 +47,7 @@ function d17FocusMove(root,key){const nodes=[...root.querySelectorAll('button:no
  if(root===d17Modal&&(key==='ArrowDown'||key==='ArrowUp')&&document.activeElement.matches('.inventory-item')){const first=document.activeElement.getBoundingClientRect();const candidates=nodes.filter(el=>el.matches('.inventory-item')).map(el=>({el,r:el.getBoundingClientRect()})).filter(({r})=>step*(r.top-first.top)>4).sort((a,b)=>Math.abs(a.r.top-first.top)-Math.abs(b.r.top-first.top)||Math.abs(a.r.left-first.left)-Math.abs(b.r.left-first.left));if(candidates.length){candidates[0].el.focus();return;}}
  nodes[(index+step+nodes.length)%nodes.length].focus();
 }
-window.addEventListener('keydown',e=>{
+window.addEventListener('keydown',e=>{if(typeof a25Dialog!=='undefined'&&a25Dialog.open)return;
  if(e.ctrlKey||e.metaKey||e.altKey)return;
  if(typeof p18ModalActive==='function'&&p18ModalActive())return;
  if(!d17Modal.hidden){

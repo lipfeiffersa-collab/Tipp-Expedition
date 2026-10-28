@@ -1,6 +1,18 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 24
+## Aktuelle Version 25
+
+**[Tipp-Expedition-v25.zip herunterladen](Tipp-Expedition-v25.zip)** · etwa 37 MB
+
+Sanfte Waldmusik mit Vogelrufen und eine dezente orientalisch angehauchte Wüstenmelodie, vollständig offline erzeugt. Über „Klang“ beziehungsweise F8 sind Musik und Vogelstimmen separat einstellbar. Deutsche Vorlesestimme, Tempo und Lautstärke können ebenfalls gewählt und angehört werden. Die Musik wird beim Vorlesen automatisch leiser. Alle Einstellungen bleiben gespeichert.
+
+[Hörproben und Klangfenster](../waldatelier/vorschau-v25/)
+
+Die bisherigen Schiffskorrekturen, Wegtasten und der Leiter-Rückweg zur Mine bleiben enthalten. ZIP entpacken und Wald-Spiel.html öffnen. Für bestehende lokale Spielstände dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden.
+
+SHA-256: `f1e0c6527f5ceaa5bd55b8e185ef7face69651c0ef7272ec7b4fc924d0fe57a8`
+
+## Version 24
 
 **[Tipp-Expedition-v24.zip herunterladen](Tipp-Expedition-v24.zip)** · etwa 37 MB
 

@@ -59,7 +59,7 @@ const p18Draw=draw;draw=function(now){p18Draw(now);if(p18Camera)p18DrawCamera();
 const p18Show=show;show=function(name){if(p18Camera)p18CloseCamera();if(p18Journal)p18CloseJournal();if(p18Help)p18CloseHelp();p18TutorialQueue=[];return p18Show(name);};
 function p18ModalActive(){return !!(p18Help||p18Camera||p18Journal);}
 function p18Consume(e){e.preventDefault();e.stopImmediatePropagation();}
-window.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||$('#screen-game').hidden||!G)return;
+window.addEventListener('keydown',e=>{if(typeof a25Dialog!=='undefined'&&a25Dialog.open)return;if(e.ctrlKey||e.metaKey||e.altKey||$('#screen-game').hidden||!G)return;
  if(e.key==='F3'&&p18ModalActive()){p18Consume(e);if(!e.repeat)d17Keyboard();return;}
  if(p18Help){p18Consume(e);if(!e.repeat&&['Enter',' ','Escape'].includes(e.key))p18CloseHelp();return;}
  if(p18Journal){if(e.key==='F2'){p18Consume(e);if(!e.repeat)d17OpenInventory();return;}if(e.key==='F6'){p18Consume(e);if(!e.repeat)jGo(journalPages().findIndex(p=>p.tab==='Entdecken'));return;}if(['Escape','F4'].includes(e.key)){p18Consume(e);if(!e.repeat)p18CloseJournal();return;}if(e.key==='Tab'){p18Consume(e);d17FocusMove(p18JournalUI,e.shiftKey?'ArrowLeft':'ArrowRight');return;}if(e.key==='ArrowRight'||e.key==='ArrowLeft'){p18Consume(e);if(!e.repeat)jGo(JP+(e.key==='ArrowRight'?1:-1)*(jNarrow()?1:2));return;}if(e.key==='Enter'){p18Consume(e);if(!e.repeat)document.activeElement?.click();return;}if(e.key.length===1||e.key==='Backspace'){p18Consume(e);return;}return;}

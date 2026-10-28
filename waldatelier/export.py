@@ -15,15 +15,19 @@ if args.previous and args.previous.exists():
 
 assert len(data)==37 and {'grundwald','orte5a','orte5b','zustaende5','wegmaterial','sofortbild'}<=data.keys()
 html=source[:a]+json.dumps(data,separators=(',',':'))+source[z:]
-args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v24.html').write_text(html)
-with zipfile.ZipFile(args.output/'Wald-Spiel-v24.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
+args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v25.html').write_text(html)
+with zipfile.ZipFile(args.output/'Wald-Spiel-v25.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
  arc.writestr('Wald-Spiel.html',html)
  arc.writestr('Schiff-Test.html','<!doctype html><html lang="de"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=Wald-Spiel.html#schiff"><title>Schiffsstart</title><a href="Wald-Spiel.html#schiff">Schiff mit eigenem Testspielstand starten</a></html>')
- arc.writestr('Start.txt',"""Tipp-Expedition – Version 24
+ arc.writestr('Start.txt',"""Tipp-Expedition – Version 25
 
 ZIP vollständig entpacken. Wald-Spiel.html öffnet das ganze Spiel. Schiff-Test.html startet direkt auf dem Schiff mit getrenntem Testspielstand. Alle Bilder sind eingebettet; keine Internetverbindung nötig.
 
-Neu in Version 24: Das Deck zeigt vor dem morschen Abschnitt eine echte Lücke. Erst beim Landen hinter dem Sprung brechen die Planken ein. Du fällst sichtbar in den Schiffsrumpf auf einen intakten Treppenabsatz. Rechts führt T über eine Treppe in die Kapitänskajüte und wieder zurück, links T hinunter zum eingestürzten Zwischendeck. K führt über das befestigte Netz, H am schrägen Balken wieder nach unten. Danach folgen gefluteter Gang und Kriechstelle, Geschützdeck, Schlafräume und Lager.
+Neu in Version 25: Im Wald begleitet eine sanfte Harfen-/Flötenmelodie mit einzelnen Vogelrufen die Reise. Die Wüste hat eine dezente, orientalisch angehauchte Melodie mit gezupften Saiten. Die Musik und Vogelrufe werden vollständig offline erzeugt; das Spiel lädt keine Audiodateien aus dem Internet. Mine und Schiff übernehmen diese beiden Klangwelten nicht.
+
+Über „Klang“ oder F8 lassen sich Musik und Vogelstimmen getrennt ein-/ausschalten und in der Lautstärke ändern. Die deutsche Vorlesestimme ist aus den auf dem Rechner verfügbaren Stimmen wählbar, mit Hörprobe, Tempo und eigener Lautstärke. Während des Vorlesens wird die Musik automatisch leiser. Auswahl und Lautstärken werden gespeichert. Tab und Pfeiltasten bedienen das Klangfenster, Esc oder F8 schließen es. Beim Schließen wird die vorherige Spielpause wiederhergestellt. „Ton aus“ schaltet Musik, Natur und Spielgeräusche gemeinsam aus; Vorlesen bleibt separat verfügbar.
+
+Aus Version 24 übernommen: Das Deck zeigt vor dem morschen Abschnitt eine echte Lücke. Erst beim Landen hinter dem Sprung brechen die Planken ein. Du fällst sichtbar in den Schiffsrumpf auf einen intakten Treppenabsatz. Rechts führt T über eine Treppe in die Kapitänskajüte und wieder zurück, links T hinunter zum eingestürzten Zwischendeck. K führt über das befestigte Netz, H am schrägen Balken wieder nach unten. Danach folgen gefluteter Gang und Kriechstelle, Geschützdeck, Schlafräume und Lager.
 
 Die Raumgrafiken behalten ihre Proportionen und schwanken mit dem Schiff. Die Kajüte hat Seekarten und Bücher sowie einen intakten Boden; unter Deck ist nur durch Fenster Meer sichtbar. Überflutete Abschnitte zeigen eine zusammenhängende Wasserfläche mit bewegter Oberfläche und Reflexionen; die Beine verschwinden im Wasser. W watet in Laufrichtung; zum Zurückwaten wird F beziehungsweise J angezeigt. Die Kamerafunktion ist auch im Schiffsrumpf verfügbar.
 
@@ -42,6 +46,6 @@ F2 Inventar, F3 Tastatur, F4 Tagebuch, F5 Kamera, F6 Aufgaben. F7 schaltet das S
 Vorhandenen lokalen Spielstand weiterverwenden: dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden. Vorher die bisherige Datei sichern. Browserdaten nicht löschen.
 """)
 
-with zipfile.ZipFile(args.output/'Wald-Spiel-v24.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
-for name in ['Wald-Spiel-v24.html','Wald-Spiel-v24.zip']:(args.output/name).chmod(0o644)
-print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v24.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')
+with zipfile.ZipFile(args.output/'Wald-Spiel-v25.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
+for name in ['Wald-Spiel-v25.html','Wald-Spiel-v25.zip']:(args.output/name).chmod(0o644)
+print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v25.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')
