@@ -1,0 +1,45 @@
+/* Existing expedition illustrations stay visible; controls share the same objects. */
+.desktop-tools .btn{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:4px 10px}
+.desktop-tools .btn img{width:31px;height:30px;object-fit:contain}
+.desktop-tools .btn svg{width:31px;height:26px;fill:none;stroke:#d4d9c6;stroke-width:1.5;stroke-linecap:round}
+.desktop-tools .btn svg .p18-slash{stroke:#e0ac87;stroke-width:2.7;paint-order:stroke;stroke-linecap:round}
+.desktop-tools .btn small{margin-left:5px;color:var(--muted);font-size:.7rem}
+.desktop-tools .btn:disabled{opacity:.45;cursor:default}
+.p18-resources{border-top:1px solid #7f8a6655;padding-top:7px}
+.p18-resources img{object-fit:contain;width:25px;height:20px}
+.p18-help{position:absolute;inset:0;z-index:35;display:grid;place-items:center;padding:5%;background:#0c1712c9}
+.p18-help-card{display:grid;grid-template-columns:minmax(95px,28%) minmax(0,1fr);align-items:center;gap:24px;background:#25372d;border:1px solid #b1b28d;border-radius:14px;padding:25px;max-width:880px;max-height:100%;overflow:auto;box-shadow:0 12px 35px #0005}
+.p18-help-card>img{width:100%;max-height:240px;object-fit:contain;filter:drop-shadow(0 4px 5px #0005)}
+.p18-help-card h2{font-size:clamp(19px,2vw,28px);margin:6px 0 12px}
+.p18-help-card p:not(.eyebrow){font-size:clamp(14px,1.2vw,18px);line-height:1.55}
+.p18-help-card button{margin-top:18px}
+.p18-journal{position:fixed;inset:0;z-index:38;background:#0c1812f5;display:flex;flex-direction:column;padding:18px 28px;gap:12px}
+.p18-journal-head{display:flex;align-items:center;justify-content:space-between;gap:15px;flex:none;font-size:.85rem;color:var(--muted)}
+#p18-journal-body{min-height:0;overflow:auto;flex:1;padding:3px 12px 20px;scrollbar-gutter:stable}
+#p18-journal-body #journal{max-width:1180px;margin:0 auto}
+#p18-journal-body .book{width:100%;max-width:none}
+#p18-journal-body .jpage{min-width:0}
+.jcard .jphoto{background:#fbf8ed;padding:8px 8px 23px;border-radius:1px;transform:rotate(-1deg)}
+.jcard .jphoto img{width:170px;max-height:180px;object-fit:contain}
+.p18-print{align-self:center;margin:4px 0 12px;background:#fbf8ed;padding:10px 10px 18px;box-shadow:0 3px 7px #4a422633;max-width:100%;width:290px;transform:rotate(-.6deg)}
+.p18-print img{display:block;width:100%;aspect-ratio:1;object-fit:contain}
+.p18-print figcaption{font:15px/1.4 Georgia,serif;color:#3e493c;padding:7px 3px 3px}
+.p18-print .btn{font-size:.7rem;padding:2px 6px;margin-top:5px;color:#60634c;border-color:#c4bea7;background:transparent}
+.p18-task{border-bottom:1px solid #8f95764d;padding:12px 0 16px}
+.p18-task h4{font:500 1.2rem Georgia,serif;margin:0 0 8px}
+.p18-task p{margin:5px 0}.p18-task small{color:#59674b}
+.snap.p18-instant{background:#fbf8ed;padding:8px 8px 24px;transform:rotate(2deg);box-shadow:0 4px 15px #0006}
+.snap.p18-instant img{width:20cqw;max-width:190px;aspect-ratio:1;object-fit:contain}
+.snap.p18-instant span{max-width:190px;font:13px Georgia,serif;padding-top:4px}
+.pagecard img.p18-found-print{width:min(430px,65vw);max-height:46vh;object-fit:contain;image-rendering:auto;transform:rotate(-.7deg);box-shadow:0 4px 15px #0005}
+#p18-camera{position:absolute;inset:0;z-index:8;pointer-events:none;color:#f1eedc}
+#p18-camera>button{position:absolute;right:12px;top:12px;pointer-events:auto;background:#182b22eb}
+.p18-view-title,.p18-view-help{position:absolute;left:12px;padding:5px 10px;background:#12221be8;border-radius:5px;font-size:clamp(11px,1vw,15px)}
+.p18-view-title{top:12px;max-width:65%}.p18-view-help{bottom:12px}
+.p18-toast{position:absolute;left:3%;bottom:4%;z-index:9;max-width:80%;padding:10px 15px;border:1px solid #b6b381;border-radius:9px;background:#1c3429f5;color:#f0dfac;font-size:clamp(13px,1.1vw,17px);box-shadow:0 3px 10px #0004;pointer-events:none}
+@media(max-width:1000px){.desktop-tools .btn{padding:4px 7px;font-size:.75rem}.desktop-tools .btn img,.desktop-tools .btn svg{width:25px;height:24px}.p18-help-card{padding:17px;gap:14px}.p18-journal{padding:10px}.jcard .jphoto img{width:130px}.p18-print{width:240px}}
+@media(max-width:700px){.p18-help-card{grid-template-columns:75px 1fr;padding:12px;gap:12px}.p18-help-card button{font-size:.8rem;padding:7px 9px}.p18-journal-head{font-size:.7rem}.p18-journal-head>span{max-width:50%}.p18-view-title{max-width:53%}}
+
+.snap.p18-instant.go img{animation:p18-develop 1.2s ease-out both}
+@keyframes p18-develop{from{opacity:.2;filter:brightness(1.6) saturate(.15)}to{opacity:1;filter:none}}
+@media(prefers-reduced-motion:reduce){.snap.p18-instant.go img{animation:none}}

@@ -115,7 +115,7 @@ function qItemIcon(g,key,x,y,w=27){const icon=ICON[key]||ICON[key==='altmuenzen'
 const qIconCache={};
 function qDrawLoot(e,t){
  const page=Math.min(Math.ceil(e.loot.length/4)-1,Math.floor(t/1900)),list=e.loot.slice(page*4,page*4+4),x=29,y=37,w=262,h=110;
- qCard(vx,x,y,w,h);vx.textAlign='center';vx.fillStyle='#eee2bd';vx.font='bold 8px Georgia';vx.fillText('In der Truhe gefunden',160,y+13);
+ qCard(vx,x,y,w,h);vx.textAlign='center';vx.fillStyle='#eee2bd';vx.font='bold 8px Georgia';vx.fillText(e.title||'In der Truhe gefunden',160,y+13);
  const width=248/list.length;
  list.forEach(([key,n],i)=>{const cx=x+7+width*(i+.5),rise=reduceMotion?0:Math.max(0,1-(t%1900)/250)*4;
   qItemIcon(vx,key,cx,y+59-rise,34);vx.fillStyle='#f4d991';vx.font='bold 10px Segoe UI';vx.fillText('×'+n,cx,y+70);

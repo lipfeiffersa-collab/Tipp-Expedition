@@ -1,4 +1,4 @@
-# Waldatelier 17.2 – Illustrationsfassung für Tipp-Expedition 4.7
+# Waldatelier 18 – Illustrationsfassung für Tipp-Expedition 4.7
 
 Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer bestätigte handgezeichnete Waldillustration mit mittlerer Detaildichte und einer quer verlaufenden T-Abzweigung. `Stilreferenz.json` dokumentiert die dazu erzeugten Motive. Die früheren Versuche sind keine Gestaltungsreferenz für Folgeänderungen.
 
@@ -6,7 +6,7 @@ Die verbindliche Stilvorlage ist `Stilreferenz-T-Abzweigung.png`: die vom Nutzer
 
 Im Repository: `python waldatelier/build.py`. Benötigt Python 3 und die eingebetteten WebP-Quelldateien. Ergebnis: `Tipp-Expedition-4.7-Waldatelier.html`.
 
-`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v17-2.html` und `Wald-Spiel-v17-2.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle sechsunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
+`python waldatelier/export.py` erzeugt unter `/workspace/shared/downloads` die eigenständige `Wald-Spiel-v18.html` und `Wald-Spiel-v18.zip`. Die ZIP enthält absichtlich wieder `Wald-Spiel.html`, damit bestehende lokale Dateipfade beibehalten werden können. Alle siebenunddreißig verwendeten Bildbögen sind eingebettet. Standardmäßig enthält der Export die vollständigen aktuellen Motive. Optional kann `--previous` vier unveränderte komprimierte Motive übernehmen; für die Nahaufnahmen wird die vollständige Auflösung empfohlen.
 
 Vor dem Ersetzen einer vorhandenen Datei eine Kopie behalten. Für vorhandene lokale Spielstände Dateiname, Speicherort und Browser beibehalten; Browserdaten nicht löschen. Tierfotos bleiben erhalten. Gefundene Hinweisfotos werden als zusammenhängende Bilder erneuert.
 
@@ -191,3 +191,59 @@ Die Aufbauschritte stehen direkt in der Landschaft, an derselben Position und in
 `kuestenweg.js` vergrößert die Stadttorkulisse jetzt von der Fernansicht bis auf gut das Doppelte. Der Ausschnitt folgt dem Durchgang und dem Boden davor. Auf der letzten Wegkante interpoliert die Kamera während jedes tatsächlichen F/J-Schritts zwischen den beiden Standorten. Der bisherige starke Zwischenzoom mit anschließendem Zurückspringen entfällt auf dieser Kante. Die bestehende Schrittzahl und alle Bewegungs-/Material-/Kartenaktionen bleiben erhalten. Eine Pause hält auch die Kamerabewegung an.
 
 `check-coast-v17-2.py` prüft ein tatsächliches Abbiegen, alle anschließenden F/J-Schritte, sichtbare Bildänderungen, zunehmende Kameranähe, Pause und zwei schnell aufeinanderfolgende Schritte. Es zeichnet eine kurze Aufnahme des tatsächlichen Stadtwegs auf. Beim Zelt prüft es alle drei Aufbauschritte ohne Aufruf des Fensterzeichners sowie identische Zeltposition vor und nach dem Abschluss. `check-tent-v17-1.py` prüft weiterhin die vollständigen Zeltfunktionen; `check-export-v17-2.py` prüft den eigenständigen Offline-Export.
+
+
+## Version 18: Sofortbilder und freiwillige Entdeckeraufgaben
+
+`polaroid.js`, `entdecker.js` und `expedition18.css` ergänzen die bestehenden Spielsysteme. Die ursprüngliche hochgeladene HTML-Datei bleibt unverändert; Szenengeometrie, Wege, Rätsel, Überlebensregeln und reguläre Truhenbelohnungen bleiben erhalten.
+
+### Bedienung
+
+| Taste | Funktion |
+|---|---|
+| F2 | Rucksack öffnen; Gegenstände nach Art sortiert |
+| F3 | Bildschirmtastatur ein/aus; das Symbol zeigt den aktuellen Zustand |
+| F4 | Feldtagebuch als pausierende Übersicht öffnen/schließen, ohne die Welt neu zu starten |
+| F5 | Freien Kamerasucher öffnen |
+| F6 | Freiwillige Entdeckeraufgaben im Tagebuch |
+| K | Tier direkt fotografieren; ohne Tier den freien Sucher öffnen |
+| F / J | Sucher nach links / rechts bewegen |
+| E / D | Sucher nach oben / unten bewegen |
+| Leertaste | Auslösen |
+| R | Leeren Film durch einen Ersatzfilm ersetzen |
+| Escape | Sucher ohne Aufnahme schließen / Tagebuch verlassen |
+
+Der quadratische Sucher arbeitet auf einer eingefrorenen Kopie der tatsächlichen Szene. Das gespeicherte 384×384-Bild entsteht aus genau dem gewählten Ausschnitt. HUD, Mauszeiger und Sucherrahmen werden nicht mitfotografiert. Der Sucher pausiert Welt, Bedürfnisse und Tierbegegnung. Tierfotos verwenden weiter die vorhandene Arten-/Vertrauenslogik, nun mit quadratischen Aufnahmen.
+
+### Film und Speicherstände
+
+Ein Film enthält acht Abzüge. Der erste Rucksack enthält ein Filmpaket; die gefundene Kamera lädt den Startfilm. Ein Kamerafund ohne zuvor gefundenen Rucksack erhält ebenfalls einen eingelegten Startfilm. Auf den Wegen kann pro Welt/Tag ein weiterer Film gefunden werden, sofern dort kein vorhandener Film wartet. Ein fertiger Film kann nicht versehentlich durch R verworfen werden. Abbrechen kostet keinen Film, ein ausgelöstes verwackeltes Tierfoto schon. Gefundene alte Hinweisfotos benötigen keinen Film.
+
+`S.expedition18` enthält eingelegte Abzüge, persönliches Album, bestätigte Erklärungen, Fortschrittszähler und einmalige Belohnungsmarken. Ersatzfilme stehen als `S.res.film` im vorhandenen Ressourceninventar. Vorhandene Tierfotos werden nicht zurückgesetzt oder nachträglich berechnet. Ältere Spielstände mit Kamera erhalten einen eingelegten Film; der alte Rucksack erhält einmalig einen Reservefilm.
+
+Das persönliche Album hat 48 Plätze, um den lokalen Browserspeicher zu begrenzen. Eine volle Sammlung verhindert weitere Auslösungen ohne Filmverbrauch. Eigene Abzüge lassen sich im Tagebuch mit zweimaliger Bestätigung entfernen. Das gibt keinen Film zurück und löscht keine bereits dokumentierte Tierart.
+
+### Hinweise und Entdeckeraufgaben
+
+Die Hundeleine erhält nach dem Aufwachen eine eigene Erklärung mit großem Gegenstandsbild. Rucksack, Film, Kamera, Karte, Wasserbeutel, Laterne und Spitzhacke werden beim ersten Erwerb erklärt. Erreichte Vertrauens- und Freundschaftsstufen erklären S und T. Die Erklärung wartet, bis laufende Fund-/Tiersequenzen beendet sind, und pausiert das Spiel bis Enter/Leertaste.
+
+| Freiwillige Aufgabe | Einmalige Belohnung |
+|---|---|
+| Erstes eigenes Foto | 1 Film |
+| Erstes geeignetes Tier füttern | 2 Goldmünzen |
+| Erstes Tier streicheln | 3 Goldmünzen |
+| Tierhilfe nutzen | 1 Film |
+| Material fürs Lagerfeuer vollständig sammeln | 1 Film |
+| Rehe fünfmal füttern | 5 Tierfutter |
+
+Keine dieser Aufgaben sperrt einen Weg oder ersetzt eine ursprüngliche Voraussetzung. Belohnungen sind gegen mehrfaches Auszahlen nach Neuladen geschützt. Ist das Inventar voll, bleibt die Belohnung offen und wird ausgegeben, sobald Platz vorhanden ist. Die regulären Vertrauens-/Freundschaftsschwellen bleiben unverändert.
+
+### Zusammenhängende Fotos und Funde
+
+Alte Hinweisbilder erhalten einen gemeinsamen Sofortbildrahmen. Das Hüttenmotiv wird aus der vollständigen ursprünglichen Hüttenkulisse gewonnen: keine verschobenen Dachteile oder zusammengeschnittenen Szenen. Falten betreffen ausschließlich das Papier. Bereits gespeicherte defekte Hinweisbilder werden anhand ihres unveränderten Motivschlüssels erneuert; Fundstatus, historische Datierung und Hinweise bleiben erhalten. Bodenbild und aufgegriffenes Bild verwenden denselben fertigen Bildpuffer. Eigene Abzüge erhalten im Tagebuch jeweils eine eigene Seite.
+
+Funde außerhalb von Truhen zeigen nun ebenfalls Gegenstandsbild und tatsächliche Menge. Die Anzeige berücksichtigt Inventargrenzen und zählt Nahrung vor einem etwaigen automatischen Verbrauch mit. Sie zahlt die Gegenstände nicht erneut aus. Die Überschrift lautet außerhalb einer Truhe „Hier gefunden“.
+
+`sofortbild.webp` ist ein neuer, mit image_gen erstellter transparenter Bildbogen mit Kamera und Film. Stilreferenz war der vorhandene Gegenstandsbogen. Seine zwei Alpha-Grenzen und SHA-256 stehen in `atlas-bounds.json`; die anderen Bildbögen werden nicht ersetzt.
+
+Prüfungen: `check-expedition-v18.py` nutzt echte Tasten für Einführung, Kamera, Film, Tierfotos, Menüwechsel, Aufgaben, Tierhilfe, Funde, Bildintegrität und Speichermigration. `check-photo-limits-v18.py` prüft Hafenfotos, Albumgrenze, Löschen, Pause, volle Ressourcen und wartende Belohnungen. `check-desert.py` prüft die ursprünglichen Weltabläufe mit 37 Bildbögen. `check-export-v18.py` prüft ZIP/HTML-Gleichheit, Offlinebetrieb und unveränderte Überlebensregeln.

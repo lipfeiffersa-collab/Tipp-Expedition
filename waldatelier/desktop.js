@@ -49,6 +49,7 @@ function d17FocusMove(root,key){const nodes=[...root.querySelectorAll('button:no
 }
 window.addEventListener('keydown',e=>{
  if(e.ctrlKey||e.metaKey||e.altKey)return;
+ if(typeof p18ModalActive==='function'&&p18ModalActive())return;
  if(!d17Modal.hidden){
   if(['Escape','F2'].includes(e.key)){d17Consume(e);if(!e.repeat)d17CloseInventory();return;}
   if(e.key==='Tab'){d17Consume(e);d17FocusMove(d17Modal,e.shiftKey?'ArrowLeft':'ArrowRight');return;}
