@@ -15,15 +15,19 @@ if args.previous and args.previous.exists():
 
 assert len(data)==37 and {'grundwald','orte5a','orte5b','zustaende5','wegmaterial','sofortbild'}<=data.keys()
 html=source[:a]+json.dumps(data,separators=(',',':'))+source[z:]
-args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v23.html').write_text(html)
-with zipfile.ZipFile(args.output/'Wald-Spiel-v23.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
+args.output.mkdir(parents=True,exist_ok=True);(args.output/'Wald-Spiel-v24.html').write_text(html)
+with zipfile.ZipFile(args.output/'Wald-Spiel-v24.zip','w',zipfile.ZIP_DEFLATED,compresslevel=6) as arc:
  arc.writestr('Wald-Spiel.html',html)
  arc.writestr('Schiff-Test.html','<!doctype html><html lang="de"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=Wald-Spiel.html#schiff"><title>Schiffsstart</title><a href="Wald-Spiel.html#schiff">Schiff mit eigenem Testspielstand starten</a></html>')
- arc.writestr('Start.txt',"""Tipp-Expedition – Version 23
+ arc.writestr('Start.txt',"""Tipp-Expedition – Version 24
 
 ZIP vollständig entpacken. Wald-Spiel.html öffnet das ganze Spiel. Schiff-Test.html startet direkt auf dem Schiff mit getrenntem Testspielstand. Alle Bilder sind eingebettet; keine Internetverbindung nötig.
 
-Neu in Version 23: An erreichten Kreuzungen und Kurven liegen kleine schwarze Kreise mit F, J und dem Leertastensymbol auf den jeweiligen Wegen. An besonderen Orten wie der Oase und während des Gehens erscheinen diese Kreise nicht. Das große Abbiegefenster entfällt.
+Neu in Version 24: Das Deck zeigt vor dem morschen Abschnitt eine echte Lücke. Erst beim Landen hinter dem Sprung brechen die Planken ein. Du fällst sichtbar in den Schiffsrumpf auf einen intakten Treppenabsatz. Rechts führt T über eine Treppe in die Kapitänskajüte und wieder zurück, links T hinunter zum eingestürzten Zwischendeck. K führt über das befestigte Netz, H am schrägen Balken wieder nach unten. Danach folgen gefluteter Gang und Kriechstelle, Geschützdeck, Schlafräume und Lager.
+
+Die Raumgrafiken behalten ihre Proportionen und schwanken mit dem Schiff. Die Kajüte hat Seekarten und Bücher sowie einen intakten Boden; unter Deck ist nur durch Fenster Meer sichtbar. Überflutete Abschnitte zeigen eine zusammenhängende Wasserfläche mit bewegter Oberfläche und Reflexionen; die Beine verschwinden im Wasser. W watet in Laufrichtung; zum Zurückwaten wird F beziehungsweise J angezeigt. Die Kamerafunktion ist auch im Schiffsrumpf verfügbar.
+
+Aus Version 23 übernommen: Kleine schwarze Wegtasten statt Abbiegefenster und offener Leiter-Rückweg zur Mine.
 
 Am Wüsteneingang (Schacht mit alter Leiter) führt L zurück in die gespeicherte Mine. Eine vergessene Spitzhacke liegt weiter im alten Stollen. Am Minenausgang führt L wieder in dieselbe Wüste zurück. Karten, Funde, Rätsel, Münzen, Inventar sowie Wüstentag und Uhrzeit bleiben erhalten.
 
@@ -31,13 +35,13 @@ Karte und Tastatur: Die Karte hat neben Aufgaben und Beständen einen eigenen Be
 
 Schiff: F/J nach links/rechts, S springen und morsche Fässer zerbrechen, D ducken, K kriechen oder am Netz klettern, L Leiter hinauf oder durch eine Luke hinunter, T Treppe, H hangeln, W waten, Ü am Mast festhalten, I untersuchen, Z am Tau ziehen. Die jeweilige Aktion wird eingeblendet. Pro Tastendruck folgt ein Schritt, Griff oder Zug. Rücktaste setzt zum letzten Merkpunkt zurück, ohne Münzen doppelt auszuzahlen.
 
-Der Hauptweg führt über das niedrige Segel und Fässer auf die Leiter zum erhöhten Deck am mittleren Mast. Nach der Welle und den beschädigten Planken geht es über Kisten wieder hinunter. Erst später bricht das Deck ein. Unter Deck führt der Weg nach links, mit Netz, Hangeln, Wasser und Kriechstelle; L führt eine Ebene hinunter zum Geschützdeck und den Schlafräumen, wo es nach rechts weitergeht. Eine weitere Leiter führt ins Lager mit Zellen, Flaschenzug und einströmendem Wasser. Dort geht es wieder nach links bis zum Untergang. Die Traumsequenz wird anschließend ausgearbeitet.
+Der Hauptweg führt über das niedrige Segel und Fässer auf die Leiter zum erhöhten Deck am mittleren Mast. Nach der Welle und den beschädigten Planken geht es über Kisten wieder hinunter. Erst später bricht das Deck ein. Nach dem Landen auf dem Absatz führt der Hauptweg links die Treppe hinunter, über Netz, Hangeln, Wasser und Kriechstelle; L führt eine Ebene hinunter zum Geschützdeck und den Schlafräumen, wo es nach rechts weitergeht. Eine weitere Leiter führt ins Lager mit Zellen, Flaschenzug und einströmendem Wasser. Dort geht es wieder nach links bis zum Untergang. Die Traumsequenz wird anschließend ausgearbeitet.
 
 F2 Inventar, F3 Tastatur, F4 Tagebuch, F5 Kamera, F6 Aufgaben. F7 schaltet das Schaukeln ein/aus. Esc Pause, Enter weiter. Gesicherte Positionen, Leiter- und Hangelfortschritt bleiben beim Laden erhalten. Ältere Schiffsstände werden auf einen passenden sicheren Merkpunkt des neuen Aufbaus übernommen; Inventar und Münzen bleiben erhalten.
 
 Vorhandenen lokalen Spielstand weiterverwenden: dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden. Vorher die bisherige Datei sichern. Browserdaten nicht löschen.
 """)
 
-with zipfile.ZipFile(args.output/'Wald-Spiel-v23.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
-for name in ['Wald-Spiel-v23.html','Wald-Spiel-v23.zip']:(args.output/name).chmod(0o644)
-print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v23.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')
+with zipfile.ZipFile(args.output/'Wald-Spiel-v24.zip') as arc:assert arc.testzip() is None and arc.read('Wald-Spiel.html')==html.encode()
+for name in ['Wald-Spiel-v24.html','Wald-Spiel-v24.zip']:(args.output/name).chmod(0o644)
+print('Export:',len(html.encode()),'bytes HTML;', (args.output/'Wald-Spiel-v24.zip').stat().st_size,f'bytes ZIP; {len(data)} embedded sheets.')

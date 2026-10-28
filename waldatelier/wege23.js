@@ -28,4 +28,4 @@ const m23EnterDesert=enterDesert;enterDesert=function(test){if(!test&&inCave()&&
 const m23DesertOptions=desertOpts;desertOpts=function(){const options=m23DesertOptions();if(m23AtShaft()&&!G.storm)options.push(['l','Leiter hinunter · zurück in die Mine',m23Down]);return options;};DESERT_EX.opts=desertOpts;
 const m23DesertLines=desertLines;desertLines=function(){const lines=m23DesertLines(...arguments);if(m23AtShaft()&&!G.storm)return ['Die alte Leiter führt vom Schacht zurück in die Mine.','L: hinuntersteigen. '+(S.inv.includes('spitzhacke')?'':'Dort liegt noch deine Spitzhacke, falls du sie nicht mitgenommen hast. ')+'Über dieselbe Leiter kommst du wieder hierher.'];return lines;};DESERT_EX.lines=desertLines;
 
-sh21Ready.then(()=>{window.forestArt.version='4.7 Waldatelier 23 – Wegtasten und Rückweg zur Mine';});
+sh21Ready.then(()=>{window.forestArt.version='4.7 Waldatelier 24 – Schiffsaufbau und gefluteter Rumpf';});

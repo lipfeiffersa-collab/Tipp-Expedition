@@ -1,6 +1,20 @@
 # Tipp-Expedition – Downloads
 
-## Aktuelle Version 23
+## Aktuelle Version 24
+
+**[Tipp-Expedition-v24.zip herunterladen](Tipp-Expedition-v24.zip)** · etwa 37 MB
+
+Der letzte Sprung an Deck führt über eine sichtbare Lücke. Erst beim Landen dahinter brechen die morschen Planken ein. Die Figur fällt in den Holzrumpf auf den intakten Absatz vor der Kapitänskajüte. Rechts führt T in die begehbare Kajüte und zurück; links führt T hinunter zum Zwischendeck, K über das befestigte Netz und H am schrägen Balken wieder nach unten.
+
+Raumbilder behalten ihre Proportionen und schwanken mit dem Schiff. Die Kajüte hat ihre eigene Einrichtung und einen intakten Boden. Geflutete Bereiche zeigen eine zusammenhängende Wasserfläche mit Bewegung, Reflexionen und verdeckten Beinen. W watet vorwärts, F oder J zurück. Der Hauptweg ist mit tatsächlichen Tasten bis zum Untergang geprüft, ebenso Kajüten-Abstecher, Treppen-/Hangelspeicherung, Fotos und Neuladen beim Einbruch.
+
+[Vorschaubilder der Version 24](../waldatelier/vorschau-v24/)
+
+Die Neuerungen aus Version 23 bleiben enthalten. ZIP entpacken und Wald-Spiel.html öffnen. Für einen bestehenden lokalen Spielstand dieselbe HTML-Datei unter demselben Namen am selben Speicherort ersetzen und denselben Browser verwenden. Schiff-Test.html startet den separaten Schiffs-Teststand.
+
+SHA-256: `6603e51f6f51b393d03487543cae14cdc54a7c1b44d49f440b7240a6568586ad`
+
+## Version 23
 
 **[Tipp-Expedition-v23.zip herunterladen](Tipp-Expedition-v23.zip)** · etwa 37 MB
 
