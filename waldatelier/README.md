@@ -247,3 +247,20 @@ Funde außerhalb von Truhen zeigen nun ebenfalls Gegenstandsbild und tatsächlic
 `sofortbild.webp` ist ein neuer, mit image_gen erstellter transparenter Bildbogen mit Kamera und Film. Stilreferenz war der vorhandene Gegenstandsbogen. Seine zwei Alpha-Grenzen und SHA-256 stehen in `atlas-bounds.json`; die anderen Bildbögen werden nicht ersetzt.
 
 Prüfungen: `check-expedition-v18.py` nutzt echte Tasten für Einführung, Kamera, Film, Tierfotos, Menüwechsel, Aufgaben, Tierhilfe, Funde, Bildintegrität und Speichermigration. `check-photo-limits-v18.py` prüft Hafenfotos, Albumgrenze, Löschen, Pause, volle Ressourcen und wartende Belohnungen. `check-desert.py` prüft die ursprünglichen Weltabläufe mit 37 Bildbögen. `check-export-v18.py` prüft ZIP/HTML-Gleichheit, Offlinebetrieb und unveränderte Überlebensregeln.
+
+## Version 19: Orientierung und Seitenrätsel
+
+`orientierung19.js` ergänzt ein Hinweisfeld nur an tatsächlich erreichten Abzweigungen und Kurven. Es verwendet die Richtungen aus `nodeMoves()` und erscheint nicht während Übergängen, Fotos, Rätseln oder Himmelansichten. Ein während des letzten Schritts gepufferter F/J/Leertasten-Druck wird an einer Abzweigung verworfen; dort muss die Richtung bewusst neu gedrückt werden. Gerade Wege behalten ihren Eingabepuffer.
+
+Das Seitenrätsel verwendet unabhängig von den übrigen Schlössern A S D F G / H J K L Ö. Die Aufteilung wird beim ersten Öffnen als `layout19` gespeichert und danach unverändert wiederverwendet. Das behebt auch die nicht deterministische alte Sortierung trotz gleichen Zufallsstartwerts. Gespeicherte alte Buchstaben werden einmalig anhand ihrer Listenposition umgeschrieben; damit bleiben Teilfortschritte bestehen. Die Originaldatei bleibt unverändert. `tagebuch-skizze19.webp` enthält die neu illustrierte ganze Notizbuchseite mit Dromedar, Fennek und Skorpion. Puzzle, Abschlussfenster und Tagebuch nutzen dieselbe zusammenhängende Vorlage. Keine räumlich versetzten Motivteile, keine geometrischen Tierpiktogramme.
+
+Die Bildschirmtastatur lässt sich mit F3 auch im Puzzlefokus anzeigen. Das Layout berücksichtigt dafür die Tastaturhöhe, statt die Tastatur unabhängig vom Schalter immer zu verstecken. Der überholte Kapitel-2-Hinweis am Lagerfeuer und auf dem Startbildschirm wird beim Build ersetzt.
+
+
+Hinter der Ruine führt nach dem Schnecken- und Wappenschlossrätsel die **Leertaste** durch den offenen Durchgang. Die bereits vorhandenen, angehängten Knoten `RU_WEG` und `REHKRIPPE` behalten ihre IDs. Der Pfad wird beim tatsächlichen Gehen in die Karte eingetragen. Die alte Schutzregel für nur mit Reittieren erreichbare versteckte Bereiche wird für diesen durch das Rätsel geöffneten Pfad ausgenommen, damit Speichern/Laden die Figur nicht zurückversetzt. An der Krippe liegen einmalig drei Portionen Tierfutter; bei vollem Vorrat bleibt der Rest dort liegen. Drei Rehe können einzeln gefüttert oder gestreichelt werden. Jede erfolgreiche Aktion lässt eines weiterziehen. Fotografieren entfernt kein Reh; F5 zeigt einen größeren quadratischen Sucher für die ganze Gruppe. Futter- und Rehfortschritt bleiben gespeichert.
+
+Der Leinenhinweis prüft nun **vor** dem Aufstehen `world.fresh`: Er erscheint nur beim ursprünglichen ersten Erwachen, auch bei älteren Spielständen ohne Tutorial-Merker nicht später beim Fortsetzen oder am nächsten Morgen.
+
+Prüfungen: `check-orientation-v19.py` prüft reale Rätseltasten, alte/neue Teilfortschritte, Skizze, F3 in beiden Rätselarten und Richtungsfelder. `check-ruin-v19.py` spielt fünf Schnecken, das komplette Wappenschloss, den Eingang und Pfad, Futterfund, Szenenfoto und alle drei Rehaktionen durch und lädt anschließend den gespeicherten Spielstand wieder. Es prüft außerdem ersten Start, alten Spielstand ohne Leinenmarker und nächstes Erwachen.
+
+`check-export-v19.py` prüft ZIP/HTML-Gleichheit, Offlinebetrieb sowie die unveränderten Wüstenregeln; die bestehende `check-expedition-v18.py` besteht weiterhin mit Kamera, Aufgaben, Fundanzeigen und Tagebuch. Die Bildschirmtastatur ist zusätzlich bei 1280×900, 1920×1080 und 900×800 geprüft.

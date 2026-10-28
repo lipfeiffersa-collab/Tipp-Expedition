@@ -15,7 +15,7 @@ function qDrawPerch(a){if(a==='kauz'){dTreeSprite(0,223,126,220);fLine([[211,68]
 const qHere=here;
 here=function(){if(qForest()&&G.pos.e==null&&G.pos.n==='RU'&&G.pos.h===3)return G.w.N.RU;return qHere();};
 const qNodeMoves=nodeMoves;
-nodeMoves=function(n,h){n=n||(G.pos.e==null?G.w.N[G.pos.n]:null);h=h??G.pos.h;if(qForest()&&n?.id==='RU'&&h===3)return n.open?{walk:3}:{};return qNodeMoves(n,h);};
+nodeMoves=function(n,h){n=n||(G.pos.e==null?G.w.N[G.pos.n]:null);h=h??G.pos.h;if(qForest()&&n?.id==='RU'&&h===3)return n.open?{' ':3}:{};return qNodeMoves(n,h);};
 const qZuName=zuName;zuName=function(n){return n.id==='REHKRIPPE'?'zur Futterkrippe hinter der Ruine':n.id==='RU_WEG'?'zum Pfad hinter der Ruine':qZuName(n);};
 function qSeedDeer(w){
  if(!qForest()||S.world.encounters12)return;
@@ -45,7 +45,7 @@ dirTo=function(target,n){if(qForest()&&target==='HUT'&&n.id==='A')return 1;retur
 const qArrive=arrive;
 arrive=function(){qEffect=null;const result=qArrive(...arguments);if(!qForest())return result;
  const a=animalHere();if(a)qPerch(a);
- if(G.pos.e==null&&G.pos.n==='RU'&&G.pos.h===3&&G.w.N.RU.open){setCaption(['Die Steintür der Ruine steht offen.',G.w.N.RU.got?'Dahinter führt ein schmaler Pfad weiter. Geh mit F und J hindurch.':'Drinnen liegt ein Seitenstück: G. Dahinter führt ein Pfad weiter: F und J.']);}
+ if(G.pos.e==null&&G.pos.n==='RU'&&G.pos.h===3&&G.w.N.RU.open){setCaption(['Die Steintür der Ruine steht offen.',G.w.N.RU.got?'Dahinter führt ein schmaler Pfad zur Futterkrippe. Leertaste: durch die Ruine gehen.':'Drinnen liegt ein Seitenstück: G. Leertaste: durch die Ruine zum Pfad hinter dem Gemäuer.']);}
  if(G.pos.e==null&&G.pos.n==='REHKRIPPE'&&G.pos.h===0){
   const left=qHerdLeft();if(left){sighting('reh');renderABox('reh');setCaption([`${left===3?'Drei Rehe stehen':left===2?'Zwei Rehe stehen':'Ein Reh steht'} an der alten Futterkrippe.`,(S.food>0?'H: ein Reh füttern. ':'')+'S: ein Reh behutsam streicheln. Danach zieht es weiter.']);}else setCaption(['Die Futterkrippe liegt still im Wald.','Alle drei Rehe sind weitergezogen. Rücktaste: zurück zur Ruine.']);
  }

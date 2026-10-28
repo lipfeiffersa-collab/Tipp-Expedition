@@ -1,0 +1,18 @@
+/* F3 must remain effective during every puzzle, with enough room for the keyboard. */
+body.in-game.puzzle-focus.keyboard-expanded .app{--desktop-chrome:620px;max-width:min(1920px,calc(max(230px,100dvh - var(--desktop-chrome))*16/9 + 36px))}
+body.in-game.puzzle-focus.keyboard-expanded #kb{display:flex!important}
+body.in-game.puzzle-focus.keyboard-expanded #legend{display:flex!important}
+body.in-game.puzzle-focus.keyboard-expanded .desktop-tools{position:relative;z-index:4}
+#o19-junction{position:absolute;z-index:2;left:50%;bottom:9%;transform:translateX(-50%);width:max-content;max-width:94%;padding:9px 16px;border:1px solid #d0c39a;border-radius:10px;background:#1d2c25ed;box-shadow:0 3px 14px #0005;color:#f3eddb;text-align:center;pointer-events:none;font-size:clamp(12px,1.15vw,17px)}
+#o19-junction strong{display:block;font-weight:500;margin-bottom:7px;color:#e5d39e}
+#o19-junction>div{display:flex;gap:22px;justify-content:center;flex-wrap:wrap}
+#o19-junction span{white-space:nowrap}#o19-junction kbd{display:inline-block;border:1px solid #a5ae90;border-bottom-width:3px;border-radius:4px;padding:2px 7px;background:#394938;font:600 .95em system-ui;color:#fff5d6}#o19-junction b{font-size:1.25em;color:#dccc9c}
+@media(max-height:950px){
+ body.in-game.puzzle-focus.keyboard-expanded .hud-time{display:none}
+ body.in-game.puzzle-focus.keyboard-expanded .desktop-tools>span{display:none}
+ body.in-game.puzzle-focus.keyboard-expanded .desktop-tools .btn span{font-size:0}
+ body.in-game.puzzle-focus.keyboard-expanded .desktop-tools .btn small{font-size:.7rem}
+ body.in-game.puzzle-focus.keyboard-expanded .actions .act small{display:none}
+ body.in-game.puzzle-focus.keyboard-expanded #legend{display:none!important}
+}
+@media(max-height:950px){body.in-game.puzzle-focus.keyboard-expanded #kb .k{height:clamp(24px,3.2vh,30px)}}
